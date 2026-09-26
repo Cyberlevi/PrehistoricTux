@@ -1,8 +1,8 @@
 (supertux-sprite
-  (action (name "right") (hitbox 12 18 102 52) (fps 6)
+  (action (name "right") (hitbox 28 42 194 62) (fps 6)
     (images "trike-walk-0.png" "trike-walk-1.png" "trike-walk-2.png" "trike-walk-3.png" "trike-walk-4.png" "trike-walk-5.png"))
-  (action (name "left") (hitbox 12 18 102 52) (fps 6) (mirror-action "right"))
-  (action (name "idle-right") (fps 2) (images "trike-idle-0.png" "trike-idle-1.png"))
+  (action (name "left") (hitbox 28 42 194 62) (fps 6) (mirror-action "right"))
+  (action (name "idle-right") (hitbox 28 42 194 62) (fps 2) (images "trike-idle-0.png" "trike-idle-1.png"))
   (action (name "idle-left") (mirror-action "idle-right"))
   (action (name "squished-right") (images "trike-idle-0.png"))
   (action (name "squished-left") (mirror-action "squished-right"))

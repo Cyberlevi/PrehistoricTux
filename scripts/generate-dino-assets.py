@@ -1,99 +1,157 @@
 #!/usr/bin/env python3
-from PIL import Image, ImageDraw
+from PIL import Image, ImageOps, ImageEnhance
 from pathlib import Path
 import argparse
 
-def poly(d,p,f,o=(28,35,24,255),w=2):
-    d.polygon(p,fill=f)
-    if o: d.line(p+[p[0]],fill=o,width=w,joint="curve")
-def ell(d,b,f,o=(28,35,24,255),w=2): d.ellipse(b,fill=f,outline=o,width=w)
-def line(d,p,f,w=3): d.line(p,fill=f,width=w,joint="curve")
-def cv(w,h): return Image.new("RGBA",(w,h),(0,0,0,0))
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE = ROOT / "addon" / "images" / "dino" / "source" / "dino_strip.webp"
 
-P={
-"raptor":((83,135,72,255),(47,80,45,255),(130,171,102,255),(219,193,126,255)),
-"alpha":((149,72,60,255),(84,39,40,255),(190,105,82,255),(230,192,126,255)),
-"ptero":((160,127,83,255),(91,69,54,255),(199,166,117,255),(224,197,133,255)),
-"hunter":((104,88,102,255),(54,48,62,255),(145,123,140,255),(212,179,120,255)),
-"trike":((102,125,75,255),(60,75,48,255),(151,160,103,255),(218,199,140,255)),
-"ankylo":((116,102,77,255),(69,62,50,255),(158,140,103,255),(205,187,134,255)),
-"plesio":((59,131,138,255),(35,80,87,255),(92,170,169,255),(199,207,145,255)),
-"nestling":((147,154,76,255),(83,91,44,255),(190,194,111,255),(226,177,76,255)),
-"pal":((60,86,55,255),(31,45,35,255),(91,116,75,255),(145,72,55,255))
+# Crop boxes are relative to the 1798x165 source strip.
+CROPS = {
+    "raptor": (15, 45, 205, 155),
+    "alpha_raptor": (220, 45, 405, 155),
+    "ptero": (430, 20, 625, 155),
+    "trike": (660, 20, 910, 155),
+    "ankylo": (920, 45, 1130, 155),
+    "plesio": (1110, 20, 1370, 155),
+    "nestling": (1370, 50, 1495, 155),
+    "palaszarusz": (1510, 15, 1765, 155),
 }
 
-def raptor(i,pal):
-    im=cv(96,64);d=ImageDraw.Draw(im);body,dark,light,accent=pal
-    b=[0,1,0,-1,0,1][i%6];a=[0,3,5,3,0,-3][i%6];c=[4,1,-3,-5,-2,2][i%6]
-    poly(d,[(12,34+b),(39,25+b),(47,34+b),(18,44+b)],body);ell(d,(32,22+b,67,45+b),body);ell(d,(40,31+b,63,43+b),light,None)
-    poly(d,[(60,24+b),(72,18+b),(88,22+b),(86,32+b),(69,33+b)],body);poly(d,[(72,27+b),(87,27+b),(82,34+b),(70,33+b)],dark)
-    ell(d,(78,21+b,82,25+b),(245,230,120,255),None);ell(d,(80,22+b,82,24+b),(15,15,15,255),None)
-    line(d,[(57,30+b),(66,37+b),(72,36+b)],dark,3);line(d,[(48,41+b),(45,52+a),(38,56+a)],dark,5);line(d,[(60,41+b),(65,51+c),(73,55+c)],dark,5)
-    line(d,[(38,56+a),(34,56+a)],accent,2);line(d,[(73,55+c),(78,55+c)],accent,2);line(d,[(37,25+b),(42,31+b)],dark,2);line(d,[(45,24+b),(49,31+b)],dark,2)
-    return im
+CONFIG = {
+    "raptor": ((192, 96), 6),
+    "alpha_raptor": ((192, 96), 6),
+    "ptero": ((224, 128), 6),
+    "hunter_ptero": ((224, 128), 6),
+    "trike": ((256, 128), 6),
+    "ankylo": ((208, 96), 4),
+    "plesio": ((224, 112), 6),
+    "nestling": ((128, 80), 4),
+    "palaszarusz": ((320, 176), 4),
+}
 
-def ptero(i,pal,hunter=False):
-    im=cv(112,72);d=ImageDraw.Draw(im);body,dark,light,accent=pal;f=[-8,-2,6,10,6,-2][i%6]
-    poly(d,[(48,34),(18,20+f),(6,31+f),(36,44),(50,40)],body);poly(d,[(58,34),(92,18+f),(107,29+f),(72,45),(56,40)],body)
-    poly(d,[(18,20+f),(26,38),(36,44),(30,25+f)],light,None);poly(d,[(92,18+f),(83,39),(72,45),(79,24+f)],light,None)
-    ell(d,(42,30,69,49),body);poly(d,[(62,32),(78,29),(98,34),(78,40),(61,39)],body);poly(d,[(91,34),(106,37),(92,40)],accent);poly(d,[(76,30),(83,19),(87,32)],dark)
-    ell(d,(79,31,83,35),(245,230,120,255),None);line(d,[(52,45),(49,53),(45,56)],dark,3);line(d,[(60,45),(63,53),(67,56)],dark,3)
-    if hunter: line(d,[(44,34),(36,30)],accent,2)
-    return im
+def cut_dark_background(img):
+    img = img.convert("RGBA")
+    px = img.load()
+    for y in range(img.height):
+        for x in range(img.width):
+            r, g, b, a = px[x, y]
+            hi = max(r, g, b)
+            lo = min(r, g, b)
+            sat = hi - lo
+            lum = (r + g + b) / 3
+            if (lum < 48 and sat < 38) or (r > 150 and g < 40 and b < 40) or (b > 145 and r < 55 and g < 90):
+                px[x, y] = (r, g, b, 0)
+            elif a:
+                px[x, y] = (r, g, b, min(255, int(max(0, lum - 25) * 3.1)))
+    bbox = img.getbbox()
+    return img.crop(bbox) if bbox else img
 
-def trike(i,pal):
-    im=cv(128,80);d=ImageDraw.Draw(im);body,dark,light,accent=pal;b=[0,1,0,-1,0,1][i%6];a=[1,3,4,2,0,-2][i%6];c=[3,1,-2,-4,-1,2][i%6]
-    ell(d,(22,24+b,91,58+b),body);ell(d,(34,39+b,85,58+b),light,None);poly(d,[(24,31+b),(7,36+b),(24,43+b)],body);poly(d,[(83,19+b),(101,18+b),(113,29+b),(108,48+b),(87,50+b),(78,35+b)],dark);ell(d,(87,29+b,116,51+b),body)
-    poly(d,[(101,30+b),(120,20+b),(108,35+b)],accent);poly(d,[(96,33+b),(113,38+b),(98,39+b)],accent);poly(d,[(92,29+b),(96,15+b),(100,31+b)],accent);ell(d,(101,32+b,105,36+b),(245,230,120,255),None)
-    for x,z in [(38,a),(58,c),(78,a),(90,c)]: line(d,[(x,53+b),(x-2,67+z)],dark,6);line(d,[(x-2,67+z),(x+5,68+z)],accent,2)
-    return im
+def fit_to_canvas(img, size, scale=0.90):
+    w, h = size
+    maxw, maxh = int(w * scale), int(h * 0.80)
+    ratio = min(maxw / img.width, maxh / img.height)
+    nw, nh = max(1, int(img.width * ratio)), max(1, int(img.height * ratio))
+    return img.resize((nw, nh), Image.Resampling.LANCZOS)
 
-def ankylo(i,pal):
-    im=cv(112,64);d=ImageDraw.Draw(im);body,dark,light,accent=pal;b=[0,1,0,-1][i%4];ell(d,(25,27+b,82,51+b),body)
-    for x,h in [(33,10),(45,7),(57,9),(69,6)]: poly(d,[(x,29+b),(x+5,18+b-h//2),(x+10,30+b)],dark)
-    ell(d,(76,32+b,99,49+b),body);ell(d,(88,35+b,92,39+b),(240,225,120,255),None);line(d,[(28,39+b),(12,43+b)],dark,6);ell(d,(3,38+b,15,49+b),dark)
-    for x in [35,58,78]: line(d,[(x,48+b),(x-1,59)],dark,5)
-    return im
+def frame(base, size, bob=0, stretch=1.0, rotate=0, squash=1.0):
+    w, h = size
+    img = base
+    if stretch != 1.0:
+        img = img.resize((max(1, int(img.width * stretch)), img.height), Image.Resampling.LANCZOS)
+    if squash != 1.0:
+        img = img.resize((img.width, max(8, int(img.height * squash))), Image.Resampling.LANCZOS)
+    if rotate:
+        img = img.rotate(rotate, resample=Image.Resampling.BICUBIC, expand=True)
+    out = Image.new("RGBA", size, (0, 0, 0, 0))
+    x = (w - img.width) // 2
+    y = (h - img.height) // 2 + bob
+    out.alpha_composite(img, (x, y))
+    return out
 
-def plesio(i,pal):
-    im=cv(112,64);d=ImageDraw.Draw(im);body,dark,light,accent=pal;w=[0,2,4,2,0,-2][i%6]
-    ell(d,(27,28+w,73,49+w),body);line(d,[(65,33+w),(79,22+w),(88,15+w)],body,9);ell(d,(84,10+w,102,24+w),body);ell(d,(93,13+w,97,17+w),(240,225,120,255),None)
-    poly(d,[(42,42+w),(28,56+w),(48,49+w)],dark);poly(d,[(63,43+w),(78,56+w),(60,49+w)],dark);poly(d,[(29,34+w),(10,27+w),(21,42+w)],body)
-    return im
+def tint(img, factors):
+    rfac, gfac, bfac = factors
+    img = img.copy().convert("RGBA")
+    px = img.load()
+    for y in range(img.height):
+        for x in range(img.width):
+            r, g, b, a = px[x, y]
+            if a:
+                px[x, y] = (min(255, int(r * rfac)), min(255, int(g * gfac)), min(255, int(b * bfac)), a)
+    return img
 
-def nestling(i,pal):
-    im=cv(72,56);d=ImageDraw.Draw(im);body,dark,light,accent=pal;b=[0,2,0,-2][i%4]
-    ell(d,(22,22+b,52,44+b),body);ell(d,(41,16+b,63,34+b),body);ell(d,(51,20+b,55,24+b),(250,235,120,255),None);poly(d,[(44,18+b),(48,8+b),(52,19+b)],accent)
-    line(d,[(30,41+b),(27,51)],dark,4);line(d,[(44,41+b),(47,51)],dark,4)
-    return im
+def save(img, path):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path, optimize=True)
 
-def pala(i,pal,roar=False,hurt=False):
-    im=cv(192,128);d=ImageDraw.Draw(im);body,dark,light,accent=pal;b=[0,1,0,-1][i%4]
-    poly(d,[(18,72+b),(58,50+b),(87,54+b),(64,82+b),(22,89+b)],dark);ell(d,(52,42+b,131,91+b),body);ell(d,(68,62+b,121,90+b),light,None);poly(d,[(118,48+b),(138,31+b),(165,35+b),(180,51+b),(169,69+b),(132,65+b)],body)
-    if roar: poly(d,[(157,52+b),(187,56+b),(163,73+b),(145,62+b)],dark);poly(d,[(163,60+b),(182,59+b),(166,68+b)],(165,56,48,255),None)
-    else: poly(d,[(158,51+b),(181,55+b),(165,62+b)],dark)
-    line(d,[(143,38+b),(158,42+b)],dark,5);ell(d,(153,43+b,159,49+b),(255,203,80,255),None);ell(d,(156,44+b,159,47+b),(20,15,10,255),None)
-    for x,h in [(70,16),(84,21),(99,18),(114,15)]: poly(d,[(x,47+b),(x+6,47+b-h),(x+12,48+b)],accent)
-    s=[0,4,0,-4][i%4]
-    for x,z in [(76,s),(109,-s)]: line(d,[(x,83+b),(x-3,108+z)],dark,10);line(d,[(x-3,108+z),(x+10,111+z)],accent,3)
-    line(d,[(128,59+b),(137,71+b),(145,69+b)],dark,5)
-    if hurt: line(d,[(160,40),(172,31)],(255,110,70,255),4)
-    return im
+def generate(output):
+    strip = Image.open(SOURCE).convert("RGB")
+    bases = {}
+    for name, box in CROPS.items():
+        art = cut_dark_background(strip.crop(box))
+        if name not in ("ptero",):
+            art = ImageOps.mirror(art)
+        bases[name] = art
 
-def save(root,name,items):
-    d=root/name;d.mkdir(parents=True,exist_ok=True)
-    for fn,img in items: img.save(d/fn)
+    bases["hunter_ptero"] = tint(bases["ptero"], (0.72, 0.72, 0.86))
 
-def generate(root):
-    save(root,"raptor",[(f"raptor-run-{i}.png",raptor(i,P["raptor"])) for i in range(6)]+[(f"raptor-idle-{i}.png",raptor(i*3,P["raptor"])) for i in range(2)]+[("raptor-squished.png",raptor(0,P["raptor"]).resize((96,42)))])
-    save(root,"alpha_raptor",[(f"alpha-run-{i}.png",raptor(i,P["alpha"])) for i in range(6)]+[(f"alpha-idle-{i}.png",raptor(i*3,P["alpha"])) for i in range(2)]+[("alpha-squished.png",raptor(0,P["alpha"]).resize((96,42)))])
-    save(root,"ptero",[(f"ptero-fly-{i}.png",ptero(i,P["ptero"])) for i in range(6)]+[(f"ptero-glide-{i}.png",ptero(i*3+1,P["ptero"])) for i in range(2)])
-    save(root,"hunter_ptero",[(f"hunter-fly-{i}.png",ptero(i,P["hunter"],True)) for i in range(6)])
-    save(root,"trike",[(f"trike-walk-{i}.png",trike(i,P["trike"])) for i in range(6)]+[(f"trike-idle-{i}.png",trike(i*3,P["trike"])) for i in range(2)])
-    save(root,"ankylo",[(f"ankylo-walk-{i}.png",ankylo(i,P["ankylo"])) for i in range(4)])
-    save(root,"plesio",[(f"plesio-swim-{i}.png",plesio(i,P["plesio"])) for i in range(6)])
-    save(root,"nestling",[(f"nestling-run-{i}.png",nestling(i,P["nestling"])) for i in range(4)])
-    save(root,"palaszarusz",[(f"pal-walk-{i}.png",pala(i,P["pal"])) for i in range(4)]+[(f"pal-roar-{i}.png",pala(i,P["pal"],True)) for i in range(3)]+[(f"pal-hurt-{i}.png",pala(i*2+1,P["pal"],hurt=True)) for i in range(2)])
+    # Ground predators
+    for name, prefix in (("raptor", "raptor"), ("alpha_raptor", "alpha")):
+        size, _ = CONFIG[name]
+        base = fit_to_canvas(bases[name], size)
+        for i, (bob, stretch) in enumerate([(0,1.00),(2,.985),(4,.965),(2,.985),(0,1.00),(-2,1.015)]):
+            save(frame(base, size, bob=bob, stretch=stretch), output/name/f"{prefix}-run-{i}.png")
+        save(frame(base, size, bob=0), output/name/f"{prefix}-idle-0.png")
+        save(frame(base, size, bob=1, stretch=.995), output/name/f"{prefix}-idle-1.png")
+        save(frame(base, size, bob=14, squash=.48), output/name/f"{prefix}-squished.png")
 
-if __name__=="__main__":
-    ap=argparse.ArgumentParser();ap.add_argument("--output",required=True);a=ap.parse_args();generate(Path(a.output))
+    # Pterosaurs
+    for name, prefix in (("ptero","ptero"), ("hunter_ptero","hunter")):
+        size, _ = CONFIG[name]
+        base = fit_to_canvas(bases[name], size, .88)
+        for i, (bob, squash) in enumerate([(0,1.0),(-4,.94),(-8,.88),(-4,.94),(0,1.0),(3,1.04)]):
+            save(frame(base, size, bob=bob, squash=squash), output/name/f"{prefix}-fly-{i}.png")
+        if name == "ptero":
+            save(frame(base, size, bob=0), output/name/"ptero-glide-0.png")
+            save(frame(base, size, bob=2, stretch=1.02), output/name/"ptero-glide-1.png")
+
+    # Heavy dinosaurs
+    size,_ = CONFIG["trike"]
+    base = fit_to_canvas(bases["trike"], size, .92)
+    for i,(bob,stretch) in enumerate([(0,1),(2,.99),(3,.98),(1,1),(0,1.01),(-2,1)]):
+        save(frame(base,size,bob=bob,stretch=stretch), output/"trike"/f"trike-walk-{i}.png")
+    save(frame(base,size), output/"trike"/"trike-idle-0.png")
+    save(frame(base,size,bob=1), output/"trike"/"trike-idle-1.png")
+
+    size,_ = CONFIG["ankylo"]
+    base = fit_to_canvas(bases["ankylo"], size, .92)
+    for i,bob in enumerate((0,2,0,-2)):
+        save(frame(base,size,bob=bob,stretch=(.985 if i in (1,3) else 1.0)), output/"ankylo"/f"ankylo-walk-{i}.png")
+
+    # Water creature
+    size,_ = CONFIG["plesio"]
+    base = fit_to_canvas(bases["plesio"], size, .90)
+    for i,(bob,rot) in enumerate([(0,0),(2,1),(4,2),(2,1),(0,0),(-2,-1)]):
+        save(frame(base,size,bob=bob,rotate=rot), output/"plesio"/f"plesio-swim-{i}.png")
+
+    # Nestling
+    size,_ = CONFIG["nestling"]
+    base = fit_to_canvas(bases["nestling"], size, .88)
+    for i,bob in enumerate((0,3,0,-3)):
+        save(frame(base,size,bob=bob,stretch=(.96 if i in (1,3) else 1.0)), output/"nestling"/f"nestling-run-{i}.png")
+
+    # Palaszarusz boss
+    size,_ = CONFIG["palaszarusz"]
+    base = fit_to_canvas(bases["palaszarusz"], size, .94)
+    for i,(bob,stretch) in enumerate([(0,1),(3,.99),(0,1),(-3,1.01)]):
+        save(frame(base,size,bob=bob,stretch=stretch), output/"palaszarusz"/f"pal-walk-{i}.png")
+    for i,(scale,bob) in enumerate(((1.02,-2),(1.05,-3),(1.02,-1))):
+        save(frame(base,size,bob=bob,stretch=scale), output/"palaszarusz"/f"pal-roar-{i}.png")
+    save(frame(base,size,bob=2,rotate=-4), output/"palaszarusz"/"pal-hurt-0.png")
+    save(frame(base,size,bob=4,rotate=4), output/"palaszarusz"/"pal-hurt-1.png")
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--output", required=True)
+    args = ap.parse_args()
+    generate(Path(args.output))
