@@ -114,21 +114,26 @@
       (top_color 0.5490196 0.6980392 0.8588235)
       (bottom_color 1 1 1)
     )
-    (haywire
+    (smartball
+      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 8992)
       (y 1152)
       (glinting #f)
     )
-    (haywire
+    (smartball
+      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
+      (direction "left")
       (x 5344)
       (y 1152)
       (glinting #f)
     )
-    (jumpy
+    (smartball
+      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
+      (direction "left")
       (x 9584)
       (y 1088)
       (glinting #t)
