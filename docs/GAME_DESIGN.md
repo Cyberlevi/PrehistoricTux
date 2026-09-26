@@ -34,4 +34,6 @@ Gameplay remains resolution-independent. New source artwork should be authored o
 - Level 01 — The Valley of the Lost Egg: playable vertical-slice structure, custom prehistoric terrain/art, scripted ambushes and Palaszarusz reveal.
 - Level 02 — Fernwood Canopy: full-length geometry scaffold connected to the worldmap, with canopy routes, two checkpoints, two secrets and mixed ground/air pressure.
 - Level 03 — Serpent Caves: full-length cave scaffold connected to the worldmap, with falling custom rock hazards, two checkpoints, two secrets and a volcanic transition.
-- Levels 04–08: campaign design defined; implementation follows after local engine smoke testing.
+- Level 04 — Pterosaur Cliffs: vertical wind-and-platforming scaffold with timed gusts, moving cliff platforms, two checkpoints and two secrets.
+- Level 05 — Obsidian River: animated lava hazards, moving obsidian slabs, falling rock pressure, two checkpoints and two secrets.
+- Levels 06–08: campaign design defined; implementation follows after local engine smoke testing.
