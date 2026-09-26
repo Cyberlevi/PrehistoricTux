@@ -120,6 +120,17 @@
       (x 10624) (y 416)
     )
 
+    (scriptedobject
+      (z-pos 40)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #f)
+      (name "PALASZARUSZ")
+      (sprite "/images/prehistoric/boss/palaszarusz/palaszarusz.sprite")
+      (x 12848)
+      (y 496)
+    )
+
     ; First Palaszarusz reveal. For now this ends the vertical slice;
     ; the bespoke boss sprite/cutscene replaces this trigger later.
     (infoblock
