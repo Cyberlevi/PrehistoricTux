@@ -344,7 +344,8 @@ secret_trap.start_moving();")
       (y 1344)
       (glinting #f)
     )
-    (jumpy
+    (flyingsnowball
+      (sprite "/images/dino/ptero/ptero.sprite")
       (z-pos 50)
       (x 10384)
       (y 320)
@@ -358,10 +359,11 @@ secret_trap.start_moving();")
       (y 1376)
       (glinting #t)
     )
-    (jumpy
+    (flyingsnowball
+      (sprite "/images/dino/hunter_ptero/hunter_ptero.sprite")
       (z-pos 50)
       (x 11200)
-      (y 1056)
+      (y 800)
       (glinting #f)
     )
     (mrbomb
