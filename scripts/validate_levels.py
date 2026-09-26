@@ -219,7 +219,7 @@ def validate_tileset(path: pathlib.Path) -> list[str]:
     if "(supertux-tiles" not in clean:
         errors.append("missing supertux-tiles root")
 
-    ids = [int(value) for value in re.findall(r'\\(id\\s+(\\d+)\\)', text)]
+    ids = [int(value) for value in re.findall(r'\(id\s+(\d+)\)', text)]
     if not ids:
         errors.append("tileset defines no tile ids")
     if len(ids) != len(set(ids)):
