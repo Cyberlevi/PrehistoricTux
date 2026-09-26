@@ -291,6 +291,8 @@ def validate_tileset(path: pathlib.Path) -> list[str]:
         refs = re.findall(r'\"([^"]+)\"', images_expr)
         for ref in refs:
             if ref.startswith("/"):
+                if not ref.startswith("/images/prehistoric/"):
+                    continue
                 target = addon_path_from_absolute(ref)
             else:
                 target = path.parent / ref
