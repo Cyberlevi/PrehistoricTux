@@ -24,13 +24,13 @@
 
     (decal
       (z-pos -120)
-      (sprite "/images/prehistoric/scenery/volcano-distant.png")
+      (sprite "/images/prehistoric/scenery/volcano-distant.surface")
       (x 9472)
       (y 384)
     )
     (decal
       (z-pos -40)
-      (sprite "/images/prehistoric/scenery/cliff-spire.png")
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
       (x 6400)
       (y 480)
     )

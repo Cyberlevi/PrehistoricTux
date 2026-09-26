@@ -36,19 +36,19 @@
 
     (decal
       (z-pos -90)
-      (sprite "/images/prehistoric/scenery/sauropod-distant.png")
+      (sprite "/images/prehistoric/scenery/sauropod-distant.surface")
       (x 768)
       (y 512)
     )
     (decal
       (z-pos -5)
-      (sprite "/images/prehistoric/scenery/broken-nest.png")
+      (sprite "/images/prehistoric/scenery/broken-nest.surface")
       (x 1408)
       (y 640)
     )
     (decal
       (z-pos -110)
-      (sprite "/images/prehistoric/scenery/volcano-distant.png")
+      (sprite "/images/prehistoric/scenery/volcano-distant.surface")
       (x 12160)
       (y 432)
     )

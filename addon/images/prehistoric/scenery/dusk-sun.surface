@@ -1,0 +1,8 @@
+(supertux-surface
+  ; Prototype binding. Replace with a genuine UHD source and reduce logical scale.
+  (scale 1.0 1.0)
+  (diffuse-texture
+    (file "dusk-sun.png")
+    (filter "linear")
+  )
+)

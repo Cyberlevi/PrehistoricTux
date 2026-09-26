@@ -24,25 +24,25 @@
 
     (decal
       (z-pos -140)
-      (sprite "/images/prehistoric/scenery/dusk-sun.png")
+      (sprite "/images/prehistoric/scenery/dusk-sun.surface")
       (x 2944)
       (y 160)
     )
     (decal
       (z-pos -10)
-      (sprite "/images/prehistoric/scenery/giant-ribs.png")
+      (sprite "/images/prehistoric/scenery/giant-ribs.surface")
       (x 2112)
       (y 576)
     )
     (decal
       (z-pos -12)
-      (sprite "/images/prehistoric/scenery/bone-arch.png")
+      (sprite "/images/prehistoric/scenery/bone-arch.surface")
       (x 5504)
       (y 544)
     )
     (decal
       (z-pos -8)
-      (sprite "/images/prehistoric/scenery/fossil-skull.png")
+      (sprite "/images/prehistoric/scenery/fossil-skull.surface")
       (x 8448)
       (y 608)
     )

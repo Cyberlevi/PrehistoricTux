@@ -25,19 +25,19 @@
 
     (decal
       (z-pos -100)
-      (sprite "/images/prehistoric/scenery/cliff-spire.png")
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
       (x 2688)
       (y 544)
     )
     (decal
       (z-pos -100)
-      (sprite "/images/prehistoric/scenery/cliff-spire.png")
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
       (x 6656)
       (y 416)
     )
     (decal
       (z-pos -10)
-      (sprite "/images/prehistoric/scenery/pterosaur-nest.png")
+      (sprite "/images/prehistoric/scenery/pterosaur-nest.surface")
       (x 9280)
       (y 384)
     )
