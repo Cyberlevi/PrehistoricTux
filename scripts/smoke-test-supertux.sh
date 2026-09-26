@@ -14,10 +14,12 @@ fi
 "$ROOT/scripts/install-dev-addon.sh"
 python "$ROOT/scripts/validate_levels.py"
 
-echo "Parser smoke test: Level 01"
-"$BIN" --resave "$DEST/levels/prehistoric_tux/01_lost_egg_valley.stl"
+mapfile -t FILES < <(find "$DEST/levels/prehistoric_tux" -maxdepth 1 \
+  \( -name '*.stl' -o -name '*.stwm' \) -type f | sort)
 
-echo "Parser smoke test: worldmap"
-"$BIN" --resave "$DEST/levels/prehistoric_tux/worldmap.stwm"
+for file in "${FILES[@]}"; do
+  echo "SuperTux parser smoke test: ${file##*/}"
+  "$BIN" --resave "$file"
+done
 
-echo "Static and SuperTux parser smoke tests completed."
+echo "Static and SuperTux parser smoke tests completed for ${#FILES[@]} files."
