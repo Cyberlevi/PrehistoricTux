@@ -8,13 +8,34 @@ import sys
 
 def replace_exact(path: pathlib.Path, old: str, new: str, label: str) -> None:
     text = path.read_text(encoding="utf-8")
-    if new in text:
+    if new in text and old not in text:
         print(f"OK      {label}: already applied")
         return
     if old not in text:
         raise RuntimeError(f"{label}: expected SuperTux 0.7.0 source block not found in {path}")
     path.write_text(text.replace(old, new, 1), encoding="utf-8")
     print(f"PATCHED {label}")
+
+
+def replace_exact_count(
+    path: pathlib.Path, old: str, new: str, label: str, expected_count: int
+) -> None:
+    text = path.read_text(encoding="utf-8")
+    old_count = text.count(old)
+    new_count = text.count(new)
+
+    if old_count == 0 and new_count == expected_count:
+        print(f"OK      {label}: already applied")
+        return
+
+    if old_count + new_count != expected_count:
+        raise RuntimeError(
+            f"{label}: expected {expected_count} total source block(s), "
+            f"found old={old_count}, patched={new_count} in {path}"
+        )
+
+    path.write_text(text.replace(old, new), encoding="utf-8")
+    print(f"PATCHED {label}: {old_count} block(s)")
 
 
 def main() -> int:
@@ -209,7 +230,7 @@ Surface::get_height() const
         "scaled draw source region",
     )
 
-    replace_exact(
+    replace_exact_count(
         batch_cpp,
         """  m_srcrects.emplace_back(Rectf(0, 0,
                                 static_cast<float>(m_surface->get_width()),
@@ -217,19 +238,8 @@ Surface::get_height() const
 """,
         """  m_srcrects.emplace_back(Rectf(m_surface->get_region()));
 """,
-        "surface batch position source region",
-    )
-
-    # The same upstream block appears a second time in draw(dstrect).
-    replace_exact(
-        batch_cpp,
-        """  m_srcrects.emplace_back(Rectf(0, 0,
-                                static_cast<float>(m_surface->get_width()),
-                                static_cast<float>(m_surface->get_height())));
-""",
-        """  m_srcrects.emplace_back(Rectf(m_surface->get_region()));
-""",
-        "surface batch rectangle source region",
+        "surface batch source regions",
+        2,
     )
 
     replace_exact(
