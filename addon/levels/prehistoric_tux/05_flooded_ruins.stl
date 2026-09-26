@@ -233,6 +233,7 @@
       (y 1952)
     )
     (fish-swimming
+      (sprite "/images/dino/plesio/plesio.sprite")
       (type "forest")
       (z-pos 50)
       (glinting #f)
@@ -240,6 +241,7 @@
       (y 2592)
     )
     (fish-swimming
+      (sprite "/images/dino/plesio/plesio.sprite")
       (type "forest")
       (z-pos 50)
       (glinting #f)
@@ -264,14 +266,6 @@
       (z-pos 50)
       (x 7200)
       (y 520)
-      (glinting #f)
-    )
-    (smartball
-      (sprite "/images/dino/plesio/plesio.sprite")
-      (z-pos 50)
-      (direction "left")
-      (x 6128)
-      (y 1376)
       (glinting #f)
     )
     (gradient
