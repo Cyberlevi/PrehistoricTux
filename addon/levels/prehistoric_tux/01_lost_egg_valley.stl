@@ -67,23 +67,23 @@
     ; snowball = small ground hunter
     ; smartball/snowman = heavier ground threats
     ; flyingsnowball = flying prehistoric hunter prototype
-    (snowball (z-pos 50) (direction "left") (x 1056) (y 704) (glinting #f))
-    (snowball (z-pos 50) (direction "left") (x 1472) (y 704) (glinting #f))
-    (smartball (z-pos 50) (direction "left") (x 2208) (y 672) (glinting #f))
-    (flyingsnowball (z-pos 50) (x 2816) (y 480) (glinting #f))
-    (snowball (z-pos 50) (direction "left") (x 3552) (y 704) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 1056) (y 704) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 1472) (y 704) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 2208) (y 672) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 2816) (y 480) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 3552) (y 704) (glinting #f))
     (snowman (z-pos 50) (direction "left") (x 4064) (y 672) (glinting #f))
 
-    (smartball (z-pos 50) (direction "left") (x 5312) (y 672) (glinting #f))
-    (snowball (z-pos 50) (direction "left") (x 5920) (y 704) (glinting #f))
-    (flyingsnowball (z-pos 50) (x 6720) (y 448) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 5312) (y 672) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 5920) (y 704) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 6720) (y 448) (glinting #f))
     (snowman (z-pos 50) (direction "left") (x 7488) (y 672) (glinting #f))
-    (smartball (z-pos 50) (direction "left") (x 8384) (y 608) (glinting #t))
-    (flyingsnowball (z-pos 50) (x 8960) (y 416) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 8384) (y 608) (glinting #t))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 8960) (y 416) (glinting #f))
 
-    (snowball (z-pos 50) (direction "left") (x 10112) (y 704) (glinting #f))
-    (flyingsnowball (z-pos 50) (x 10688) (y 448) (glinting #f))
-    (smartball (z-pos 50) (direction "left") (x 11264) (y 640) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 10112) (y 704) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 10688) (y 448) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 11264) (y 640) (glinting #f))
     (snowman (z-pos 50) (direction "left") (x 11968) (y 672) (glinting #t))
 
     ; Collectible trails teach the intended jump arcs.
