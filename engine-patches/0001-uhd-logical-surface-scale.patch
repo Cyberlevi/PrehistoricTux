@@ -19,10 +19,11 @@ Example:
 A 256x192 source texture therefore behaves as a 64x48 logical surface while
 still supplying the renderer with the full 256x192 source pixels.
 ---
- src/video/canvas.cpp  |  3 +--
- src/video/surface.cpp | 36 ++++++++++++++++++++++++++----------
- src/video/surface.hpp |  7 +++++--
- 3 files changed, 32 insertions(+), 14 deletions(-)
+ src/video/canvas.cpp        |  3 +--
+ src/video/surface.cpp       | 36 ++++++++++++++++++++++++++----------
+ src/video/surface.hpp       |  7 +++++--
+ src/video/surface_batch.cpp |  8 ++++----
+ 4 files changed, 36 insertions(+), 18 deletions(-)
 
 diff --git a/src/video/surface.hpp b/src/video/surface.hpp
 index 0000000..0000000 100644
@@ -152,5 +153,27 @@ index 0000000..0000000 100644
  }
  
  void
+diff --git a/src/video/surface_batch.cpp b/src/video/surface_batch.cpp
+index 0000000..0000000 100644
+--- a/src/video/surface_batch.cpp
++++ b/src/video/surface_batch.cpp
+@@ -24,9 +24,8 @@ SurfaceBatch::draw(const Vector& pos, float angle)
+ {
+-  m_srcrects.emplace_back(Rectf(0, 0,
+-                                static_cast<float>(m_surface->get_width()),
+-                                static_cast<float>(m_surface->get_height())));
++  m_srcrects.emplace_back(Rectf(m_surface->get_region()));
+   m_dstrects.emplace_back(Rectf(pos,
+                                 Sizef(static_cast<float>(m_surface->get_width()),
+                                       static_cast<float>(m_surface->get_height()))));
+@@ -37,9 +36,8 @@ SurfaceBatch::draw(const Rectf& dstrect, float angle)
+ {
+-  m_srcrects.emplace_back(Rectf(0, 0,
+-                                static_cast<float>(m_surface->get_width()),
+-                                static_cast<float>(m_surface->get_height())));
++  m_srcrects.emplace_back(Rectf(m_surface->get_region()));
+   m_dstrects.emplace_back(dstrect);
+   m_angles.emplace_back(angle);
+ }
 -- 
 2.51.0
