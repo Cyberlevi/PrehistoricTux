@@ -16,7 +16,7 @@ function palaszarusz_reveal()
   wait(0.9);
   PALASZARUSZ.set_visible(true);
   PALASZARUSZ.set_action("roar");
-  play_sound("sounds/roar.wav");
+  play_sound("sounds/yeti_roar.wav");
 
   wait(2.2);
   Effect.fade_out(1.2);
