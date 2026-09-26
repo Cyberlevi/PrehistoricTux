@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import re, sys
+import re, sys, subprocess, tempfile
 ROOT=Path(__file__).resolve().parents[1]
 ADDON=ROOT/"addon"
 LEVELS=ADDON/"levels"/"prehistoric_tux"
 errors=[]
+generated_tmp=tempfile.TemporaryDirectory()
+generated_root=Path(generated_tmp.name)/"dino"
+subprocess.run([sys.executable, str(ROOT/"scripts"/"generate-dino-assets.py"), "--output", str(generated_root)], check=True)
 
 def count_tile_rle(payload):
     nums=[int(x) for x in re.findall(r'-?\d+', payload)]
@@ -64,7 +67,9 @@ for p in (ADDON/"images"/"dino").rglob("*.sprite"):
     t=p.read_text(encoding="utf-8")
     for fn in re.findall(r'"([^"]+\.png)"', t):
         if not (p.parent/fn).is_file():
-            errors.append(f"{p.relative_to(ROOT)}: missing frame {fn}")
+            rel=p.relative_to(ADDON/"images"/"dino").parent/fn
+            if not (generated_root/rel).is_file():
+                errors.append(f"{p.relative_to(ROOT)}: missing frame {fn}")
 if errors:
     print("\n".join("ERROR: "+x for x in errors)); sys.exit(1)
 print("PrehistoricTux static validation: OK")
