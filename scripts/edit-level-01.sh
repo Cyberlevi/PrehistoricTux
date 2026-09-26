@@ -12,7 +12,7 @@ if ! command -v "$BIN" >/dev/null 2>&1; then
   exit 1
 fi
 
-"$ROOT/scripts/install-dev-addon.sh"
+bash "$ROOT/scripts/install-dev-addon.sh"
 python "$ROOT/scripts/validate_levels.py"
 
 exec "$BIN" --developer --edit-level "$LEVEL"
