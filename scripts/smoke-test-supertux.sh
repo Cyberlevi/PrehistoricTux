@@ -29,7 +29,7 @@ EOF
 SUPERTUX2_USER_DIR="$TEST_USERDIR" bash "$ROOT/scripts/install-dev-addon.sh"
 python "$ROOT/scripts/validate_levels.py"
 
-mapfile -t FILES < <(find "$DEST/levels/prehistoric_tux" -maxdepth 1 \
+mapfile -t FILES < <(find "$DEST/levels/prehistoric_tux" \
   \( -name '*.stl' -o -name '*.stwm' \) -type f | sort)
 
 for file in "${FILES[@]}"; do

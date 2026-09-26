@@ -8,3 +8,4 @@ build/
 diagnostics/
 dist/
 .engine/
+.uhd-scale-test-userdir/
