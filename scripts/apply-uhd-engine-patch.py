@@ -51,8 +51,9 @@ def main() -> int:
     canvas_cpp = root / "src/video/canvas.cpp"
     batch_cpp = root / "src/video/surface_batch.cpp"
     world_cpp = root / "src/worldmap/world_select.cpp"
+    level_cpp = root / "src/supertux/level.cpp"
 
-    for path in (surface_hpp, surface_cpp, canvas_cpp, batch_cpp, world_cpp):
+    for path in (surface_hpp, surface_cpp, canvas_cpp, batch_cpp, world_cpp, level_cpp):
         if not path.is_file():
             raise RuntimeError(f"missing expected SuperTux source file: {path}")
 
@@ -254,7 +255,27 @@ Surface::get_height() const
         "world-select logical icon size",
     )
 
-    print("PrehistoricTux UHD engine changes applied successfully.")
+    replace_exact(
+        level_cpp,
+        """  m_stats.init(*this);
+
+  Savegame* savegame = ((GameSession::current() && !Editor::current()) ?
+""",
+        """  m_stats.init(*this);
+
+  // Main::resave() marks the editor as active but still calls Level::initialize().
+  // A resave only needs the parsed sector graph; constructing a gameplay Player
+  // here is unnecessary and crashes SuperTux 0.7.0's headless/null-video resave
+  // path on the target Garuda system. Preserve normal game/editor behaviour.
+  if (Editor::s_resaving_in_progress)
+    return;
+
+  Savegame* savegame = ((GameSession::current() && !Editor::current()) ?
+""",
+        "resave initialization guard",
+    )
+
+    print("PrehistoricTux engine changes applied successfully.")
     return 0
 
 
