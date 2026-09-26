@@ -506,6 +506,20 @@ def validate_addon_metadata() -> list[str]:
     if not re.fullmatch(r"[a-z0-9-]+", addon_id):
         errors.append(f"invalid add-on id: {addon_id!r}")
 
+    type_match = re.search(r'\(type\s+"([^"]+)"\)', text)
+    if not type_match:
+        errors.append("add-on metadata has no type")
+    elif type_match.group(1) not in {"worldmap", "world", "levelset"}:
+        errors.append(f"invalid add-on type: {type_match.group(1)!r}")
+
+    version_match = re.search(r'\(version\s+(\d+)\)', text)
+    if not version_match or int(version_match.group(1)) < 1:
+        errors.append("add-on metadata requires positive integer version")
+
+    for required in ("title", "author", "license"):
+        if not re.search(rf'\({required}\s+"[^"]+"\)', text):
+            errors.append(f"add-on metadata missing {required}")
+
     return errors
 
 
