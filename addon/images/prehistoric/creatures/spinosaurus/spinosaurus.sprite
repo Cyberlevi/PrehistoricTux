@@ -1,0 +1,15 @@
+(supertux-sprite
+  (action
+    (name "idle-left")
+    (hitbox 8 8 80 52)
+    (fps 2)
+    (images "spinosaurus-idle-0.png"
+            "spinosaurus-idle-1.png")
+  )
+  (action
+    (name "idle-right")
+    (hitbox 8 8 80 52)
+    (fps 2)
+    (mirror-action "idle-left")
+  )
+)
