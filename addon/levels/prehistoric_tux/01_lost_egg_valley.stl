@@ -1,0 +1,79 @@
+(supertux-level
+  (version 3)
+  (name (_ "The Valley of the Lost Egg"))
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+  (target-time 90)
+  (allow-item-pocket "inherit")
+  (icon "")
+  (icon-locked "")
+  (statistics
+    (enable-coins #t)
+    (enable-secrets #t)
+  )
+  (sector
+    (name "main")
+    (ambient-light (color 0.72 0.86 0.68))
+    (background
+      (color 0.42 0.68 0.48)
+      (speed 0)
+      (image "/images/background/misc/skybox.png")
+      (z-pos -330)
+    )
+    (background
+      (color 0.48 0.72 0.52 0.75)
+      (speed 0.15)
+      (image "/images/background/misc/clouds.png")
+      (z-pos -320)
+    )
+    (camera (name "Camera") (mode "normal"))
+    (spawnpoint (name "main") (x 96) (y 640))
+    (spawnpoint (name "checkpoint-cave") (x 3104) (y 640))
+    (spawnpoint (name "checkpoint-cliffs") (x 6176) (y 640))
+
+    ; Bootstrap enemies: stock badguys stand in for prehistoric creature archetypes.
+    (snowball (z-pos 50) (direction "left") (x 1056) (y 640) (glinting #f))
+    (snowball (z-pos 50) (direction "left") (x 1472) (y 640) (glinting #f))
+    (smartball (z-pos 50) (direction "left") (x 2208) (y 608) (glinting #f))
+    (snowman (z-pos 50) (direction "left") (x 3744) (y 608) (glinting #f))
+    (smartball (z-pos 50) (direction "left") (x 4672) (y 544) (glinting #f))
+    (snowball (z-pos 50) (direction "left") (x 5536) (y 640) (glinting #t))
+    (snowman (z-pos 50) (direction "left") (x 6848) (y 608) (glinting #t))
+
+    ; Readable reward trail.
+    (coin (z-pos 49) (x 544) (y 576))
+    (coin (z-pos 49) (x 608) (y 544))
+    (coin (z-pos 49) (x 672) (y 576))
+    (coin (z-pos 49) (x 1888) (y 512))
+    (coin (z-pos 49) (x 1952) (y 480))
+    (coin (z-pos 49) (x 2016) (y 512))
+    (coin (z-pos 49) (x 4256) (y 448))
+    (coin (z-pos 49) (x 4320) (y 416))
+    (coin (z-pos 49) (x 4384) (y 448))
+    (coin (z-pos 49) (x 6592) (y 512))
+    (coin (z-pos 49) (x 6656) (y 480))
+    (coin (z-pos 49) (x 6720) (y 512))
+
+    ; End-of-slice trigger.
+    (sequencetrigger
+      (sequence "endsequence")
+      (width 32)
+      (height 320)
+      (x 8064)
+      (y 416)
+    )
+
+    ; Simple stock-tile bootstrap floor. 256 columns x 24 rows.
+    ; Tile 0 is empty; this is deliberately a geometry scaffold for editor iteration.
+    (tilemap
+      (solid #t)
+      (z-pos 0)
+      (width 256)
+      (height 24)
+      (tiles
+        -5376 0
+        -256 1
+      )
+    )
+  )
+)
