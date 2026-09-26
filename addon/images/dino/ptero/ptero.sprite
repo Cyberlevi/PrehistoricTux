@@ -1,8 +1,8 @@
 (supertux-sprite
-  (action (name "right") (hitbox 30 36 164 58) (fps 8)
+  (action (name "right") (hitbox 20 18 144 66) (fps 8)
     (images "ptero-fly-0.png" "ptero-fly-1.png" "ptero-fly-2.png" "ptero-fly-3.png" "ptero-fly-4.png" "ptero-fly-5.png"))
-  (action (name "left") (hitbox 30 36 164 58) (fps 8) (mirror-action "right"))
-  (action (name "idle-right") (hitbox 30 36 164 58) (fps 3) (images "ptero-glide-0.png" "ptero-glide-1.png"))
+  (action (name "left") (hitbox 20 18 144 66) (fps 8) (mirror-action "right"))
+  (action (name "idle-right") (hitbox 20 18 144 66) (fps 3) (images "ptero-glide-0.png" "ptero-glide-1.png"))
   (action (name "idle-left") (mirror-action "idle-right"))
   (action (name "squished-right") (images "ptero-glide-0.png"))
   (action (name "squished-left") (mirror-action "squished-right"))
