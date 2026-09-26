@@ -41,6 +41,24 @@
       (x 20)
       (y 10)
     )
+    (level
+      (z-pos 50)
+      (level "06_bonefield_at_dusk.stl")
+      (x 20)
+      (y 13)
+    )
+    (level
+      (z-pos 50)
+      (level "07_nesting_grounds.stl")
+      (x 16)
+      (y 13)
+    )
+    (level
+      (z-pos 50)
+      (level "08_palaszarusz_crater.stl")
+      (x 16)
+      (y 16)
+    )
     (worldmap-spawnpoint
       (z-pos 50)
       (name "main")
@@ -53,7 +71,7 @@
       (name "pathing")
       (width 24)
       (height 18)
-      (tiles -158 0 11 -3 20 10 -19 0 21 -3 0 21 -19 0 21 -3 0 21 -8 0 -11 20 14 -3 0 21 -23 0 15 -2 20 -171 0)
+      (tiles -158 0 11 -3 20 10 -19 0 21 -3 0 21 -19 0 21 -3 0 21 -8 0 -11 20 14 -3 0 21 -23 0 15 20 10 -23 0 21 -23 0 21 -19 0 11 -3 20 14 -19 0 21 -23 0 21 -23 0 21 -31 0)
     )
   )
   (tileset "/images/ice_world.strf")
