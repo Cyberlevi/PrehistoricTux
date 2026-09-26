@@ -14,9 +14,9 @@ Simply replacing a 64×48 sprite with a 256×192 PNG is not enough in stock Supe
 
 The repository contains:
 
-    engine-patches/0001-uhd-logical-surface-scale.patch
+    scripts/apply-uhd-engine-patch.py
 
-The patch makes the existing `.surface` `(scale X Y)` field affect the surface's **logical size**, while the renderer still receives the full source texture.
+The deterministic source patcher makes the existing `.surface` `(scale X Y)` field affect the surface's **logical size**, while the renderer still receives the full source texture.
 
 A future 4× raptor frame can therefore look like this:
 
