@@ -46,7 +46,7 @@ The existing images are prototypes. They should not be mechanically enlarged and
 
 Upstream Arch dependencies are documented by SuperTux. On a normal Arch/Garuda setup the required package set is:
 
-    sudo pacman -S cmake base-devel libogg libvorbis openal sdl3 sdl3_image sdl3_ttf freetype2 libraqm curl openssl glew harfbuzz fribidi glm zlib fmt physfs
+    sudo pacman -S cmake base-devel libogg libvorbis openal sdl2 sdl2_image sdl2_ttf freetype2 libraqm curl openssl glew harfbuzz fribidi glm zlib fmt physfs
 
 The easiest route on Garuda is now:
 

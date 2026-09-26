@@ -13,9 +13,9 @@ PACKAGES=(
   libogg
   libvorbis
   openal
-  sdl3
-  sdl3_image
-  sdl3_ttf
+  sdl2
+  sdl2_image
+  sdl2_ttf
   freetype2
   libraqm
   curl

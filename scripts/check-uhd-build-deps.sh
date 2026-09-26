@@ -21,7 +21,7 @@ done
 echo
 echo "Checking key development libraries with pkg-config when available..."
 if command -v pkg-config >/dev/null 2>&1; then
-  for pc in sdl3 SDL3_image SDL3_ttf freetype2 libcurl glew harfbuzz fribidi glm libavif vorbisfile physfs fmt; do
+  for pc in sdl2 SDL2_image SDL2_ttf freetype2 libcurl glew harfbuzz fribidi glm libavif vorbisfile physfs fmt; do
     if pkg-config --exists "$pc" 2>/dev/null; then
       printf 'OK      pkg-config %-16s %s\n' "$pc" "$(pkg-config --modversion "$pc" 2>/dev/null || true)"
     else
