@@ -36,4 +36,6 @@ Gameplay remains resolution-independent. New source artwork should be authored o
 - Level 03 — Serpent Caves: full-length cave scaffold connected to the worldmap, with falling custom rock hazards, two checkpoints, two secrets and a volcanic transition.
 - Level 04 — Pterosaur Cliffs: vertical wind-and-platforming scaffold with timed gusts, moving cliff platforms, two checkpoints and two secrets.
 - Level 05 — Obsidian River: animated lava hazards, moving obsidian slabs, falling rock pressure, two checkpoints and two secrets.
-- Levels 06–08: campaign design defined; implementation follows after local engine smoke testing.
+- Level 06 — Bonefield at Dusk: twilight fossil-field scaffold with mixed predator pressure, checkpoints and secrets.
+- Level 07 — Nesting Grounds: mixed-biome nesting route with neutral wildlife and a scripted Palaszarusz/egg sighting.
+- Level 08 — Palaszarusz Crater: full final approach plus a three-phase scripted charge boss prototype and egg recovery ending.
