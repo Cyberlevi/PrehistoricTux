@@ -48,7 +48,17 @@ Upstream Arch dependencies are documented by SuperTux. On a normal Arch/Garuda s
 
     sudo pacman -S cmake base-devel libogg libvorbis openal sdl3 sdl3_image sdl3_ttf freetype2 libraqm curl openssl glew harfbuzz fribidi glm zlib fmt physfs
 
-Then:
+The easiest route on Garuda is now:
+
+    bash scripts/setup-garuda-uhd-build.sh
+
+That explicitly asks for sudo, installs only missing packages with `pacman --needed`, then starts the isolated engine build.
+
+To inspect dependencies without installing anything:
+
+    bash scripts/check-uhd-build-deps.sh
+
+If dependencies are already present, build directly:
 
     bash scripts/build-uhd-engine.sh
 
