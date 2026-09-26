@@ -1,0 +1,7 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 4 10 88 18)
+    (images "obsidian-platform.png")
+  )
+)
