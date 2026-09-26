@@ -1,0 +1,15 @@
+(supertux-sprite
+  (action
+    (name "idle-left")
+    (hitbox 8 6 32 56)
+    (fps 2)
+    (images "caveman-idle-0.png"
+            "caveman-idle-1.png")
+  )
+  (action
+    (name "idle-right")
+    (hitbox 8 6 32 56)
+    (fps 2)
+    (mirror-action "idle-left")
+  )
+)
