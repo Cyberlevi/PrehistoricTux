@@ -29,3 +29,10 @@ jobs:
         run: python scripts/uhd-audit.py
       - name: Report Level 01 UHD production status
         run: python scripts/level01-art-status.py
+      - name: Check Level 01 P1 art gate when incoming assets exist
+        run: |
+          if find art/incoming/level01 -type f -name '*.png' | grep -q .; then
+            python scripts/level01-p1-qa.py
+          else
+            echo "No incoming P1 PNGs yet; skipping art QA."
+          fi
