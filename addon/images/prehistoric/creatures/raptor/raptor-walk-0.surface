@@ -1,0 +1,9 @@
+(supertux-surface
+  ; Prototype binding. Replace file with a genuine 4x master and set scale
+  ; to 0.25 0.25 when the UHD source for this frame is ready.
+  (scale 1.0 1.0)
+  (diffuse-texture
+    (file "raptor-walk-0.png")
+    (filter "linear")
+  )
+)
