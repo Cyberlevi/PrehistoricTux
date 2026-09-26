@@ -25,8 +25,10 @@
       "consistent body volume and camera angle across animation frames",
       "feet should share a stable logical floor line across walk frames",
       "tail must stay inside frame with transparent margin",
-      "no baked drop shadow; lighting is painted into the creature only"
-    ]
+      "no baked drop shadow; lighting is painted into the creature only",
+      "canonical source artwork faces right; the sprite definition mirrors it for left movement"
+    ],
+    "canonical_facing": "right"
   },
   "jungle": {
     "tiles": [
