@@ -67,7 +67,7 @@ run_case() {
     tail -n 45 "$log" || true
 
     local offset
-    offset="$(grep -oE '\(\+0x[0-9a-fA-F]+\)' "$log" | head -n 1 | tr -d '()+' || true)"
+    offset="$(grep -oE 'supertux2\(\+0x[0-9a-fA-F]+\)' "$log" | head -n 1 | sed -E 's/.*\(\+?(0x[0-9a-fA-F]+)\).*/\1/' || true)"
     if [[ -n "$offset" ]] && command -v addr2line >/dev/null 2>&1; then
       echo
       echo "addr2line for first anonymous frame ($offset):"
@@ -99,6 +99,7 @@ echo
 echo "Diagnostic logs: $OUT"
 echo
 echo "Interpretation:"
-echo "  stock PASS + patched FAIL  -> UHD engine patch regression"
-echo "  stock FAIL + patched FAIL  -> level/content or SuperTux resave-path issue"
+echo "  stock PASS + patched FAIL   -> patched-engine regression"
+echo "  stock FAIL + patched PASS   -> upstream/system SuperTux resave bug fixed in our engine"
+echo "  stock FAIL + patched FAIL   -> remaining shared resave/content issue"
 echo "  minimal PASS + Level01 FAIL -> Level01-specific object/content interaction"
