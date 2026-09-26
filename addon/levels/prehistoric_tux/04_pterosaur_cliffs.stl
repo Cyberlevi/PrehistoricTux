@@ -158,7 +158,7 @@
       (glinting #f)
     )
     (flyingsnowball
-      (sprite "/images/dino/ptero/ptero.sprite")
+      (sprite "/images/dino/hunter_ptero/hunter_ptero.sprite")
       (z-pos 50)
       (x 5440)
       (y 864)
@@ -179,7 +179,7 @@
       (glinting #f)
     )
     (flyingsnowball
-      (sprite "/images/dino/ptero/ptero.sprite")
+      (sprite "/images/dino/hunter_ptero/hunter_ptero.sprite")
       (z-pos 50)
       (x 2160)
       (y 768)
