@@ -1,0 +1,59 @@
+{
+  "policy": {
+    "master_scale": 4,
+    "tile_logical_px": 32,
+    "tile_master_px": 128,
+    "background_target": "3840x2160 or larger",
+    "runtime_engine": "patched SuperTux 0.7.0 with logical .surface scaling"
+  },
+  "assets": [
+    {
+      "name": "raptor",
+      "glob": "addon/images/prehistoric/creatures/raptor/*.png",
+      "logical_size": [64, 48],
+      "minimum_master_size": [256, 192]
+    },
+    {
+      "name": "snake",
+      "glob": "addon/images/prehistoric/creatures/snake/*.png",
+      "logical_size": [64, 32],
+      "minimum_master_size": [256, 128]
+    },
+    {
+      "name": "pterosaur",
+      "glob": "addon/images/prehistoric/creatures/ptero/*.png",
+      "logical_size": [80, 48],
+      "minimum_master_size": [320, 192]
+    },
+    {
+      "name": "spinosaurus",
+      "glob": "addon/images/prehistoric/creatures/spinosaurus/*.png",
+      "logical_size": [96, 64],
+      "minimum_master_size": [384, 256]
+    },
+    {
+      "name": "caveman",
+      "glob": "addon/images/prehistoric/characters/caveman/*.png",
+      "logical_size": [48, 64],
+      "minimum_master_size": [192, 256]
+    },
+    {
+      "name": "checkpoint",
+      "glob": "addon/images/prehistoric/objects/checkpoint/*.png",
+      "logical_size": [48, 72],
+      "minimum_master_size": [192, 288]
+    },
+    {
+      "name": "palaszarusz",
+      "glob": "addon/images/prehistoric/boss/palaszarusz/*.png",
+      "logical_size": [192, 112],
+      "minimum_master_size": [768, 448]
+    },
+    {
+      "name": "terrain",
+      "glob": "addon/images/prehistoric/terrain/*.png",
+      "logical_size": [32, 32],
+      "minimum_master_size": [128, 128]
+    }
+  ]
+}
