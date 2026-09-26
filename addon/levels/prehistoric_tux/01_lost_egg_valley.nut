@@ -3,6 +3,8 @@
 // Scripted creatures are used for readable set-piece attacks without requiring an engine fork yet.
 
 PALASZARUSZ.set_visible(false);
+CAVEMAN_GUIDE.set_action("idle-left");
+SPINOSAURUS_CAMEO.set_action("idle-left");
 
 SNAKE_AMBUSH_1.set_visible(false);
 SNAKE_AMBUSH_1.set_solid(false);
