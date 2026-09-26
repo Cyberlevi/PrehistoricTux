@@ -208,7 +208,7 @@
       (glinting #f)
     )
     (smartball
-      (sprite "/images/dino/raptor/raptor.sprite")
+      (sprite "/images/dino/alpha_raptor/alpha_raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 10496)
@@ -255,7 +255,7 @@
       (glinting #t)
     )
     (snowball
-      (sprite "/images/dino/raptor/raptor.sprite")
+      (sprite "/images/dino/alpha_raptor/alpha_raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 8448)
