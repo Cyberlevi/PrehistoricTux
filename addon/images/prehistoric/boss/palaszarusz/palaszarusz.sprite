@@ -1,14 +1,24 @@
 (supertux-sprite
   (action
     (name "default")
-    (hitbox 16 20 128 70)
-    (images "palaszarusz-silhouette.png")
+    (hitbox 18 20 156 86)
+    (images "palaszarusz-idle.png")
   )
   (action
     (name "roar")
-    (hitbox 16 20 128 70)
-    (fps 3)
-    (images "palaszarusz-silhouette.png"
-            "palaszarusz-silhouette.png")
+    (hitbox 18 20 156 86)
+    (fps 4)
+    (images "palaszarusz-idle.png"
+            "palaszarusz-roar.png"
+            "palaszarusz-roar.png"
+            "palaszarusz-idle.png")
+  )
+  (action
+    (name "charge")
+    (hitbox 18 20 156 86)
+    (fps 6)
+    (images "palaszarusz-charge.png"
+            "palaszarusz-idle.png"
+            "palaszarusz-charge.png")
   )
 )
