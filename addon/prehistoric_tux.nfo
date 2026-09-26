@@ -1,8 +1,0 @@
-(supertux-addoninfo
-  (id "cyberlevi-prehistorictux")
-  (version 1)
-  (type "worldmap")
-  (title "PrehistoricTux")
-  (author "Tarnóczi Levente & Hanna")
-  (license "GPL-3.0-or-later / CC-BY-SA-4.0")
-)
