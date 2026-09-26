@@ -23,7 +23,8 @@ still supplying the renderer with the full 256x192 source pixels.
  src/video/surface.cpp       | 36 ++++++++++++++++++++++++++----------
  src/video/surface.hpp       |  7 +++++--
  src/video/surface_batch.cpp |  8 ++++----
- 4 files changed, 36 insertions(+), 18 deletions(-)
+ src/worldmap/world_select.cpp |  4 ++--
+ 5 files changed, 38 insertions(+), 20 deletions(-)
 
 diff --git a/src/video/surface.hpp b/src/video/surface.hpp
 index 0000000..0000000 100644
@@ -175,5 +176,20 @@ index 0000000..0000000 100644
    m_dstrects.emplace_back(dstrect);
    m_angles.emplace_back(angle);
  }
+diff --git a/src/worldmap/world_select.cpp b/src/worldmap/world_select.cpp
+index 0000000..0000000 100644
+--- a/src/worldmap/world_select.cpp
++++ b/src/worldmap/world_select.cpp
+@@ -164,8 +164,8 @@ WorldSelect::draw(Compositor& compositor)
+ 
+     float size = 1.f + (std::cos(angle) - 1.f) / 4.f;
+-    Rectf rect = world.icon->get_region();
+-    rect = Rectf(0, 0, rect.get_width() * size / 2.f, rect.get_height() * size / 2.f);
++    Rectf rect(0, 0, static_cast<float>(world.icon->get_width()),
++                     static_cast<float>(world.icon->get_height()));
++    rect = Rectf(0, 0, rect.get_width() * size / 2.f, rect.get_height() * size / 2.f);
+     rect.move(Vector(context.get_width() / 2.f - rect.get_width() / 2.f,
+                      context.get_height() / 2.f - rect.get_height() / 2.f));
+     rect.move(Vector(std::sin(angle) * -context.get_width() / 4.f, 0.f));
 -- 
 2.51.0
