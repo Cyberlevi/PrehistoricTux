@@ -252,6 +252,20 @@
       (y 1472)
       (glinting #t)
     )
+    (flyingsnowball
+      (sprite "/images/dino/ptero/ptero.sprite")
+      (z-pos 50)
+      (x 3900)
+      (y 420)
+      (glinting #f)
+    )
+    (flyingsnowball
+      (sprite "/images/dino/ptero/ptero.sprite")
+      (z-pos 50)
+      (x 7200)
+      (y 520)
+      (glinting #f)
+    )
     (gradient
       (top_color 0.5 0.7 1)
       (bottom_color 1 1 0)
