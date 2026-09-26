@@ -68,3 +68,21 @@ If the binary is not named `supertux2`, set `SUPERTUX_BIN` to the executable pat
 ## Licensing
 
 SuperTux engine code and upstream data retain their upstream licenses. Original PrehistoricTux prototype art is tracked separately and is intended to use CC-BY-SA-4.0 unless a file/directory says otherwise. See `LICENSE-ASSETS.md` and `docs/UPSTREAM_REVIEW.md`.
+
+## UHD / 4K target
+
+UHD is a production target, not just a launch resolution. Stock SuperTux 0.7.0 renders a bounded logical viewport and scales it to the physical display, so low-resolution textures are visibly enlarged at 4K. PrehistoricTux therefore includes an optional engine patch that lets 4× source textures retain their original logical gameplay size.
+
+Build the isolated patched engine:
+
+    bash scripts/build-uhd-engine.sh
+
+Run with it:
+
+    bash scripts/run-uhd-engine.sh
+
+Audit current prototype artwork against the 4× source targets:
+
+    python scripts/uhd-audit.py
+
+See `docs/UHD_RENDERING.md` for the rendering model and asset rules.
