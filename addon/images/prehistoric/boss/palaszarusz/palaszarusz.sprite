@@ -1,0 +1,14 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 16 20 128 70)
+    (images "palaszarusz-silhouette.png")
+  )
+  (action
+    (name "roar")
+    (hitbox 16 20 128 70)
+    (fps 3)
+    (images "palaszarusz-silhouette.png"
+            "palaszarusz-silhouette.png")
+  )
+)
