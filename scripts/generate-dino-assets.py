@@ -4,7 +4,7 @@ from pathlib import Path
 import argparse
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "addon" / "images" / "dino" / "source" / "dino_strip.webp"
+SOURCE = ROOT / "addon" / "images" / "dino" / "source" / "dino_strip.png"
 
 # Crop boxes are relative to the 1798x165 source strip.
 CROPS = {
@@ -86,9 +86,18 @@ def save(img, path):
 
 def generate(output):
     strip = Image.open(SOURCE).convert("RGB")
+    sx = strip.width / 1798.0
+    sy = strip.height / 165.0
     bases = {}
     for name, box in CROPS.items():
-        art = cut_dark_background(strip.crop(box))
+        x1, y1, x2, y2 = box
+        scaled_box = (
+            max(0, int(round(x1 * sx))),
+            max(0, int(round(y1 * sy))),
+            min(strip.width, int(round(x2 * sx))),
+            min(strip.height, int(round(y2 * sy))),
+        )
+        art = cut_dark_background(strip.crop(scaled_box))
         if name not in ("ptero",):
             art = ImageOps.mirror(art)
         bases[name] = art
