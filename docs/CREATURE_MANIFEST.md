@@ -7,8 +7,9 @@ This file maps game-design creatures to the temporary engine behaviours used by 
 | Small prehistoric hunter | `snowball` | Original sprite + tuned walking badguy subclass |
 | Ancient snake | `smartball` during geometry tests | Ground-hugging ambush enemy with strike telegraph |
 | Heavy territorial dinosaur | `snowman` | Slow charge / knockback behaviour |
-| Flying prehistoric hunter | `flyingsnowball` | Original flying sprite + patrol/dive state machine |
-| Palaszarusz | story trigger only | Multi-phase bespoke boss |
+| Flying prehistoric hunter | `flyingsnowball` plus scripted dives | Original flying sprite + patrol/dive state machine |
+| Spinosaurus | neutral scripted wildlife cameo | Larger ecological encounter; not automatically hostile |
+| Palaszarusz | scripted reveal object | Multi-phase bespoke boss |
 
 ## Rules
 
