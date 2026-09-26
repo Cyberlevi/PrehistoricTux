@@ -4,7 +4,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC="$ROOT/addon"
 ADDON_ID="cyberlevi-prehistorictux"
-DEST="${XDG_DATA_HOME:-$HOME/.local/share}/supertux2/addons/$ADDON_ID"
+USERDIR="${SUPERTUX2_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/supertux2}"
+DEST="$USERDIR/addons/$ADDON_ID"
 
 rm -rf "$DEST"
 mkdir -p "$DEST"
