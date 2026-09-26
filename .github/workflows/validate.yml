@@ -19,5 +19,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate level structure and tilemaps
+      - name: Check Python syntax
+        run: python -m py_compile scripts/*.py
+      - name: Check shell script syntax
+        run: bash -n scripts/*.sh
+      - name: Validate level structure and cross-file references
         run: python scripts/validate_levels.py
+      - name: Report UHD art readiness
+        run: python scripts/uhd-audit.py
