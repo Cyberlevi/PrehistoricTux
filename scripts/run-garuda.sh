@@ -43,16 +43,25 @@ if [[ "$VIDEO_MODE" == "fullscreen" ]]; then
   VIDEO_ARG="--fullscreen"
 fi
 
+LOGDIR="$ROOT/diagnostics"
+mkdir -p "$LOGDIR"
+LOG="$LOGDIR/runtime.log"
+
 echo "Launching PrehistoricTux in safe developer mode..."
+echo "Runtime log: $LOG"
 echo "  geometry: $GEOMETRY"
 echo "  video:    $VIDEO_MODE"
 echo "  renderer: $RENDERER"
 
-exec "$BIN" \
+set +e
+"$BIN" \
   --userdir "$DEV_USERDIR" \
   --developer \
   --show-fps \
   --renderer "$RENDERER" \
   "$VIDEO_ARG" \
   --geometry "$GEOMETRY" \
-  "$WORLDMAP"
+  "$WORLDMAP" 2>&1 | tee "$LOG"
+STATUS=${PIPESTATUS[0]}
+set -e
+exit "$STATUS"
