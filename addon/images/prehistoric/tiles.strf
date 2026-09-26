@@ -47,4 +47,18 @@
     (solid #t)
     (images "terrain/volcano-top.png")
   )
+
+  (tile
+    (id 9)
+    (images
+      "terrain/lava-0.png"
+      "terrain/lava-1.png"
+      "terrain/lava-2.png"
+      "terrain/lava-3.png"
+    )
+    (water #t)
+    (hurts #t)
+    (fire #t)
+    (fps 7)
+  )
 )
