@@ -32,9 +32,35 @@ python "$ROOT/scripts/validate_levels.py"
 mapfile -t FILES < <(find "$DEST/levels/prehistoric_tux" \
   \( -name '*.stl' -o -name '*.stwm' \) -type f | sort)
 
+LOGDIR="$ROOT/diagnostics/resave-smoke"
+mkdir -p "$LOGDIR"
+
+failures=0
 for file in "${FILES[@]}"; do
-  echo "SuperTux parser smoke test: ${file##*/}"
-  "$BIN" --userdir "$TEST_USERDIR" --resave "$file"
+  name="${file##*/}"
+  log="$LOGDIR/$name.log"
+  echo "SuperTux parser smoke test: $name"
+
+  set +e
+  "$BIN" --userdir "$TEST_USERDIR" --resave "$file" >"$log" 2>&1
+  status=$?
+  set -e
+
+  if [[ "$status" -eq 0 ]]; then
+    echo "PASS $name"
+  else
+    echo "FAIL $name (exit $status)"
+    tail -n 30 "$log" || true
+    failures=$((failures + 1))
+  fi
 done
 
-echo "Static and SuperTux parser smoke tests completed for ${#FILES[@]} files."
+echo
+total="${#FILES[@]}"
+passed=$((total - failures))
+echo "Parser smoke summary: $passed/$total passed."
+echo "Logs: $LOGDIR"
+
+if [[ "$failures" -ne 0 ]]; then
+  exit 1
+fi
