@@ -209,6 +209,37 @@ def validate_sprite(path: pathlib.Path) -> list[str]:
     return errors
 
 
+def validate_tileset(path: pathlib.Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    errors: list[str] = []
+    clean = strip_strings_and_comments(text)
+
+    if clean.count("(") != clean.count(")"):
+        errors.append("unbalanced parentheses")
+    if "(supertux-tiles" not in clean:
+        errors.append("missing supertux-tiles root")
+
+    ids = [int(value) for value in re.findall(r'\\(id\\s+(\\d+)\\)', text)]
+    if not ids:
+        errors.append("tileset defines no tile ids")
+    if len(ids) != len(set(ids)):
+        errors.append("tileset contains duplicate tile ids")
+    if any(tile_id <= 0 for tile_id in ids):
+        errors.append("tileset contains non-positive tile id")
+
+    for images_expr in expressions(text, "images"):
+        refs = re.findall(r'\"([^"]+)\"', images_expr)
+        for ref in refs:
+            if ref.startswith("/"):
+                target = addon_path_from_absolute(ref)
+            else:
+                target = path.parent / ref
+            if not target.is_file():
+                errors.append(f"missing tile image: {ref}")
+
+    return errors
+
+
 def validate_addon_metadata() -> list[str]:
     errors: list[str] = []
     nfos = sorted(ADDON.glob("*.nfo"))
@@ -246,6 +277,7 @@ def main() -> int:
     level_files = sorted((ADDON / "levels").rglob("*.stl"))
     worldmaps = sorted((ADDON / "levels").rglob("*.stwm"))
     sprites = sorted((ADDON / "images" / "prehistoric").rglob("*.sprite"))
+    tilesets = sorted((ADDON / "images" / "prehistoric").rglob("*.strf"))
 
     if not level_files:
         print("ERROR: no .stl levels found", file=sys.stderr)
@@ -256,12 +288,17 @@ def main() -> int:
     if not sprites:
         print("ERROR: no custom prehistoric .sprite files found", file=sys.stderr)
         return 1
+    if not tilesets:
+        print("ERROR: no custom prehistoric .strf tilesets found", file=sys.stderr)
+        return 1
 
     ok = True
     for path in level_files + worldmaps:
         ok = report(path, validate_level(path)) and ok
     for path in sprites:
         ok = report(path, validate_sprite(path)) and ok
+    for path in tilesets:
+        ok = report(path, validate_tileset(path)) and ok
 
     metadata_errors = validate_addon_metadata()
     metadata_path = next(iter(sorted(ADDON.glob("*.nfo"))), ADDON / "<missing>.nfo")
