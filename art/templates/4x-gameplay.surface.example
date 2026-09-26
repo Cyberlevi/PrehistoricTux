@@ -1,0 +1,9 @@
+(supertux-surface
+  ; Example wrapper for a genuine 4x source texture.
+  ; 256x192 source -> 64x48 logical game surface.
+  (scale 0.25 0.25)
+  (diffuse-texture
+    (file "replace-with-4x-source.png")
+    (filter "linear")
+  )
+)
