@@ -17,6 +17,12 @@
       (x 8)
       (y 9)
     )
+    (level
+      (z-pos 50)
+      (level "02_fernwood_canopy.stl")
+      (x 14)
+      (y 9)
+    )
     (worldmap-spawnpoint
       (z-pos 50)
       (name "main")
