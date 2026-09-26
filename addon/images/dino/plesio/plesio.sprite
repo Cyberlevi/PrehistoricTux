@@ -1,0 +1,7 @@
+(supertux-sprite
+  (action (name "right") (hitbox 8 8 96 46) (fps 7)
+    (images "plesio-swim-0.png" "plesio-swim-1.png" "plesio-swim-2.png" "plesio-swim-3.png" "plesio-swim-4.png" "plesio-swim-5.png"))
+  (action (name "left") (hitbox 8 8 96 46) (fps 7) (mirror-action "right"))
+  (action (name "squished-right") (images "plesio-swim-0.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+)
