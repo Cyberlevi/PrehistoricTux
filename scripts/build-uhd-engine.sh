@@ -5,8 +5,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENGINE_ROOT="$ROOT/.engine"
 SRC="$ENGINE_ROOT/supertux-0.7.0-uhd"
 BUILD="$ENGINE_ROOT/build-0.7.0-uhd"
-PATCH="$ROOT/engine-patches/0001-uhd-logical-surface-scale.patch"
-PATCH_SHA="$(sha256sum "$PATCH" | awk '{print $1}')"
+PATCHER="$ROOT/scripts/apply-uhd-engine-patch.py"
+PATCH_SHA="$(sha256sum "$PATCHER" | awk '{print $1}')"
 PATCH_MARKER="$BUILD/.prehistorictux-uhd-patch.sha256"
 LOGDIR="$ROOT/diagnostics"
 LOG="$LOGDIR/uhd-engine-build.log"
@@ -37,8 +37,7 @@ git -C "$SRC" reset --hard v0.7.0
 git -C "$SRC" clean -fd
 git -C "$SRC" submodule update --init --recursive
 
-git -C "$SRC" apply --check "$PATCH"
-git -C "$SRC" apply "$PATCH"
+python "$PATCHER" "$SRC"
 
 GENERATOR=()
 if command -v ninja >/dev/null 2>&1; then
