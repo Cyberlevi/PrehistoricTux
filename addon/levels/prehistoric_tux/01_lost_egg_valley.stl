@@ -84,6 +84,27 @@
       (x 9824) (y 608)
     )
 
+    ; Neutral wildlife cameo: the player is not expected to fight every prehistoric creature.
+    (scriptedobject
+      (z-pos 20)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "SPINOSAURUS_CAMEO")
+      (sprite "/images/prehistoric/creatures/spinosaurus/spinosaurus.sprite")
+      (x 3232)
+      (y 624)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-River Hunter
+#A young Spinosaurus watches from the reeds. It is alert, but it does not attack.
+#Not every creature in this valley is your enemy."))
+      (fadetransition #t)
+      (x 3104)
+      (y 576)
+    )
+
     ; The first local inhabitant points the way toward the volcano.
     (scriptedobject
       (z-pos 35)
