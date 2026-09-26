@@ -28,3 +28,16 @@ A giant creature steals a warm egg from a broken nest. Tux follows the trail thr
 - 06 The Bonefield — trike-dominated heavy territory among fossil remains.
 - 07 Nesting Grounds — mixed defense: raptors near nests, pterosaurs overhead, heavy guardians deeper inside.
 - 08 Palaszarusz Crater — all major prehistoric threats return before the final confrontation.
+
+## Production enemy cast
+
+The campaign uses a level-specific prehistoric cast rather than repeating a single enemy skin.
+
+- Raptor / Alpha Raptor: early trail, nesting grounds and finale
+- Trike / Ankylosaur: caves, bonefield and guarded routes
+- Pterosaur / Hunter Pterosaur: cliffs, flooded upper ruins and finale
+- Plesiosaur: Flooded Ruins
+- Nestling: Nesting Grounds
+- Palaszarusz: oversized final-crater encounter
+
+Visual scale intentionally varies from small nestlings to a substantially larger Palaszarusz while keeping hitboxes readable for SuperTux-style platforming.
