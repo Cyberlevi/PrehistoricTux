@@ -1,0 +1,9 @@
+(supertux-addoninfo
+  (id "cyberlevi-prehistorictux")
+  (version 2)
+  (type "levelset")
+  (title "PrehistoricTux: Stock Adventure")
+  (description "A difficult multi-level SuperTux campaign built only from the official SuperTux 0.7.0 asset set.")
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+)
