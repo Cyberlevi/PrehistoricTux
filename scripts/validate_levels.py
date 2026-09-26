@@ -94,26 +94,30 @@ def scalar(expr: str, key: str) -> int:
     return int(m.group(1))
 
 
-def tiles_count(tilemap: str) -> int:
+def expand_tiles(tilemap: str) -> list[int]:
     start = tilemap.find("(tiles")
     if start < 0:
         raise ValueError("tilemap has no tiles")
     end = matching_paren(tilemap, start)
     raw = tilemap[start + len("(tiles"):end]
     nums = [int(n) for n in re.findall(r"-?\d+", raw)]
-    expanded = 0
+    expanded: list[int] = []
     i = 0
     while i < len(nums):
         n = nums[i]
         if n < 0:
             if i + 1 >= len(nums):
                 raise ValueError("RLE repeat has no tile value")
-            expanded += abs(n)
+            expanded.extend([nums[i + 1]] * abs(n))
             i += 2
         else:
-            expanded += 1
+            expanded.append(n)
             i += 1
     return expanded
+
+
+def tiles_count(tilemap: str) -> int:
+    return len(expand_tiles(tilemap))
 
 
 def addon_path_from_absolute(ref: str) -> pathlib.Path:
@@ -134,6 +138,60 @@ def validate_custom_references(path: pathlib.Path, text: str) -> list[str]:
             target = ADDON / ref
             if not target.is_file():
                 errors.append(f"missing imported script: {ref}")
+
+    return errors
+
+
+WORLD_PATH_DATA = {
+    10: 6, 11: 10, 12: 23, 13: 30,
+    14: 5, 15: 9, 16: 29, 17: 27,
+    18: 20, 19: 18, 20: 12, 21: 3,
+    22: 17, 23: 24, 24: 31, 25: 0,
+    26: 20, 27: 18, 28: 17, 29: 24,
+}
+
+
+def validate_worldmap_path(tilemap: str) -> list[str]:
+    errors: list[str] = []
+    width = scalar(tilemap, "width")
+    height = scalar(tilemap, "height")
+    values = expand_tiles(tilemap)
+    if len(values) != width * height:
+        return errors
+
+    NORTH, SOUTH, EAST, WEST, STOP = 1, 2, 4, 8, 16
+    dirs = [
+        (NORTH, 0, -1, SOUTH, "north"),
+        (SOUTH, 0, 1, NORTH, "south"),
+        (EAST, 1, 0, WEST, "east"),
+        (WEST, -1, 0, EAST, "west"),
+    ]
+
+    for y in range(height):
+        for x in range(width):
+            tile_id = values[y * width + x]
+            data = WORLD_PATH_DATA.get(tile_id, 0)
+            if not data:
+                continue
+
+            for bit, dx, dy, reciprocal, label in dirs:
+                if not (data & bit):
+                    continue
+                nx, ny = x + dx, y + dy
+                if not (0 <= nx < width and 0 <= ny < height):
+                    if not (data & STOP):
+                        errors.append(f"path tile {tile_id} at {x},{y} points {label} off-map without STOP")
+                    continue
+
+                neighbor_id = values[ny * width + nx]
+                neighbor_data = WORLD_PATH_DATA.get(neighbor_id, 0)
+                if not (neighbor_data & reciprocal):
+                    if data & STOP:
+                        continue
+                    errors.append(
+                        f"path tile {tile_id} at {x},{y} points {label} to "
+                        f"{neighbor_id} at {nx},{ny} without reciprocal connection"
+                    )
 
     return errors
 
@@ -172,6 +230,8 @@ def validate_level(path: pathlib.Path) -> list[str]:
                     f"tilemap {index}: expands to {actual} tiles, expected {expected} "
                     f"({width}x{height})"
                 )
+            if path.suffix == ".stwm" and index == 1:
+                errors.extend(validate_worldmap_path(tm))
         except ValueError as exc:
             errors.append(f"tilemap {index}: {exc}")
 
