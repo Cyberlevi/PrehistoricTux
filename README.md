@@ -6,7 +6,7 @@ A prehistoric platform adventure built as a SuperTux 2 add-on prototype.
 
 The repository now contains a connected **eight-level campaign scaffold**, a custom prehistoric worldmap, original prehistoric prototype art, custom terrain, scripted story beats, hazards, checkpoints, secrets, moving platforms, wind sections, animated lava and a scripted Palaszarusz boss encounter.
 
-The next critical milestone is a real SuperTux runtime smoke-test on the Garuda Linux development machine and fixing any parser/runtime incompatibilities found there.
+The safe stock SuperTux 0.7.0 launcher has now been confirmed to start on the Garuda Linux target machine. The next critical milestone is building and verifying the patched UHD-capable engine, then replacing prototype art with genuine 4× production sources.
 
 ## Campaign
 
@@ -86,3 +86,5 @@ Audit current prototype artwork against the 4× source targets:
     python scripts/uhd-audit.py
 
 See `docs/UHD_RENDERING.md` for the rendering model and asset rules.
+
+All gameplay sprites, terrain tiles and major scenery now route through `.surface` bindings. That lets us replace a prototype PNG with a 4× source later without changing level geometry, hitboxes or sprite definitions.
