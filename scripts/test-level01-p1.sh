@@ -20,6 +20,11 @@ echo "=== Generate Level 01 P1 UHD candidate ==="
 python scripts/generate-level01-p1-candidate.py --promote
 
 echo
+echo "=== Render actual generated P1 contact sheet ==="
+python scripts/render-level01-p1-preview.py
+echo "Preview: art/incoming/level01/P1_PREVIEW.png"
+
+echo
 echo "=== Re-run structural validation ==="
 python scripts/validate_levels.py
 
