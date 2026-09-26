@@ -265,6 +265,45 @@ def validate_sprite(path: pathlib.Path) -> list[str]:
                 target = path.parent / ref
             if not target.is_file():
                 errors.append(f"missing image frame: {ref}")
+            if not ref.startswith("/") and ref.endswith(".png"):
+                errors.append(f"raw PNG frame bypasses UHD surface binding: {ref}")
+
+    return errors
+
+
+def validate_surface(path: pathlib.Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    errors: list[str] = []
+    clean = strip_strings_and_comments(text)
+
+    if clean.count("(") != clean.count(")"):
+        errors.append("unbalanced parentheses")
+    if "(supertux-surface" not in clean:
+        errors.append("missing supertux-surface root")
+
+    scale_match = re.search(r'\(scale\s+([0-9.]+)\s+([0-9.]+)\)', text)
+    if scale_match:
+        sx, sy = float(scale_match.group(1)), float(scale_match.group(2))
+        if sx <= 0 or sy <= 0:
+            errors.append("surface scale must be positive")
+
+    files = re.findall(r'\(file\s+"([^"]+)"\)', text)
+    if not files:
+        errors.append("surface defines no texture file")
+
+    for ref in files:
+        if ref.startswith("/"):
+            if not ref.startswith("/images/prehistoric/"):
+                continue
+            target = addon_path_from_absolute(ref)
+        else:
+            target = path.parent / ref
+        if not target.is_file():
+            errors.append(f"missing surface texture: {ref}")
+
+    for filter_name in re.findall(r'\(filter\s+"([^"]+)"\)', text):
+        if filter_name not in {"linear", "nearest"}:
+            errors.append(f"unsupported texture filter: {filter_name}")
 
     return errors
 
@@ -301,6 +340,8 @@ def validate_tileset(path: pathlib.Path) -> list[str]:
                 target = path.parent / ref
             if not target.is_file():
                 errors.append(f"missing tile image: {ref}")
+            if not ref.startswith("/") and ref.endswith(".png"):
+                errors.append(f"raw PNG tile bypasses UHD surface binding: {ref}")
 
     return errors
 
@@ -342,6 +383,7 @@ def main() -> int:
     level_files = sorted((ADDON / "levels").rglob("*.stl"))
     worldmaps = sorted((ADDON / "levels").rglob("*.stwm"))
     sprites = sorted((ADDON / "images" / "prehistoric").rglob("*.sprite"))
+    surfaces = sorted((ADDON / "images" / "prehistoric").rglob("*.surface"))
     tilesets = sorted((ADDON / "images" / "prehistoric").rglob("*.strf"))
 
     if not level_files:
@@ -353,6 +395,9 @@ def main() -> int:
     if not sprites:
         print("ERROR: no custom prehistoric .sprite files found", file=sys.stderr)
         return 1
+    if not surfaces:
+        print("ERROR: no custom prehistoric .surface files found", file=sys.stderr)
+        return 1
     if not tilesets:
         print("ERROR: no custom prehistoric .strf tilesets found", file=sys.stderr)
         return 1
@@ -362,6 +407,8 @@ def main() -> int:
         ok = report(path, validate_level(path)) and ok
     for path in sprites:
         ok = report(path, validate_sprite(path)) and ok
+    for path in surfaces:
+        ok = report(path, validate_surface(path)) and ok
     for path in tilesets:
         ok = report(path, validate_tileset(path)) and ok
 
