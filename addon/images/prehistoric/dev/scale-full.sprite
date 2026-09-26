@@ -1,0 +1,7 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 10 14 44 30)
+    (images "scale-full.surface")
+  )
+)

@@ -1,0 +1,24 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 18 20 156 86)
+    (images "palaszarusz-idle.surface")
+  )
+  (action
+    (name "roar")
+    (hitbox 18 20 156 86)
+    (fps 4)
+    (images "palaszarusz-idle.surface"
+            "palaszarusz-roar.surface"
+            "palaszarusz-roar.surface"
+            "palaszarusz-idle.surface")
+  )
+  (action
+    (name "charge")
+    (hitbox 18 20 156 86)
+    (fps 6)
+    (images "palaszarusz-charge.surface"
+            "palaszarusz-idle.surface"
+            "palaszarusz-charge.surface")
+  )
+)

@@ -1,0 +1,67 @@
+{
+  "name": "Level 01 P1 UHD art gate",
+  "master_scale": 4,
+  "raptor": {
+    "sheet_columns": 5,
+    "frame_ids": [
+      "raptor-walk-0",
+      "raptor-walk-1",
+      "raptor-walk-2",
+      "raptor-walk-3",
+      "raptor-squished"
+    ],
+    "logical_size": [
+      64,
+      48
+    ],
+    "minimum_frame_size": [
+      256,
+      192
+    ],
+    "transparent_background": true,
+    "floor_contact_y": 176,
+    "notes": [
+      "lean feathered prehistoric hunter, family-friendly but dangerous",
+      "consistent body volume and camera angle across animation frames",
+      "feet should share a stable logical floor line across walk frames",
+      "tail must stay inside frame with transparent margin",
+      "no baked drop shadow; lighting is painted into the creature only",
+      "canonical source artwork faces right; the sprite definition mirrors it for left movement"
+    ],
+    "canonical_facing": "right"
+  },
+  "jungle": {
+    "tiles": [
+      {
+        "id": "jungle-fill",
+        "logical_size": [
+          32,
+          32
+        ],
+        "minimum_size": [
+          128,
+          128
+        ]
+      },
+      {
+        "id": "jungle-top",
+        "logical_size": [
+          32,
+          32
+        ],
+        "minimum_size": [
+          128,
+          128
+        ]
+      }
+    ],
+    "opaque": true,
+    "seamless_x": true,
+    "style": [
+      "dark moist soil and layered root structure",
+      "moss, small stones, leaf litter and fern fragments",
+      "top tile has a crisp readable walkable edge",
+      "avoid false platform edges in the fill tile"
+    ]
+  }
+}

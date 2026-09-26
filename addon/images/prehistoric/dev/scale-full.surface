@@ -1,0 +1,7 @@
+(supertux-surface
+  (scale 1.0 1.0)
+  (diffuse-texture
+    (file "../creatures/raptor/raptor-walk-0.png")
+    (filter "linear")
+  )
+)

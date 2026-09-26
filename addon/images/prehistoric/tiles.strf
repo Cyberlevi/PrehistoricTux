@@ -1,0 +1,64 @@
+(supertux-tiles
+  (tilegroup
+    (name (_ "Prehistoric Terrain"))
+    (tiles
+      2 4 6 8
+      1 3 5 7
+    )
+  )
+
+  (tile
+    (id 1)
+    (solid #t)
+    (images "terrain/jungle-fill.surface")
+  )
+  (tile
+    (id 2)
+    (solid #t)
+    (images "terrain/jungle-top.surface")
+  )
+  (tile
+    (id 3)
+    (solid #t)
+    (images "terrain/cave-fill.surface")
+  )
+  (tile
+    (id 4)
+    (solid #t)
+    (images "terrain/cave-top.surface")
+  )
+  (tile
+    (id 5)
+    (solid #t)
+    (images "terrain/cliff-fill.surface")
+  )
+  (tile
+    (id 6)
+    (solid #t)
+    (images "terrain/cliff-top.surface")
+  )
+  (tile
+    (id 7)
+    (solid #t)
+    (images "terrain/volcano-fill.surface")
+  )
+  (tile
+    (id 8)
+    (solid #t)
+    (images "terrain/volcano-top.surface")
+  )
+
+  (tile
+    (id 9)
+    (images
+      "terrain/lava-0.surface"
+      "terrain/lava-1.surface"
+      "terrain/lava-2.surface"
+      "terrain/lava-3.surface"
+    )
+    (water #t)
+    (hurts #t)
+    (fire #t)
+    (fps 7)
+  )
+)

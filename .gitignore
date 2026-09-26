@@ -1,0 +1,13 @@
+build/
+.cache/
+*.log
+*.swp
+.DS_Store
+.dev-userdir/
+.smoke-userdir/
+diagnostics/
+dist/
+.engine/
+.uhd-scale-test-userdir/
+.diag-resave-patched/
+.diag-resave-stock/

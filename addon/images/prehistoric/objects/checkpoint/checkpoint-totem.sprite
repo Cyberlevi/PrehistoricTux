@@ -1,0 +1,16 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 8 8 32 60)
+    (images "checkpoint-idle.surface")
+  )
+  (action
+    (name "ringing")
+    (hitbox 8 8 32 60)
+    (fps 4)
+    (images "checkpoint-active.surface"
+            "checkpoint-idle.surface"
+            "checkpoint-active.surface"
+            "checkpoint-active.surface")
+  )
+)

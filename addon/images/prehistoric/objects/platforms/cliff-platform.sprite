@@ -1,0 +1,7 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 4 10 88 18)
+    (images "cliff-platform.surface")
+  )
+)

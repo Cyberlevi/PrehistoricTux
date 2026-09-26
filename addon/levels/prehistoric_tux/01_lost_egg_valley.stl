@@ -1,0 +1,400 @@
+(supertux-level
+  (version 3)
+  (name (_ "The Valley of the Lost Egg"))
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+  (target-time 150)
+  (allow-item-pocket "inherit")
+  (icon "")
+  (icon-locked "")
+  (statistics
+    (enable-coins #t)
+    (enable-secrets #t)
+  )
+  (tileset "/images/prehistoric/tiles.strf")
+  (sector
+    (name "main")
+    (init-script "import(\"levels/prehistoric_tux/01_lost_egg_valley.nut\");")
+    (ambient-light (color 0.72 0.86 0.68))
+    (gradient
+      (top_color 0.19 0.43 0.35)
+      (bottom_color 0.73 0.83 0.51)
+    )
+    (background
+      (color 0.32 0.55 0.38)
+      (speed 0)
+      (image "/images/background/misc/skybox.png")
+      (z-pos -330)
+    )
+    (background
+      (color 0.50 0.70 0.54 0.75)
+      (speed 0.10)
+      (image "/images/background/misc/clouds.png")
+      (z-pos -320)
+    )
+    (camera (name "Camera") (mode "normal"))
+
+    (decal
+      (z-pos -90)
+      (sprite "/images/prehistoric/scenery/sauropod-distant.surface")
+      (x 768)
+      (y 512)
+    )
+    (decal
+      (z-pos -5)
+      (sprite "/images/prehistoric/scenery/broken-nest.surface")
+      (x 1408)
+      (y 640)
+    )
+    (decal
+      (z-pos -110)
+      (sprite "/images/prehistoric/scenery/volcano-distant.surface")
+      (x 12160)
+      (y 432)
+    )
+
+    ; Layered prehistoric dressing. Far silhouettes stay behind gameplay,
+    ; while landmark props sit close to the terrain without obscuring hazards.
+    ; Lost Nest: lush valley, distant herd and the first signs of destruction.
+    (decal
+      (z-pos -125)
+      (sprite "/images/prehistoric/scenery/sauropod-distant.surface")
+      (x 2304)
+      (y 500)
+    )
+    (decal
+      (z-pos -24)
+      (sprite "/images/prehistoric/scenery/giant-ribs.surface")
+      (x 2704)
+      (y 608)
+    )
+    (decal
+      (z-pos -18)
+      (sprite "/images/prehistoric/scenery/fossil-skull.surface")
+      (x 3872)
+      (y 656)
+    )
+
+    ; Fossil Pass: harder silhouettes and monumental bones create a darker
+    ; middle act before the aerial attacks begin.
+    (decal
+      (z-pos -105)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 5120)
+      (y 496)
+    )
+    (decal
+      (z-pos -95)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 6208)
+      (y 448)
+    )
+    (decal
+      (z-pos -16)
+      (sprite "/images/prehistoric/scenery/bone-arch.surface")
+      (x 6816)
+      (y 592)
+    )
+    (decal
+      (z-pos -20)
+      (sprite "/images/prehistoric/scenery/giant-ribs.surface")
+      (x 7904)
+      (y 600)
+    )
+
+    ; Skybreak: nesting territory and repeating cliff forms frame the
+    ; pterosaur encounters and pull the eye toward the distant volcano.
+    (decal
+      (z-pos -100)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 9024)
+      (y 432)
+    )
+    (decal
+      (z-pos -12)
+      (sprite "/images/prehistoric/scenery/pterosaur-nest.surface")
+      (x 10368)
+      (y 576)
+    )
+    (decal
+      (z-pos -108)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 11136)
+      (y 416)
+    )
+    (decal
+      (z-pos -14)
+      (sprite "/images/prehistoric/scenery/fossil-skull.surface")
+      (x 11776)
+      (y 624)
+    )
+
+
+    (spawnpoint (name "main") (x 96) (y 704))
+
+    ; Short opening establishing shot. It pauses the target timer and hands
+    ; control back before the first enemy encounter.
+    (scripttrigger
+      (oneshot #t)
+      (script "valley_intro();")
+      (button #f)
+      (width 48)
+      (height 320)
+      (x 192)
+      (y 480)
+    )
+
+    ; Real checkpoint objects. In final art these become carved prehistoric totems.
+    (firefly (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite") (z-pos 0) (x 4640) (y 672))
+    (firefly (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite") (z-pos 0) (x 9600) (y 672))
+
+    ; Story beats.
+    (infoblock
+      (z-pos 50)
+      (message (_ "-The Broken Nest
+#Something enormous crossed the valley. The nest is warm, but the egg is gone.
+#Follow the tracks toward the mountain."))
+      (fadetransition #t)
+      (x 1440) (y 640)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Echo Cave
+#The ground ahead is unstable. Listen for movement above you."))
+      (fadetransition #t)
+      (x 4928) (y 608)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Skybreak
+#Wingbeats. Stay moving, but watch the gaps."))
+      (fadetransition #t)
+      (x 9824) (y 608)
+    )
+
+    ; Neutral wildlife cameo: the player is not expected to fight every prehistoric creature.
+    (scriptedobject
+      (z-pos 20)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "SPINOSAURUS_CAMEO")
+      (sprite "/images/prehistoric/creatures/spinosaurus/spinosaurus.sprite")
+      (x 3232)
+      (y 624)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-River Hunter
+#A young Spinosaurus watches from the reeds. It is alert, but it does not attack.
+#Not every creature in this valley is your enemy."))
+      (fadetransition #t)
+      (x 3104)
+      (y 576)
+    )
+
+    ; The first local inhabitant points the way toward the volcano.
+    (scriptedobject
+      (z-pos 35)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "CAVEMAN_GUIDE")
+      (sprite "/images/prehistoric/characters/caveman/caveman.sprite")
+      (x 1712)
+      (y 640)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-The Valley Keeper
+#I saw a giant shadow take the egg toward the smoking mountain.
+#The snakes hide beneath warm stones. Listen before you run."))
+      (fadetransition #t)
+      (x 1792)
+      (y 608)
+    )
+
+    ; Scripted ambush snake 1.
+    (scriptedobject
+      (z-pos 50)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "SNAKE_AMBUSH_1")
+      (sprite "/images/prehistoric/creatures/snake/snake.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 5488)
+      (y 674)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "snake_ambush_1();")
+      (button #f)
+      (width 48)
+      (height 256)
+      (x 5152)
+      (y 480)
+    )
+
+    ; Scripted ambush snake 2.
+    (scriptedobject
+      (z-pos 50)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "SNAKE_AMBUSH_2")
+      (sprite "/images/prehistoric/creatures/snake/snake.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 8624)
+      (y 610)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "snake_ambush_2();")
+      (button #f)
+      (width 48)
+      (height 320)
+      (x 8240)
+      (y 416)
+    )
+
+    ; Diving pterosaur set-pieces.
+    (scriptedobject
+      (z-pos 55)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "PTERO_DIVE_1")
+      (sprite "/images/prehistoric/creatures/ptero/ptero.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 7104)
+      (y 320)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "ptero_dive_1();")
+      (button #f)
+      (width 48)
+      (height 448)
+      (x 6496)
+      (y 256)
+    )
+
+    (scriptedobject
+      (z-pos 55)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "PTERO_DIVE_2")
+      (sprite "/images/prehistoric/creatures/ptero/ptero.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 11264)
+      (y 288)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "ptero_dive_2();")
+      (button #f)
+      (width 48)
+      (height 448)
+      (x 10528)
+      (y 256)
+    )
+
+    ; Bootstrap creature roles using stock SuperTux behaviour.
+    ; snowball = small ground hunter
+    ; smartball/snowman = heavier ground threats
+    ; flyingsnowball = flying prehistoric hunter prototype
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 1056) (y 704) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 1472) (y 704) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 2208) (y 672) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 2816) (y 480) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 3552) (y 704) (glinting #f))
+    (snowman (z-pos 50) (direction "left") (x 4064) (y 672) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 5920) (y 704) (glinting #f))
+    (snowman (z-pos 50) (direction "left") (x 7488) (y 672) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 8960) (y 416) (glinting #f))
+
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 10112) (y 704) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 11264) (y 640) (glinting #f))
+    (snowman (z-pos 50) (direction "left") (x 11968) (y 672) (glinting #t))
+
+    ; Collectible trails teach the intended jump arcs.
+    (coin (z-pos 49) (x 544) (y 608))
+    (coin (z-pos 49) (x 608) (y 576))
+    (coin (z-pos 49) (x 672) (y 608))
+    (coin (z-pos 49) (x 1184) (y 544))
+    (coin (z-pos 49) (x 1248) (y 512))
+    (coin (z-pos 49) (x 1312) (y 544))
+    (coin (z-pos 49) (x 2400) (y 544))
+    (coin (z-pos 49) (x 2464) (y 512))
+    (coin (z-pos 49) (x 2528) (y 544))
+    (coin (z-pos 49) (x 5696) (y 512))
+    (coin (z-pos 49) (x 5760) (y 480))
+    (coin (z-pos 49) (x 5824) (y 512))
+    (coin (z-pos 49) (x 7392) (y 448))
+    (coin (z-pos 49) (x 7456) (y 416))
+    (coin (z-pos 49) (x 7520) (y 448))
+    (coin (z-pos 49) (x 10528) (y 512))
+    (coin (z-pos 49) (x 10592) (y 480))
+    (coin (z-pos 49) (x 10656) (y 512))
+
+    ; Secret 1: high fossil route in the first third.
+    (secretarea
+      (message (_ "Fossil chamber discovered!"))
+      (width 320) (height 160)
+      (x 3776) (y 480)
+    )
+
+    ; Secret 2: canopy/cliff route in Skybreak.
+    (secretarea
+      (message (_ "Hidden nesting ledge discovered!"))
+      (width 288) (height 160)
+      (x 10624) (y 416)
+    )
+
+    (scriptedobject
+      (z-pos 40)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #f)
+      (name "PALASZARUSZ")
+      (sprite "/images/prehistoric/boss/palaszarusz/palaszarusz.sprite")
+      (x 12848)
+      (y 496)
+    )
+
+    ; First Palaszarusz reveal. For now this ends the vertical slice;
+    ; the bespoke boss sprite/cutscene replaces this trigger later.
+    (infoblock
+      (z-pos 50)
+      (message (_ "-The Palaszarusz
+#Across the ravine, a colossal silhouette raises the stolen egg.
+#One roar shakes loose the cliff. Then it vanishes toward the volcano."))
+      (fadetransition #t)
+      (x 12864) (y 576)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "palaszarusz_reveal();")
+      (button #f)
+      (width 48) (height 384)
+      (x 13152) (y 384)
+    )
+    ; Safety fallback: still completes if the scripted reveal is skipped.
+    (sequencetrigger
+      (sequence "endsequence")
+      (width 32) (height 384)
+      (x 13312) (y 384)
+    )
+
+    (tilemap
+      (solid #t)
+      (z-pos 0)
+      (name "Prehistoric Terrain")
+      (width 420)
+      (height 28)
+      (tiles -7372 0 -9 4 -299 0 -9 2 -204 0 -11 6 -119 0 -7 2 -168 0 -12 4 -76 0 -11 6 -134 0 -9 2 -66 0 -11 2 -53 0 -11 4 -97 0 -11 4 -59 0 -12 6 -45 0 -10 8 -209 0 -11 4 -294 0 -14 2 -51 0 -13 4 -93 0 -15 4 -117 0 -11 8 -106 0 -14 1 -51 0 -13 3 -93 0 -15 3 -117 0 -11 7 -17 0 -74 2 -7 0 -8 2 -14 1 -42 2 -9 4 -13 3 -21 4 -8 0 -64 4 -15 3 -25 4 -21 6 -8 0 -49 6 -8 0 -4 6 -2 8 -11 7 -17 8 -74 1 -7 0 -64 1 -43 3 -8 0 -104 3 -21 5 -8 0 -49 5 -8 0 -4 5 -30 7 -74 1 -7 0 -64 1 -43 3 -8 0 -104 3 -21 5 -8 0 -49 5 -8 0 -4 5 -30 7 -74 1 -7 0 -64 1 -43 3 -8 0 -104 3 -21 5 -8 0 -49 5 -8 0 -4 5 -30 7)
+    )
+  )
+)

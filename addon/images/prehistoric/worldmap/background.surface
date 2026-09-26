@@ -1,0 +1,9 @@
+(supertux-surface
+  ; Temporary worldmap background binding. Replace with a genuine 3840x2160
+  ; or larger prehistoric panorama. Fullscreen backgrounds remain scale 1.
+  (scale 1.0 1.0)
+  (diffuse-texture
+    (file "../scenery/dusk-sun.png")
+    (filter "linear")
+  )
+)

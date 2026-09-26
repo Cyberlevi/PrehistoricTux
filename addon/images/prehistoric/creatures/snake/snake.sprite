@@ -1,0 +1,37 @@
+(supertux-sprite
+  (action
+    (name "left")
+    (hitbox 6 10 48 18)
+    (fps 8)
+    (images "snake-slither-0.surface"
+            "snake-slither-1.surface"
+            "snake-slither-2.surface"
+            "snake-slither-3.surface")
+  )
+  (action
+    (name "right")
+    (hitbox 6 10 48 18)
+    (fps 8)
+    (mirror-action "left")
+  )
+  (action
+    (name "squished-left")
+    (hitbox 6 14 48 12)
+    (images "snake-squished.surface")
+  )
+  (action
+    (name "squished-right")
+    (hitbox 6 14 48 12)
+    (mirror-action "squished-left")
+  )
+  (action
+    (name "melting")
+    (hitbox 6 14 48 12)
+    (images "snake-squished.surface")
+  )
+  (action
+    (name "ground-melting")
+    (hitbox 6 14 48 12)
+    (images "snake-squished.surface")
+  )
+)
