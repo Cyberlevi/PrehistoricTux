@@ -1,0 +1,9 @@
+(supertux-sprite
+  (action (name "right") (hitbox 10 14 44 30) (fps 9)
+    (images "raptor-walk-0.png" "raptor-walk-1.png" "raptor-walk-2.png" "raptor-walk-3.png"))
+  (action (name "left") (hitbox 10 14 44 30) (fps 9) (mirror-action "right"))
+  (action (name "squished-right") (hitbox 10 20 44 20) (images "raptor-walk-0.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "raptor-walk-0.png"))
+  (action (name "ground-melting") (images "raptor-walk-0.png"))
+)

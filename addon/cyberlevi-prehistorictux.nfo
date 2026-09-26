@@ -1,0 +1,9 @@
+(supertux-addoninfo
+  (id "cyberlevi-prehistorictux")
+  (version 1)
+  (type "worldmap")
+  (title "PrehistoricTux: The Lost Egg")
+  (description "Eight full-length SuperTux 0.7.0 levels with a connected prehistoric story, secrets, puzzles and dinosaur enemies.")
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+)

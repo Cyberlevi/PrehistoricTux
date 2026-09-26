@@ -1,0 +1,9 @@
+(supertux-sprite
+  (action (name "right") (hitbox 12 12 56 28) (fps 8)
+    (images "ptero-fly-0.png" "ptero-fly-1.png" "ptero-fly-2.png" "ptero-fly-3.png"))
+  (action (name "left") (hitbox 12 12 56 28) (fps 8) (mirror-action "right"))
+  (action (name "squished-right") (images "ptero-fly-0.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "ptero-fly-0.png"))
+  (action (name "ground-melting") (images "ptero-fly-0.png"))
+)

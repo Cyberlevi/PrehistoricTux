@@ -1,0 +1,9 @@
+(supertux-sprite
+  (action (name "right") (hitbox 10 18 76 40) (fps 5)
+    (images "trike-walk-0.png" "trike-walk-1.png"))
+  (action (name "left") (hitbox 10 18 76 40) (fps 5) (mirror-action "right"))
+  (action (name "squished-right") (images "trike-walk-0.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "trike-walk-0.png"))
+  (action (name "ground-melting") (images "trike-walk-0.png"))
+)
