@@ -1,7 +1,7 @@
 (supertux-sprite
-  (action (name "right") (hitbox 16 22 92 44) (fps 9)
+  (action (name "right") (hitbox 14 14 84 48) (fps 9)
     (images "nestling-run-0.png" "nestling-run-1.png" "nestling-run-2.png" "nestling-run-3.png"))
-  (action (name "left") (hitbox 16 22 92 44) (fps 9) (mirror-action "right"))
+  (action (name "left") (hitbox 14 14 84 48) (fps 9) (mirror-action "right"))
   (action (name "squished-right") (images "nestling-run-0.png"))
   (action (name "squished-left") (mirror-action "squished-right"))
   (action (name "melting") (images "nestling-run-0.png"))
