@@ -6,6 +6,8 @@ ENGINE_ROOT="$ROOT/.engine"
 SRC="$ENGINE_ROOT/supertux-0.7.0-uhd"
 BUILD="$ENGINE_ROOT/build-0.7.0-uhd"
 PATCH="$ROOT/engine-patches/0001-uhd-logical-surface-scale.patch"
+PATCH_SHA="$(sha256sum "$PATCH" | awk '{print $1}')"
+PATCH_MARKER="$BUILD/.prehistorictux-uhd-patch.sha256"
 LOGDIR="$ROOT/diagnostics"
 LOG="$LOGDIR/uhd-engine-build.log"
 
@@ -51,11 +53,13 @@ cmake -S "$SRC" -B "$BUILD" \
   -DBUILD_DOCUMENTATION=OFF
 
 cmake --build "$BUILD" --parallel "$(nproc)"
+printf '%s\n' "$PATCH_SHA" > "$PATCH_MARKER"
 
 echo
 echo "Patched UHD SuperTux build complete."
 echo "Binary: $BUILD/supertux2"
 echo "Build log: $LOG"
+echo "Patch fingerprint: $PATCH_SHA"
 echo
 echo "Run PrehistoricTux with:"
 echo "  SUPERTUX_BIN=$BUILD/supertux2 bash scripts/run-garuda.sh"
