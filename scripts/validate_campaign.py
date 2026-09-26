@@ -5,6 +5,20 @@ ROOT=Path(__file__).resolve().parents[1]
 ADDON=ROOT/"addon"
 LEVELS=ADDON/"levels"/"prehistoric_tux"
 errors=[]
+
+def count_tile_rle(payload):
+    nums=[int(x) for x in re.findall(r'-?\d+', payload)]
+    total=0
+    i=0
+    while i < len(nums):
+        if nums[i] < 0:
+            total += -nums[i]
+            i += 2
+        else:
+            total += 1
+            i += 1
+    return total
+
 def balanced(text, path):
     depth=0; quote=False; esc=False
     for ch in text:
@@ -32,6 +46,12 @@ if len(playable)!=8:
 if not (LEVELS/"00_prologue.stl").is_file():
     errors.append("missing prologue: 00_prologue.stl")
 wm=(LEVELS/"worldmap.stwm").read_text(encoding="utf-8")
+for m in re.finditer(r'\(tilemap[\s\S]*?\(width\s+(\d+)\)[\s\S]*?\(height\s+(\d+)\)[\s\S]*?\(tiles\s+([\s\S]*?)\)\s*\)', wm):
+    width=int(m.group(1)); height=int(m.group(2))
+    actual=count_tile_rle(m.group(3))
+    expected=width*height
+    if actual != expected:
+        errors.append(f"worldmap tilemap has {actual} tiles, expected {expected} ({width}x{height})")
 for ref in re.findall(r'\(level "([^"]+\.stl)"\)', wm):
     if not (LEVELS/ref).is_file():
         errors.append(f"worldmap missing level: {ref}")
