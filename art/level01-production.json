@@ -1,0 +1,368 @@
+{
+  "level": "01_lost_egg_valley",
+  "title": "The Valley of the Lost Egg",
+  "target": "first production-quality UHD vertical slice",
+  "master_scale": 4,
+  "assets": [
+    {
+      "id": "raptor-walk-0",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/raptor/raptor-walk-0.surface",
+      "incoming": "art/incoming/level01/raptor/raptor-walk-0@4x.png",
+      "logical": [
+        64,
+        48
+      ],
+      "minimum": [
+        256,
+        192
+      ],
+      "priority": 1
+    },
+    {
+      "id": "raptor-walk-1",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/raptor/raptor-walk-1.surface",
+      "incoming": "art/incoming/level01/raptor/raptor-walk-1@4x.png",
+      "logical": [
+        64,
+        48
+      ],
+      "minimum": [
+        256,
+        192
+      ],
+      "priority": 1
+    },
+    {
+      "id": "raptor-walk-2",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/raptor/raptor-walk-2.surface",
+      "incoming": "art/incoming/level01/raptor/raptor-walk-2@4x.png",
+      "logical": [
+        64,
+        48
+      ],
+      "minimum": [
+        256,
+        192
+      ],
+      "priority": 1
+    },
+    {
+      "id": "raptor-walk-3",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/raptor/raptor-walk-3.surface",
+      "incoming": "art/incoming/level01/raptor/raptor-walk-3@4x.png",
+      "logical": [
+        64,
+        48
+      ],
+      "minimum": [
+        256,
+        192
+      ],
+      "priority": 1
+    },
+    {
+      "id": "raptor-squished",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/raptor/raptor-squished.surface",
+      "incoming": "art/incoming/level01/raptor/raptor-squished@4x.png",
+      "logical": [
+        64,
+        48
+      ],
+      "minimum": [
+        256,
+        192
+      ],
+      "priority": 1
+    },
+    {
+      "id": "jungle-fill",
+      "kind": "terrain",
+      "surface": "addon/images/prehistoric/terrain/jungle-fill.surface",
+      "incoming": "art/incoming/level01/terrain/jungle-fill@4x.png",
+      "logical": [
+        32,
+        32
+      ],
+      "minimum": [
+        128,
+        128
+      ],
+      "priority": 1
+    },
+    {
+      "id": "jungle-top",
+      "kind": "terrain",
+      "surface": "addon/images/prehistoric/terrain/jungle-top.surface",
+      "incoming": "art/incoming/level01/terrain/jungle-top@4x.png",
+      "logical": [
+        32,
+        32
+      ],
+      "minimum": [
+        128,
+        128
+      ],
+      "priority": 1
+    },
+    {
+      "id": "snake-slither-0",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/snake/snake-slither-0.surface",
+      "incoming": "art/incoming/level01/snake/snake-slither-0@4x.png",
+      "logical": [
+        64,
+        32
+      ],
+      "minimum": [
+        256,
+        128
+      ],
+      "priority": 2
+    },
+    {
+      "id": "snake-slither-1",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/snake/snake-slither-1.surface",
+      "incoming": "art/incoming/level01/snake/snake-slither-1@4x.png",
+      "logical": [
+        64,
+        32
+      ],
+      "minimum": [
+        256,
+        128
+      ],
+      "priority": 2
+    },
+    {
+      "id": "snake-slither-2",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/snake/snake-slither-2.surface",
+      "incoming": "art/incoming/level01/snake/snake-slither-2@4x.png",
+      "logical": [
+        64,
+        32
+      ],
+      "minimum": [
+        256,
+        128
+      ],
+      "priority": 2
+    },
+    {
+      "id": "snake-slither-3",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/snake/snake-slither-3.surface",
+      "incoming": "art/incoming/level01/snake/snake-slither-3@4x.png",
+      "logical": [
+        64,
+        32
+      ],
+      "minimum": [
+        256,
+        128
+      ],
+      "priority": 2
+    },
+    {
+      "id": "snake-squished",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/snake/snake-squished.surface",
+      "incoming": "art/incoming/level01/snake/snake-squished@4x.png",
+      "logical": [
+        64,
+        32
+      ],
+      "minimum": [
+        256,
+        128
+      ],
+      "priority": 2
+    },
+    {
+      "id": "ptero-fly-0",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/ptero/ptero-fly-0.surface",
+      "incoming": "art/incoming/level01/ptero/ptero-fly-0@4x.png",
+      "logical": [
+        80,
+        48
+      ],
+      "minimum": [
+        320,
+        192
+      ],
+      "priority": 2
+    },
+    {
+      "id": "ptero-fly-1",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/ptero/ptero-fly-1.surface",
+      "incoming": "art/incoming/level01/ptero/ptero-fly-1@4x.png",
+      "logical": [
+        80,
+        48
+      ],
+      "minimum": [
+        320,
+        192
+      ],
+      "priority": 2
+    },
+    {
+      "id": "ptero-fly-2",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/ptero/ptero-fly-2.surface",
+      "incoming": "art/incoming/level01/ptero/ptero-fly-2@4x.png",
+      "logical": [
+        80,
+        48
+      ],
+      "minimum": [
+        320,
+        192
+      ],
+      "priority": 2
+    },
+    {
+      "id": "ptero-fly-3",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/ptero/ptero-fly-3.surface",
+      "incoming": "art/incoming/level01/ptero/ptero-fly-3@4x.png",
+      "logical": [
+        80,
+        48
+      ],
+      "minimum": [
+        320,
+        192
+      ],
+      "priority": 2
+    },
+    {
+      "id": "ptero-squished",
+      "kind": "creature",
+      "surface": "addon/images/prehistoric/creatures/ptero/ptero-squished.surface",
+      "incoming": "art/incoming/level01/ptero/ptero-squished@4x.png",
+      "logical": [
+        80,
+        48
+      ],
+      "minimum": [
+        320,
+        192
+      ],
+      "priority": 2
+    },
+    {
+      "id": "caveman-idle-0",
+      "kind": "character",
+      "surface": "addon/images/prehistoric/characters/caveman/caveman-idle-0.surface",
+      "incoming": "art/incoming/level01/caveman/caveman-idle-0@4x.png",
+      "logical": [
+        48,
+        64
+      ],
+      "minimum": [
+        192,
+        256
+      ],
+      "priority": 2
+    },
+    {
+      "id": "caveman-idle-1",
+      "kind": "character",
+      "surface": "addon/images/prehistoric/characters/caveman/caveman-idle-1.surface",
+      "incoming": "art/incoming/level01/caveman/caveman-idle-1@4x.png",
+      "logical": [
+        48,
+        64
+      ],
+      "minimum": [
+        192,
+        256
+      ],
+      "priority": 2
+    },
+    {
+      "id": "checkpoint-idle",
+      "kind": "object",
+      "surface": "addon/images/prehistoric/objects/checkpoint/checkpoint-idle.surface",
+      "incoming": "art/incoming/level01/checkpoint/checkpoint-idle@4x.png",
+      "logical": [
+        48,
+        72
+      ],
+      "minimum": [
+        192,
+        288
+      ],
+      "priority": 3
+    },
+    {
+      "id": "checkpoint-active",
+      "kind": "object",
+      "surface": "addon/images/prehistoric/objects/checkpoint/checkpoint-active.surface",
+      "incoming": "art/incoming/level01/checkpoint/checkpoint-active@4x.png",
+      "logical": [
+        48,
+        72
+      ],
+      "minimum": [
+        192,
+        288
+      ],
+      "priority": 3
+    },
+    {
+      "id": "broken-nest",
+      "kind": "scenery",
+      "surface": "addon/images/prehistoric/scenery/broken-nest.surface",
+      "incoming": "art/incoming/level01/scenery/broken-nest@4x.png",
+      "logical": [
+        96,
+        64
+      ],
+      "minimum": [
+        384,
+        256
+      ],
+      "priority": 3
+    },
+    {
+      "id": "sauropod-distant",
+      "kind": "scenery",
+      "surface": "addon/images/prehistoric/scenery/sauropod-distant.surface",
+      "incoming": "art/incoming/level01/scenery/sauropod-distant@4x.png",
+      "logical": [
+        180,
+        96
+      ],
+      "minimum": [
+        720,
+        384
+      ],
+      "priority": 3
+    },
+    {
+      "id": "volcano-distant",
+      "kind": "scenery",
+      "surface": "addon/images/prehistoric/scenery/volcano-distant.surface",
+      "incoming": "art/incoming/level01/scenery/volcano-distant@4x.png",
+      "logical": [
+        220,
+        128
+      ],
+      "minimum": [
+        880,
+        512
+      ],
+      "priority": 3
+    }
+  ]
+}
