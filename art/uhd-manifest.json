@@ -9,51 +9,69 @@
   "assets": [
     {
       "name": "raptor",
-      "glob": "addon/images/prehistoric/creatures/raptor/*.png",
+      "surface_glob": "addon/images/prehistoric/creatures/raptor/*.surface",
       "logical_size": [64, 48],
       "minimum_master_size": [256, 192]
     },
     {
       "name": "snake",
-      "glob": "addon/images/prehistoric/creatures/snake/*.png",
+      "surface_glob": "addon/images/prehistoric/creatures/snake/*.surface",
       "logical_size": [64, 32],
       "minimum_master_size": [256, 128]
     },
     {
       "name": "pterosaur",
-      "glob": "addon/images/prehistoric/creatures/ptero/*.png",
+      "surface_glob": "addon/images/prehistoric/creatures/ptero/*.surface",
       "logical_size": [80, 48],
       "minimum_master_size": [320, 192]
     },
     {
       "name": "spinosaurus",
-      "glob": "addon/images/prehistoric/creatures/spinosaurus/*.png",
+      "surface_glob": "addon/images/prehistoric/creatures/spinosaurus/*.surface",
       "logical_size": [96, 64],
       "minimum_master_size": [384, 256]
     },
     {
       "name": "caveman",
-      "glob": "addon/images/prehistoric/characters/caveman/*.png",
+      "surface_glob": "addon/images/prehistoric/characters/caveman/*.surface",
       "logical_size": [48, 64],
       "minimum_master_size": [192, 256]
     },
     {
       "name": "checkpoint",
-      "glob": "addon/images/prehistoric/objects/checkpoint/*.png",
+      "surface_glob": "addon/images/prehistoric/objects/checkpoint/*.surface",
       "logical_size": [48, 72],
       "minimum_master_size": [192, 288]
     },
     {
       "name": "palaszarusz",
-      "glob": "addon/images/prehistoric/boss/palaszarusz/*.png",
+      "surface_glob": "addon/images/prehistoric/boss/palaszarusz/*.surface",
       "logical_size": [192, 112],
       "minimum_master_size": [768, 448]
     },
     {
       "name": "terrain",
-      "glob": "addon/images/prehistoric/terrain/*.png",
+      "surface_glob": "addon/images/prehistoric/terrain/*.surface",
       "logical_size": [32, 32],
       "minimum_master_size": [128, 128]
+    },
+    {
+      "name": "platforms",
+      "surface_glob": "addon/images/prehistoric/objects/platforms/*.surface",
+      "logical_size": [96, 32],
+      "minimum_master_size": [384, 128]
+    },
+    {
+      "name": "stalactite",
+      "surface_glob": "addon/images/prehistoric/objects/stalactite/*.surface",
+      "logical_size": [40, 64],
+      "minimum_master_size": [160, 256]
+    },
+    {
+      "name": "stolen-egg",
+      "surface_glob": "addon/images/prehistoric/story/stolen-egg.surface",
+      "logical_size": [48, 64],
+      "minimum_master_size": [192, 256]
     }
   ]
 }
