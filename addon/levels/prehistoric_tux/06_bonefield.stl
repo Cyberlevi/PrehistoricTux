@@ -221,7 +221,7 @@
       (z-pos -290)
     )
     (smartball
-      (sprite "/images/dino/trike/trike.sprite")
+      (sprite "/images/dino/ankylo/ankylo.sprite")
       (z-pos 50)
       (direction "left")
       (x 4096)
@@ -245,6 +245,14 @@
       (z-pos 50)
       (x 8352)
       (y 1728)
+    )
+    (smartball
+      (sprite "/images/dino/ankylo/ankylo.sprite")
+      (z-pos 50)
+      (direction "right")
+      (x 7040)
+      (y 704)
+      (glinting #f)
     )
     (music
       (file "/music/forest/forest2.music")
