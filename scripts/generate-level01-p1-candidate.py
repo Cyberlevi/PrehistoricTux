@@ -320,7 +320,7 @@ def main()->int:
         run([sys.executable,"scripts/level01-art-status.py"])
         run([sys.executable,"scripts/uhd-audit.py"])
         print()
-        print("P1 runtime bindings promoted. Test with: bash scripts/play-level.sh 1")
+        print("P1 runtime bindings promoted. Test with: bash scripts/play-uhd-level.sh 1")
     else:
         print()
         print("Candidate assets passed QA. Re-run with --promote to activate them.")
