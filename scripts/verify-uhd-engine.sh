@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD="$ROOT/.engine/build-0.7.0-uhd"
 BIN="$BUILD/supertux2"
-PATCH="$ROOT/engine-patches/0001-uhd-logical-surface-scale.patch"
+PATCHER="$ROOT/scripts/apply-uhd-engine-patch.py"
 PATCH_MARKER="$BUILD/.prehistorictux-uhd-patch.sha256"
 
 if [[ ! -x "$BIN" ]]; then
@@ -13,7 +13,7 @@ if [[ ! -x "$BIN" ]]; then
   exit 1
 fi
 
-CURRENT_PATCH_SHA="$(sha256sum "$PATCH" | awk '{print $1}')"
+CURRENT_PATCH_SHA="$(sha256sum "$PATCHER" | awk '{print $1}')"
 BUILT_PATCH_SHA="$(cat "$PATCH_MARKER" 2>/dev/null || true)"
 if [[ "$CURRENT_PATCH_SHA" != "$BUILT_PATCH_SHA" ]]; then
   echo "UHD engine patch fingerprint mismatch." >&2
