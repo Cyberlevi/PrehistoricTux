@@ -1,0 +1,51 @@
+(supertux-tiles
+  (tilegroup
+    (name (_ "Prehistoric Worldmap"))
+    (tiles
+      100 101 102 103
+      10 11 12 13
+      14 15 16 17
+      18 19 20 21
+      22 23 24 25
+      26 27 28 29
+    )
+  )
+
+  (tile
+    (id 100)
+    (images "terrain/jungle-fill.png")
+  )
+  (tile
+    (id 101)
+    (images "terrain/cave-fill.png")
+  )
+  (tile
+    (id 102)
+    (images "terrain/cliff-fill.png")
+  )
+  (tile
+    (id 103)
+    (images "terrain/volcano-fill.png")
+  )
+
+  ; Keep SuperTux's generic road sheet and data flags, but remove the ice-world tileset.
+  (tiles
+    (width 4)
+    (height 5)
+    (images "/images/worldmap/shared/roads.png")
+    (ids
+      10 11 12 13
+      14 15 16 17
+      18 19 20 21
+      22 23 24 25
+      26 27 28 29
+    )
+    (datas
+       6 10 23 30
+       5  9 29 27
+      20 18 12  3
+      17 24 31  0
+      20 18 17 24
+    )
+  )
+)
