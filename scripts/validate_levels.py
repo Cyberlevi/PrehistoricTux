@@ -230,7 +230,7 @@ def validate_level(path: pathlib.Path) -> list[str]:
                     f"tilemap {index}: expands to {actual} tiles, expected {expected} "
                     f"({width}x{height})"
                 )
-            if path.suffix == ".stwm" and index == 1:
+            if path.suffix == ".stwm" and re.search(r'\(name\s+"pathing"\)', tm):
                 errors.extend(validate_worldmap_path(tm))
         except ValueError as exc:
             errors.append(f"tilemap {index}: {exc}")
