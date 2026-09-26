@@ -1,0 +1,179 @@
+(supertux-level
+  (version 3)
+  (name (_ "Nesting Grounds"))
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+  (target-time 180)
+  (allow-item-pocket "inherit")
+  (icon "")
+  (icon-locked "")
+  (statistics
+    (enable-coins #t)
+    (enable-secrets #t)
+  )
+  (tileset "/images/prehistoric/tiles.strf")
+  (sector
+    (name "main")
+    (init-script "import(\"levels/prehistoric_tux/07_nesting_grounds.nut\");")
+    (ambient-light (color 0.66 0.67 0.55))
+    (gradient
+      (top_color 0.20 0.20 0.33)
+      (bottom_color 0.72 0.38 0.22)
+    )
+    (camera (name "Camera") (mode "normal"))
+    (spawnpoint (name "main") (x 96) (y 768))
+
+    (decal
+      (z-pos -12)
+      (sprite "/images/prehistoric/scenery/pterosaur-nest.png")
+      (x 2816)
+      (y 512)
+    )
+    (decal
+      (z-pos -12)
+      (sprite "/images/prehistoric/scenery/pterosaur-nest.png")
+      (x 7040)
+      (y 384)
+    )
+    (decal
+      (z-pos -100)
+      (sprite "/images/prehistoric/scenery/cliff-spire.png")
+      (x 5376)
+      (y 416)
+    )
+
+    (firefly
+      (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite")
+      (z-pos 0)
+      (x 3840)
+      (y 704)
+    )
+    (firefly
+      (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite")
+      (z-pos 0)
+      (x 7392)
+      (y 640)
+    )
+
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Nesting Grounds
+#Hundreds of tracks cross here, but one trail is much larger.
+#The stolen egg is close."))
+      (fadetransition #t)
+      (x 640)
+      (y 704)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Crater Path
+#The nests thin out toward the volcano.
+#Something has driven even the largest animals away."))
+      (fadetransition #t)
+      (x 7040)
+      (y 576)
+    )
+
+    ; Neutral wildlife reminder.
+    (scriptedobject
+      (z-pos 20)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "SPINO_GROUNDS")
+      (sprite "/images/prehistoric/creatures/spinosaurus/spinosaurus.sprite")
+      (x 1792)
+      (y 672)
+    )
+
+    ; Mixed threats across the nesting grounds.
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 1216) (y 736) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 3328) (y 704) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 4864) (y 672) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 5568) (y 352) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 6464) (y 288) (glinting #t))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 8096) (y 608) (glinting #t))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 9024) (y 608) (glinting #f))
+
+    ; Fresh rockfall pressure near the crater route.
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 5152) (y 96))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 6752) (y 96))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 8576) (y 64))
+
+    ; Story objects for the final sighting before the crater.
+    (scriptedobject
+      (z-pos 30)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #f)
+      (name "PALASZARUSZ_GROUNDS")
+      (sprite "/images/prehistoric/boss/palaszarusz/palaszarusz.sprite")
+      (x 10016)
+      (y 448)
+    )
+    (scriptedobject
+      (z-pos 31)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #f)
+      (name "STOLEN_EGG_GROUNDS")
+      (sprite "/images/prehistoric/story/stolen-egg.sprite")
+      (x 10192)
+      (y 480)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "grounds_reveal();")
+      (button #f)
+      (width 48)
+      (height 480)
+      (x 9696)
+      (y 320)
+    )
+
+    ; Reward arcs.
+    (coin (z-pos 49) (x 2624) (y 544))
+    (coin (z-pos 49) (x 2688) (y 512))
+    (coin (z-pos 49) (x 2752) (y 480))
+    (coin (z-pos 49) (x 2816) (y 512))
+    (coin (z-pos 49) (x 2880) (y 544))
+    (coin (z-pos 49) (x 6848) (y 416))
+    (coin (z-pos 49) (x 6912) (y 384))
+    (coin (z-pos 49) (x 6976) (y 352))
+    (coin (z-pos 49) (x 7040) (y 384))
+    (coin (z-pos 49) (x 7104) (y 416))
+
+    (secretarea
+      (message (_ "Untouched hatchling nest discovered!"))
+      (width 320)
+      (height 160)
+      (x 2752)
+      (y 448)
+    )
+    (secretarea
+      (message (_ "Crater overlook discovered!"))
+      (width 288)
+      (height 160)
+      (x 9312)
+      (y 384)
+    )
+
+    ; Fallback completion after the scripted sighting.
+    (sequencetrigger
+      (sequence "endsequence")
+      (width 32)
+      (height 512)
+      (x 10784)
+      (y 288)
+    )
+
+    (tilemap
+      (solid #t)
+      (z-pos 0)
+      (name "Nesting Grounds Terrain")
+      (width 340)
+      (height 30)
+      (tiles -4056 0 -15 6 -295 0 -16 6 -596 0 -15 6 -261 0 -15 6 -603 0 -15 6 -261 0 -14 6 -907 0 -71 6 -269 0 -71 5 -205 0 -56 6 -8 0 -71 5 -140 0 -57 6 -8 0 -56 5 -8 0 -71 5 -76 0 -57 2 -7 0 -57 5 -8 0 -56 5 -8 0 -71 5 -69 2 -7 0 -57 1 -7 0 -57 5 -8 0 -56 5 -8 0 -71 5 -69 1 -7 0 -57 1 -7 0 -57 5 -8 0 -56 5 -8 0 -71 5 -69 1 -7 0 -57 1 -7 0 -57 5 -8 0 -56 5 -8 0 -71 5 -69 1 -7 0 -57 1 -7 0 -57 5 -8 0 -56 5 -8 0 -71 5 -69 1 -7 0 -57 1 -7 0 -57 5 -8 0 -56 5 -8 0 -71 5)
+    )
+  )
+)
