@@ -6,6 +6,30 @@
 // import time. SuperTux exposes named sector objects after sector construction;
 // keeping the import side-effect free avoids initialization-order failures.
 
+function valley_intro()
+{
+  Level.pause_target_timer();
+  Tux.deactivate();
+
+  Camera.set_mode("manual");
+  Effect.sixteen_to_nine(0.5);
+
+  // Establish the scale of the valley first, then reveal the broken nest.
+  Camera.scroll_to(768, 520, 1.6);
+  wait(1.35);
+  Camera.scroll_to(1456, 560, 1.8);
+  wait(1.55);
+
+  CAVEMAN_GUIDE.set_action("idle-left");
+  wait(0.65);
+
+  Camera.set_mode("normal");
+  Tux.activate();
+  Tux.use_scripting_controller(false);
+  Level.resume_target_timer();
+  Effect.four_to_three(0.5);
+}
+
 function prepare_strike(object)
 {
   object.set_velocity(0, 0);
