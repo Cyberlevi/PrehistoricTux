@@ -7,3 +7,4 @@ build/
 .smoke-userdir/
 diagnostics/
 dist/
+.engine/
