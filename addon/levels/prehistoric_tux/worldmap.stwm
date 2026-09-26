@@ -29,6 +29,12 @@
       (x 14)
       (y 6)
     )
+    (level
+      (z-pos 50)
+      (level "04_pterosaur_cliffs.stl")
+      (x 18)
+      (y 6)
+    )
     (worldmap-spawnpoint
       (z-pos 50)
       (name "main")
@@ -41,7 +47,7 @@
       (name "pathing")
       (width 24)
       (height 18)
-      (tiles -158 0 20 -23 0 20 -23 0 20 -12 0 -12 20 -201 0)
+      (tiles -158 0 11 -4 20 -19 0 21 -23 0 21 -12 0 -11 20 14 -201 0)
     )
   )
   (tileset "/images/ice_world.strf")
