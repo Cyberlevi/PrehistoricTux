@@ -1,10 +1,6 @@
 // Pterosaur Cliffs — gust timing.
-// Short bursts make the wind readable and prevent permanent forced movement.
-
-GUST_A.stop();
-GUST_B.stop();
-GUST_C.stop();
-GUST_D.stop();
+// Wind objects are authored with (blowing #f) in the level file, so the import
+// itself stays side-effect free and only trigger calls start/stop gusts.
 
 function gust_a()
 {

@@ -7,6 +7,10 @@
             "spinosaurus-idle-1.surface")
   )
   (action
+    (name "default")
+    (clone-action "idle-left")
+  )
+  (action
     (name "idle-right")
     (hitbox 8 8 80 52)
     (fps 2)

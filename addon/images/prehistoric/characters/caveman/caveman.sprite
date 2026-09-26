@@ -7,6 +7,10 @@
             "caveman-idle-1.surface")
   )
   (action
+    (name "default")
+    (clone-action "idle-left")
+  )
+  (action
     (name "idle-right")
     (hitbox 8 6 32 56)
     (fps 2)

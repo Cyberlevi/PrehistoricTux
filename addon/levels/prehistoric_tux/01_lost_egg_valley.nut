@@ -1,29 +1,21 @@
 // PrehistoricTux — Level 01 scripted beats.
 // Gameplay-critical geometry remains in the level file.
 // Scripted creatures are used for readable set-piece attacks without requiring an engine fork yet.
+//
+// Important: object setup is performed inside trigger functions instead of at
+// import time. SuperTux exposes named sector objects after sector construction;
+// keeping the import side-effect free avoids initialization-order failures.
 
-PALASZARUSZ.set_visible(false);
-CAVEMAN_GUIDE.set_action("idle-left");
-SPINOSAURUS_CAMEO.set_action("idle-left");
-
-SNAKE_AMBUSH_1.set_visible(false);
-SNAKE_AMBUSH_1.set_solid(false);
-SNAKE_AMBUSH_1.enable_gravity(false);
-
-SNAKE_AMBUSH_2.set_visible(false);
-SNAKE_AMBUSH_2.set_solid(false);
-SNAKE_AMBUSH_2.enable_gravity(false);
-
-PTERO_DIVE_1.set_visible(false);
-PTERO_DIVE_1.set_solid(false);
-PTERO_DIVE_1.enable_gravity(false);
-
-PTERO_DIVE_2.set_visible(false);
-PTERO_DIVE_2.set_solid(false);
-PTERO_DIVE_2.enable_gravity(false);
+function prepare_strike(object)
+{
+  object.set_velocity(0, 0);
+  object.set_solid(false);
+  object.enable_gravity(false);
+}
 
 function snake_ambush_1()
 {
+  prepare_strike(SNAKE_AMBUSH_1);
   SNAKE_AMBUSH_1.set_action("left");
   SNAKE_AMBUSH_1.set_visible(true);
   play_sound("sounds/brick.wav");
@@ -39,6 +31,7 @@ function snake_ambush_1()
 
 function snake_ambush_2()
 {
+  prepare_strike(SNAKE_AMBUSH_2);
   SNAKE_AMBUSH_2.set_action("left");
   SNAKE_AMBUSH_2.set_visible(true);
   play_sound("sounds/brick.wav");
@@ -54,6 +47,7 @@ function snake_ambush_2()
 
 function ptero_dive_1()
 {
+  prepare_strike(PTERO_DIVE_1);
   PTERO_DIVE_1.set_action("left");
   PTERO_DIVE_1.set_visible(true);
   play_sound("sounds/willocatch.wav");
@@ -67,6 +61,7 @@ function ptero_dive_1()
 
 function ptero_dive_2()
 {
+  prepare_strike(PTERO_DIVE_2);
   PTERO_DIVE_2.set_action("left");
   PTERO_DIVE_2.set_visible(true);
   play_sound("sounds/willocatch.wav");

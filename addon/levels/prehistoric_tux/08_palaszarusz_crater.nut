@@ -1,14 +1,13 @@
 // Palaszarusz Crater — scripted boss prototype.
 // Three increasingly fast charges create a real dodge encounter without an engine fork.
 // A later custom C++ boss can preserve these timings while adding health/AI.
-
-PALASZARUSZ_BOSS.set_visible(false);
-PALASZARUSZ_BOSS.set_solid(false);
-PALASZARUSZ_BOSS.enable_gravity(false);
-STOLEN_EGG_FINAL.set_visible(false);
+//
+// The boss/egg initial visibility and solidity live in the .stl. Runtime setup
+// occurs only when the battle trigger fires, avoiding import-order dependence.
 
 function boss_reset(x, y)
 {
+  PALASZARUSZ_BOSS.enable_gravity(false);
   PALASZARUSZ_BOSS.set_velocity(0, 0);
   PALASZARUSZ_BOSS.set_solid(false);
   PALASZARUSZ_BOSS.set_visible(false);

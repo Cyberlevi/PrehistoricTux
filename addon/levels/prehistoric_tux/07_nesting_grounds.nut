@@ -1,8 +1,5 @@
 // Nesting Grounds story reveal.
-
-PALASZARUSZ_GROUNDS.set_visible(false);
-STOLEN_EGG_GROUNDS.set_visible(false);
-SPINO_GROUNDS.set_action("idle-left");
+// Visibility is authored directly in the .stl, keeping this import side-effect free.
 
 function grounds_reveal()
 {
