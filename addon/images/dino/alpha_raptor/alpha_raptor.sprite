@@ -1,0 +1,11 @@
+(supertux-sprite
+  (action (name "right") (hitbox 20 18 126 56) (fps 13)
+    (images "alpha-run-0.png" "alpha-run-1.png" "alpha-run-2.png" "alpha-run-3.png" "alpha-run-4.png" "alpha-run-5.png"))
+  (action (name "left") (hitbox 20 18 126 56) (fps 13) (mirror-action "right"))
+  (action (name "idle-right") (hitbox 20 18 126 56) (fps 3) (images "alpha-idle-0.png" "alpha-idle-1.png"))
+  (action (name "idle-left") (mirror-action "idle-right"))
+  (action (name "squished-right") (hitbox 20 12 126 28) (images "alpha-squished.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "alpha-squished.png"))
+  (action (name "ground-melting") (images "alpha-squished.png"))
+)

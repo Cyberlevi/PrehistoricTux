@@ -1,0 +1,9 @@
+(supertux-sprite
+  (action (name "right") (hitbox 20 18 144 66) (fps 10)
+    (images "hunter-fly-0.png" "hunter-fly-1.png" "hunter-fly-2.png" "hunter-fly-3.png" "hunter-fly-4.png" "hunter-fly-5.png"))
+  (action (name "left") (hitbox 20 18 144 66) (fps 10) (mirror-action "right"))
+  (action (name "squished-right") (images "hunter-fly-2.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "hunter-fly-2.png"))
+  (action (name "ground-melting") (images "hunter-fly-2.png"))
+)

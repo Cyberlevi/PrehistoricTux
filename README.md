@@ -1,24 +1,53 @@
-# PrehistoricTux
+# PrehistoricTux: The Lost Egg
 
-A prehistoric adventure built on the SuperTux 2 engine.
+A full-length eight-level SuperTux 0.7.0 add-on campaign.
 
-## Vision
-A challenging, story-driven platform adventure through a vivid prehistoric world, featuring dinosaurs, flying creatures, ancient snakes, hidden areas, checkpoints and the raging **Palaszarusz**.
+## Prologue
+The worldmap starts with an automatic story cutscene: **The Lost Egg**.
 
-## Project status
-Early development / vertical slice.
+## Campaign
+1. The Valley of the Lost Egg
+2. The Dinosaur Trail
+3. Ancient Caves
+4. Pterosaur Cliffs
+5. Flooded Ruins
+6. The Bonefield
+7. Nesting Grounds
+8. Palaszarusz Crater
 
-## Technical direction
-- Engine base: SuperTux 2
-- Target platform: Linux first (Garuda Linux development machine)
-- Target presentation: scalable assets suitable for UHD/4K
-- Level design: full-length handcrafted stages with progressive difficulty
+The level geometry and gameplay systems are adapted from selected official SuperTux 0.7.0 levels under CC-BY-SA 4.0. The campaign order, story integration and dinosaur artwork are project-specific adaptations.
 
-## Story premise
-A mysterious prehistoric rift pulls our heroes into a forgotten world. A stolen dinosaur egg leads them deeper through jungle, caves and volcanic lands while the Palaszarusz slowly reveals itself as the central threat.
+## Test
+```bash
+bash scripts/play-level.sh 1
+```
 
-## First vertical slice
-**The Valley of the Lost Egg** — jungle → cave → volcanic approach, with checkpoints, secrets, ground and flying enemies, and a first encounter with the Palaszarusz.
+## Worldmap
+```bash
+bash scripts/play-worldmap.sh
+```
 
-## Licensing
-This project is intended to build upon SuperTux 2. Upstream source and asset licenses must be preserved and reviewed before redistribution. New original assets should carry explicit licensing metadata.
+## Package
+```bash
+python scripts/validate_campaign.py
+bash scripts/package-addon.sh
+```
+
+See `docs/RELEASE.md` for the official add-on submission checklist.
+
+
+## Production dinosaur roster
+
+PrehistoricTux now ships a generated, reproducible enemy-art pipeline. Running the dev installer or packaging script generates the current production frames automatically.
+
+- Raptor — fast ground hunter
+- Alpha Raptor — faster/aggressive visual variant
+- Pterosaur — standard aerial hunter
+- Hunter Pterosaur — darker cliff/finale variant
+- Trike — large heavy ground guardian
+- Ankylosaur — low armored ground pressure
+- Plesiosaur — Flooded Ruins prehistoric water creature
+- Nestling — small nesting-ground defender
+- Palaszarusz — oversized finale creature
+
+The art source is `scripts/generate-dino-assets.py`; sprite definitions live under `addon/images/dino/`.

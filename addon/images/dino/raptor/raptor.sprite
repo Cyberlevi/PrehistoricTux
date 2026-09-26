@@ -1,0 +1,11 @@
+(supertux-sprite
+  (action (name "right") (hitbox 20 18 126 56) (fps 11)
+    (images "raptor-run-0.png" "raptor-run-1.png" "raptor-run-2.png" "raptor-run-3.png" "raptor-run-4.png" "raptor-run-5.png"))
+  (action (name "left") (hitbox 20 18 126 56) (fps 11) (mirror-action "right"))
+  (action (name "idle-right") (hitbox 20 18 126 56) (fps 3) (images "raptor-idle-0.png" "raptor-idle-1.png"))
+  (action (name "idle-left") (mirror-action "idle-right"))
+  (action (name "squished-right") (hitbox 20 12 126 28) (images "raptor-squished.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "raptor-squished.png"))
+  (action (name "ground-melting") (images "raptor-squished.png"))
+)
