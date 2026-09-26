@@ -9,3 +9,5 @@ diagnostics/
 dist/
 .engine/
 .uhd-scale-test-userdir/
+.diag-resave-patched/
+.diag-resave-stock/
