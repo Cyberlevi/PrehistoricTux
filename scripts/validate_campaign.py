@@ -26,13 +26,16 @@ for p in list(LEVELS.glob("*.stl"))+[LEVELS/"worldmap.stwm"]+list((ADDON/"images
         errors.append(f"missing: {p}"); continue
     balanced(p.read_text(encoding="utf-8"), p.relative_to(ROOT))
 levels=sorted(LEVELS.glob("[0-9][0-9]_*.stl"))
-if len(levels)!=8:
-    errors.append(f"expected 8 campaign levels, found {len(levels)}")
+playable=[p for p in levels if p.name!="00_prologue.stl"]
+if len(playable)!=8:
+    errors.append(f"expected 8 playable campaign levels, found {len(playable)}")
+if not (LEVELS/"00_prologue.stl").is_file():
+    errors.append("missing prologue: 00_prologue.stl")
 wm=(LEVELS/"worldmap.stwm").read_text(encoding="utf-8")
 for ref in re.findall(r'\(level "([^"]+\.stl)"\)', wm):
     if not (LEVELS/ref).is_file():
         errors.append(f"worldmap missing level: {ref}")
-for p in levels:
+for p in playable:
     t=p.read_text(encoding="utf-8")
     for ref in re.findall(r'"/images/dino/([^"]+\.sprite)"', t):
         if not (ADDON/"images"/"dino"/ref).is_file():
@@ -45,4 +48,4 @@ for p in (ADDON/"images"/"dino").rglob("*.sprite"):
 if errors:
     print("\n".join("ERROR: "+x for x in errors)); sys.exit(1)
 print("PrehistoricTux static validation: OK")
-print("8 levels + worldmap + dinosaur sprite references present")
+print("8 playable levels + prologue + worldmap + dinosaur sprite references present")
