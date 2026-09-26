@@ -4,7 +4,7 @@ A prehistoric platform adventure built as a SuperTux 2 add-on prototype.
 
 ## Current status
 
-The repository now contains a connected **eight-level campaign scaffold**, original prehistoric prototype art, custom terrain, scripted story beats, hazards, checkpoints, secrets, moving platforms, wind sections, animated lava and a scripted Palaszarusz boss encounter.
+The repository now contains a connected **eight-level campaign scaffold**, a custom prehistoric worldmap, original prehistoric prototype art, custom terrain, scripted story beats, hazards, checkpoints, secrets, moving platforms, wind sections, animated lava and a scripted Palaszarusz boss encounter.
 
 The next critical milestone is a real SuperTux runtime smoke-test on the Garuda Linux development machine and fixing any parser/runtime incompatibilities found there.
 
@@ -56,6 +56,12 @@ Launch the worldmap in UHD developer mode:
 Open Level 01 directly in the SuperTux editor:
 
     bash scripts/edit-level-01.sh
+
+Launch any campaign level directly, bypassing the worldmap:
+
+    bash scripts/play-level.sh 1
+
+Use a number from 1 to 8. Runtime logs are written under `diagnostics/`.
 
 If the binary is not named `supertux2`, set `SUPERTUX_BIN` to the executable path.
 
