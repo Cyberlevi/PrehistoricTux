@@ -260,10 +260,18 @@
       (glinting #f)
     )
     (flyingsnowball
-      (sprite "/images/dino/ptero/ptero.sprite")
+      (sprite "/images/dino/hunter_ptero/hunter_ptero.sprite")
       (z-pos 50)
       (x 7200)
       (y 520)
+      (glinting #f)
+    )
+    (smartball
+      (sprite "/images/dino/plesio/plesio.sprite")
+      (z-pos 50)
+      (direction "left")
+      (x 6128)
+      (y 1376)
       (glinting #f)
     )
     (gradient
