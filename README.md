@@ -34,3 +34,20 @@ bash scripts/package-addon.sh
 ```
 
 See `docs/RELEASE.md` for the official add-on submission checklist.
+
+
+## Production dinosaur roster
+
+PrehistoricTux now ships a generated, reproducible enemy-art pipeline. Running the dev installer or packaging script generates the current production frames automatically.
+
+- Raptor — fast ground hunter
+- Alpha Raptor — faster/aggressive visual variant
+- Pterosaur — standard aerial hunter
+- Hunter Pterosaur — darker cliff/finale variant
+- Trike — large heavy ground guardian
+- Ankylosaur — low armored ground pressure
+- Plesiosaur — Flooded Ruins prehistoric water creature
+- Nestling — small nesting-ground defender
+- Palaszarusz — oversized finale creature
+
+The art source is `scripts/generate-dino-assets.py`; sprite definitions live under `addon/images/dino/`.
