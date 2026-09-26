@@ -44,3 +44,22 @@ Priority 3:
 Promotion is batchable through `scripts/promote-level01-art.py`, while `scripts/level01-art-status.py` reports vertical-slice completion independently of the global 52-binding audit.
 
 Remaining engine gate: visually confirm the dedicated scale test. The right raptor must render at exactly half the logical size of the left raptor.
+
+
+## Deterministic P1 candidate generator
+
+The repository can now generate the first seven Level 01 UHD candidate assets locally instead of waiting on manually prepared binary artwork.
+
+Garuda setup:
+
+    bash scripts/setup-garuda-art-tools.sh
+
+Generate + QA only:
+
+    python scripts/generate-level01-p1-candidate.py
+
+Generate + QA + activate the P1 runtime bindings:
+
+    python scripts/generate-level01-p1-candidate.py --promote
+
+The generator authors the raptor and jungle artwork directly at the 4× runtime-source sizes. It is not a mechanical enlargement of the old prototype PNGs. The generated set still remains a replaceable production candidate: any later artist/image-generation export can go through the same P1 QA and promotion pipeline.
