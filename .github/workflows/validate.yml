@@ -27,3 +27,5 @@ jobs:
         run: python scripts/validate_levels.py
       - name: Report UHD art readiness
         run: python scripts/uhd-audit.py
+      - name: Report Level 01 UHD production status
+        run: python scripts/level01-art-status.py
