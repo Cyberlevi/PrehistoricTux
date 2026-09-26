@@ -923,8 +923,10 @@ Tux.do_scripting_controller(\"jump\", false);")
       (y 768)
       (glinting #f)
     )
-    (jumpy
+    (smartball
+      (sprite "/images/dino/trike/trike.sprite")
       (z-pos 50)
+      (direction "left")
       (x 2208)
       (y 1760)
       (glinting #t)
@@ -935,8 +937,10 @@ Tux.do_scripting_controller(\"jump\", false);")
       (y 1600)
       (glinting #f)
     )
-    (jumpy
+    (smartball
+      (sprite "/images/dino/trike/trike.sprite")
       (z-pos 50)
+      (direction "left")
       (x 9536)
       (y 992)
       (glinting #f)
