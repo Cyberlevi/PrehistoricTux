@@ -23,6 +23,12 @@
       (x 14)
       (y 9)
     )
+    (level
+      (z-pos 50)
+      (level "03_serpent_caves.stl")
+      (x 14)
+      (y 6)
+    )
     (worldmap-spawnpoint
       (z-pos 50)
       (name "main")
