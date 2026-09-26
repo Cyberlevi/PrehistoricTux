@@ -2,6 +2,9 @@
 
 A full-length eight-level SuperTux 0.7.0 add-on campaign.
 
+## Prologue
+The worldmap starts with an automatic story cutscene: **The Lost Egg**.
+
 ## Campaign
 1. The Valley of the Lost Egg
 2. The Dinosaur Trail
@@ -23,3 +26,11 @@ bash scripts/play-level.sh 1
 ```bash
 bash scripts/play-worldmap.sh
 ```
+
+## Package
+```bash
+python scripts/validate_campaign.py
+bash scripts/package-addon.sh
+```
+
+See `docs/RELEASE.md` for the official add-on submission checklist.
