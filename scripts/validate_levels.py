@@ -127,11 +127,14 @@ def addon_path_from_absolute(ref: str) -> pathlib.Path:
 def validate_custom_references(path: pathlib.Path, text: str) -> list[str]:
     errors: list[str] = []
 
-    for ref in re.findall(r'\(sprite\s+"([^"]+)"\)', text):
+    for kind, ref in re.findall(
+        r'\((sprite|tileset|icon|icon-locked|bkg)\s+"([^"]+)"\)',
+        text,
+    ):
         if ref.startswith("/images/prehistoric/"):
             target = addon_path_from_absolute(ref)
             if not target.is_file():
-                errors.append(f"missing custom sprite: {ref}")
+                errors.append(f"missing custom {kind}: {ref}")
 
     for ref in re.findall(r'import\(\"([^"]+)\"\)', text):
         if ref.startswith("levels/prehistoric_tux/"):
