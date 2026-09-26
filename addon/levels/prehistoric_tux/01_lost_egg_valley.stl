@@ -53,6 +53,82 @@
       (y 432)
     )
 
+    ; Layered prehistoric dressing. Far silhouettes stay behind gameplay,
+    ; while landmark props sit close to the terrain without obscuring hazards.
+    ; Lost Nest: lush valley, distant herd and the first signs of destruction.
+    (decal
+      (z-pos -125)
+      (sprite "/images/prehistoric/scenery/sauropod-distant.surface")
+      (x 2304)
+      (y 500)
+    )
+    (decal
+      (z-pos -24)
+      (sprite "/images/prehistoric/scenery/giant-ribs.surface")
+      (x 2704)
+      (y 608)
+    )
+    (decal
+      (z-pos -18)
+      (sprite "/images/prehistoric/scenery/fossil-skull.surface")
+      (x 3872)
+      (y 656)
+    )
+
+    ; Fossil Pass: harder silhouettes and monumental bones create a darker
+    ; middle act before the aerial attacks begin.
+    (decal
+      (z-pos -105)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 5120)
+      (y 496)
+    )
+    (decal
+      (z-pos -95)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 6208)
+      (y 448)
+    )
+    (decal
+      (z-pos -16)
+      (sprite "/images/prehistoric/scenery/bone-arch.surface")
+      (x 6816)
+      (y 592)
+    )
+    (decal
+      (z-pos -20)
+      (sprite "/images/prehistoric/scenery/giant-ribs.surface")
+      (x 7904)
+      (y 600)
+    )
+
+    ; Skybreak: nesting territory and repeating cliff forms frame the
+    ; pterosaur encounters and pull the eye toward the distant volcano.
+    (decal
+      (z-pos -100)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 9024)
+      (y 432)
+    )
+    (decal
+      (z-pos -12)
+      (sprite "/images/prehistoric/scenery/pterosaur-nest.surface")
+      (x 10368)
+      (y 576)
+    )
+    (decal
+      (z-pos -108)
+      (sprite "/images/prehistoric/scenery/cliff-spire.surface")
+      (x 11136)
+      (y 416)
+    )
+    (decal
+      (z-pos -14)
+      (sprite "/images/prehistoric/scenery/fossil-skull.surface")
+      (x 11776)
+      (y 624)
+    )
+
 
     (spawnpoint (name "main") (x 96) (y 704))
 
