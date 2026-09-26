@@ -84,6 +84,114 @@
       (x 9824) (y 608)
     )
 
+    ; The first local inhabitant points the way toward the volcano.
+    (scriptedobject
+      (z-pos 35)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "CAVEMAN_GUIDE")
+      (sprite "/images/prehistoric/characters/caveman/caveman.sprite")
+      (x 1712)
+      (y 640)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-The Valley Keeper
+#I saw a giant shadow take the egg toward the smoking mountain.
+#The snakes hide beneath warm stones. Listen before you run."))
+      (fadetransition #t)
+      (x 1792)
+      (y 608)
+    )
+
+    ; Scripted ambush snake 1.
+    (scriptedobject
+      (z-pos 50)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "SNAKE_AMBUSH_1")
+      (sprite "/images/prehistoric/creatures/snake/snake.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 5488)
+      (y 674)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "snake_ambush_1();")
+      (button #f)
+      (width 48)
+      (height 256)
+      (x 5152)
+      (y 480)
+    )
+
+    ; Scripted ambush snake 2.
+    (scriptedobject
+      (z-pos 50)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "SNAKE_AMBUSH_2")
+      (sprite "/images/prehistoric/creatures/snake/snake.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 8624)
+      (y 610)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "snake_ambush_2();")
+      (button #f)
+      (width 48)
+      (height 320)
+      (x 8240)
+      (y 416)
+    )
+
+    ; Diving pterosaur set-pieces.
+    (scriptedobject
+      (z-pos 55)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "PTERO_DIVE_1")
+      (sprite "/images/prehistoric/creatures/ptero/ptero.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 7104)
+      (y 320)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "ptero_dive_1();")
+      (button #f)
+      (width 48)
+      (height 448)
+      (x 6496)
+      (y 256)
+    )
+
+    (scriptedobject
+      (z-pos 55)
+      (physic-enabled #t)
+      (solid #f)
+      (visible #f)
+      (name "PTERO_DIVE_2")
+      (sprite "/images/prehistoric/creatures/ptero/ptero.sprite")
+      (hit-script "Tux.kill(false);")
+      (x 11264)
+      (y 288)
+    )
+    (scripttrigger
+      (oneshot #t)
+      (script "ptero_dive_2();")
+      (button #f)
+      (width 48)
+      (height 448)
+      (x 10528)
+      (y 256)
+    )
+
     ; Bootstrap creature roles using stock SuperTux behaviour.
     ; snowball = small ground hunter
     ; smartball/snowman = heavier ground threats
@@ -94,16 +202,11 @@
     (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 2816) (y 480) (glinting #f))
     (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 3552) (y 704) (glinting #f))
     (snowman (z-pos 50) (direction "left") (x 4064) (y 672) (glinting #f))
-
-    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 5312) (y 672) (glinting #f))
     (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 5920) (y 704) (glinting #f))
-    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 6720) (y 448) (glinting #f))
     (snowman (z-pos 50) (direction "left") (x 7488) (y 672) (glinting #f))
-    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 8384) (y 608) (glinting #t))
     (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 8960) (y 416) (glinting #f))
 
     (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 10112) (y 704) (glinting #f))
-    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 10688) (y 448) (glinting #f))
     (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 11264) (y 640) (glinting #f))
     (snowman (z-pos 50) (direction "left") (x 11968) (y 672) (glinting #t))
 
