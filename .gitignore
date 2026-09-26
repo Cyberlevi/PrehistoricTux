@@ -3,3 +3,7 @@ build/
 *.log
 *.swp
 .DS_Store
+.dev-userdir/
+.smoke-userdir/
+diagnostics/
+dist/
