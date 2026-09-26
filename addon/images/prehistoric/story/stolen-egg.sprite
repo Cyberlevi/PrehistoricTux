@@ -1,0 +1,7 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 6 4 36 56)
+    (images "stolen-egg.png")
+  )
+)
