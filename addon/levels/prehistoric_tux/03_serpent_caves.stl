@@ -1,0 +1,126 @@
+(supertux-level
+  (version 3)
+  (name (_ "Serpent Caves"))
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+  (target-time 175)
+  (allow-item-pocket "inherit")
+  (icon "")
+  (icon-locked "")
+  (statistics
+    (enable-coins #t)
+    (enable-secrets #t)
+  )
+  (tileset "/images/prehistoric/tiles.strf")
+  (sector
+    (name "main")
+    (ambient-light (color 0.43 0.42 0.36))
+    (gradient
+      (top_color 0.07 0.09 0.08)
+      (bottom_color 0.26 0.22 0.18)
+    )
+    (camera (name "Camera") (mode "normal"))
+    (spawnpoint (name "main") (x 96) (y 832))
+
+    (firefly
+      (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite")
+      (z-pos 0)
+      (x 3904)
+      (y 800)
+    )
+    (firefly
+      (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite")
+      (z-pos 0)
+      (x 7616)
+      (y 800)
+    )
+
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Serpent Caves
+#The trail disappears under the mountain.
+#Loose stone above you is as dangerous as the snakes below."))
+      (fadetransition #t)
+      (x 704)
+      (y 768)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Warm Air
+#The rock grows hot. The volcano is close now.
+#Whatever carried the egg came through here."))
+      (fadetransition #t)
+      (x 8768)
+      (y 736)
+    )
+
+    ; Ancient snakes dominate the low routes.
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 1184) (y 800) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 2656) (y 800) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 4448) (y 800) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 6208) (y 800) (glinting #t))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 8320) (y 800) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 9856) (y 800) (glinting #t))
+
+    ; Small hunters appear where the cave opens into larger chambers.
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 3520) (y 800) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 7168) (y 800) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 9280) (y 480) (glinting #f))
+
+    ; Falling rock hazards use stock Stalactite behaviour with original cave art.
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 1760) (y 160))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 2336) (y 128))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 5024) (y 128))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 5632) (y 160))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 7808) (y 128))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 8512) (y 160))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 10048) (y 128))
+
+    ; Coin trails telegraph safe routes through the dark.
+    (coin (z-pos 49) (x 1856) (y 672))
+    (coin (z-pos 49) (x 1920) (y 640))
+    (coin (z-pos 49) (x 1984) (y 608))
+    (coin (z-pos 49) (x 2048) (y 640))
+    (coin (z-pos 49) (x 2112) (y 672))
+    (coin (z-pos 49) (x 5184) (y 608))
+    (coin (z-pos 49) (x 5248) (y 576))
+    (coin (z-pos 49) (x 5312) (y 544))
+    (coin (z-pos 49) (x 5376) (y 576))
+    (coin (z-pos 49) (x 5440) (y 608))
+    (coin (z-pos 49) (x 9408) (y 544))
+    (coin (z-pos 49) (x 9472) (y 512))
+    (coin (z-pos 49) (x 9536) (y 480))
+
+    (secretarea
+      (message (_ "Fossil serpent chamber discovered!"))
+      (width 320)
+      (height 160)
+      (x 5280)
+      (y 448)
+    )
+    (secretarea
+      (message (_ "Volcanic crystal pocket discovered!"))
+      (width 288)
+      (height 160)
+      (x 9536)
+      (y 480)
+    )
+
+    (sequencetrigger
+      (sequence "endsequence")
+      (width 32)
+      (height 512)
+      (x 10784)
+      (y 384)
+    )
+
+    (tilemap
+      (solid #t)
+      (z-pos 0)
+      (name "Serpent Cave Terrain")
+      (width 340)
+      (height 32)
+      (tiles -43 4 -27 0 -49 4 -27 0 -51 4 -25 0 -49 4 -29 0 -40 8 -43 3 -27 0 -49 3 -27 0 -51 3 -25 0 -49 3 -29 0 -40 7 -43 3 -27 0 -49 3 -27 0 -51 3 -25 0 -49 3 -29 0 -40 7 -70 0 -49 3 -103 0 -49 3 -5143 0 -15 8 -251 0 -15 4 -250 0 -16 4 -251 0 -14 4 -190 0 -14 8 -66 0 -13 4 -171 0 -16 4 -249 0 -16 4 -197 0 -14 4 -154 0 -14 4 -60 0 -17 4 -135 0 -15 4 -933 0 -60 4 -7 0 -65 4 -7 0 -66 4 -8 0 -67 4 -2 8 -8 0 -50 8 -60 3 -7 0 -65 3 -7 0 -66 3 -8 0 -67 3 -2 7 -8 0 -50 7 -60 3 -7 0 -65 3 -7 0 -66 3 -8 0 -67 3 -2 7 -8 0 -50 7 -60 3 -7 0 -65 3 -7 0 -66 3 -8 0 -67 3 -2 7 -8 0 -50 7)
+    )
+  )
+)
