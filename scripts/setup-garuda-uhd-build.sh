@@ -12,6 +12,7 @@ PACKAGES=(
   base-devel
   libogg
   libvorbis
+  libpng
   openal
   sdl2
   sdl2_image
@@ -28,6 +29,7 @@ PACKAGES=(
   fmt
   physfs
   git
+  pkgconf
 )
 
 echo "Installing/confirming SuperTux UHD build dependencies on Garuda/Arch..."
