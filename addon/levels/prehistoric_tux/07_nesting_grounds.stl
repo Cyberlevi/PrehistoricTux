@@ -305,11 +305,13 @@ Camera.stop_earthquake();")
       (x 848)
       (y 1504)
     )
-    (granito_big
-      (type "standing")
-      (z-pos 48)
+    (smartball
+      (sprite "/images/dino/trike/trike.sprite")
+      (z-pos 50)
+      (direction "left")
       (x 7168)
       (y 1440)
+      (glinting #f)
     )
     (granito_big
       (z-pos 48)
