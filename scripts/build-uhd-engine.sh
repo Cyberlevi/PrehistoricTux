@@ -10,6 +10,11 @@ PATCH="$ROOT/engine-patches/0001-uhd-logical-surface-scale.patch"
 for tool in git cmake; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     echo "Missing required build tool: $tool" >&2
+    if command -v pacman >/dev/null 2>&1; then
+      echo >&2
+      echo "Garuda/Arch detected. Install the full build dependency set with:" >&2
+      echo "  bash scripts/setup-garuda-uhd-build.sh" >&2
+    fi
     exit 1
   fi
 done
