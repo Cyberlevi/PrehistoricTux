@@ -35,6 +35,12 @@
       (x 18)
       (y 6)
     )
+    (level
+      (z-pos 50)
+      (level "05_obsidian_river.stl")
+      (x 20)
+      (y 10)
+    )
     (worldmap-spawnpoint
       (z-pos 50)
       (name "main")
@@ -47,7 +53,7 @@
       (name "pathing")
       (width 24)
       (height 18)
-      (tiles -158 0 11 -4 20 -19 0 21 -23 0 21 -12 0 -11 20 14 -201 0)
+      (tiles -158 0 11 -3 20 10 -19 0 21 -3 0 21 -19 0 21 -3 0 21 -8 0 -11 20 14 -3 0 21 -23 0 15 -2 20 -171 0)
     )
   )
   (tileset "/images/ice_world.strf")
