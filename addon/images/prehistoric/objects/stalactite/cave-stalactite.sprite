@@ -2,16 +2,16 @@
   (action
     (name "default")
     (hitbox 4 8 32 52)
-    (images "cave-stalactite.png")
+    (images "cave-stalactite.surface")
   )
   (action
     (name "yeti-stalactite")
     (hitbox 4 8 32 52)
-    (images "cave-stalactite.png")
+    (images "cave-stalactite.surface")
   )
   (action
     (name "squished")
     (hitbox 4 28 32 28)
-    (images "cave-stalactite-broken.png")
+    (images "cave-stalactite-broken.surface")
   )
 )

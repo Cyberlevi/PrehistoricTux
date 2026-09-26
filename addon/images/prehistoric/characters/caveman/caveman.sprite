@@ -3,8 +3,8 @@
     (name "idle-left")
     (hitbox 8 6 32 56)
     (fps 2)
-    (images "caveman-idle-0.png"
-            "caveman-idle-1.png")
+    (images "caveman-idle-0.surface"
+            "caveman-idle-1.surface")
   )
   (action
     (name "idle-right")

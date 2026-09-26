@@ -10,51 +10,51 @@
   (tile
     (id 1)
     (solid #t)
-    (images "terrain/jungle-fill.png")
+    (images "terrain/jungle-fill.surface")
   )
   (tile
     (id 2)
     (solid #t)
-    (images "terrain/jungle-top.png")
+    (images "terrain/jungle-top.surface")
   )
   (tile
     (id 3)
     (solid #t)
-    (images "terrain/cave-fill.png")
+    (images "terrain/cave-fill.surface")
   )
   (tile
     (id 4)
     (solid #t)
-    (images "terrain/cave-top.png")
+    (images "terrain/cave-top.surface")
   )
   (tile
     (id 5)
     (solid #t)
-    (images "terrain/cliff-fill.png")
+    (images "terrain/cliff-fill.surface")
   )
   (tile
     (id 6)
     (solid #t)
-    (images "terrain/cliff-top.png")
+    (images "terrain/cliff-top.surface")
   )
   (tile
     (id 7)
     (solid #t)
-    (images "terrain/volcano-fill.png")
+    (images "terrain/volcano-fill.surface")
   )
   (tile
     (id 8)
     (solid #t)
-    (images "terrain/volcano-top.png")
+    (images "terrain/volcano-top.surface")
   )
 
   (tile
     (id 9)
     (images
-      "terrain/lava-0.png"
-      "terrain/lava-1.png"
-      "terrain/lava-2.png"
-      "terrain/lava-3.png"
+      "terrain/lava-0.surface"
+      "terrain/lava-1.surface"
+      "terrain/lava-2.surface"
+      "terrain/lava-3.surface"
     )
     (water #t)
     (hurts #t)

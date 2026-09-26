@@ -3,8 +3,8 @@
     (name "idle-left")
     (hitbox 8 8 80 52)
     (fps 2)
-    (images "spinosaurus-idle-0.png"
-            "spinosaurus-idle-1.png")
+    (images "spinosaurus-idle-0.surface"
+            "spinosaurus-idle-1.surface")
   )
   (action
     (name "idle-right")

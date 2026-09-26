@@ -3,10 +3,10 @@
     (name "left")
     (hitbox 6 10 48 18)
     (fps 8)
-    (images "snake-slither-0.png"
-            "snake-slither-1.png"
-            "snake-slither-2.png"
-            "snake-slither-3.png")
+    (images "snake-slither-0.surface"
+            "snake-slither-1.surface"
+            "snake-slither-2.surface"
+            "snake-slither-3.surface")
   )
   (action
     (name "right")
@@ -17,7 +17,7 @@
   (action
     (name "squished-left")
     (hitbox 6 14 48 12)
-    (images "snake-squished.png")
+    (images "snake-squished.surface")
   )
   (action
     (name "squished-right")
@@ -27,11 +27,11 @@
   (action
     (name "melting")
     (hitbox 6 14 48 12)
-    (images "snake-squished.png")
+    (images "snake-squished.surface")
   )
   (action
     (name "ground-melting")
     (hitbox 6 14 48 12)
-    (images "snake-squished.png")
+    (images "snake-squished.surface")
   )
 )

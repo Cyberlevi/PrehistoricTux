@@ -13,19 +13,19 @@
 
   (tile
     (id 100)
-    (images "terrain/jungle-fill.png")
+    (images "terrain/jungle-fill.surface")
   )
   (tile
     (id 101)
-    (images "terrain/cave-fill.png")
+    (images "terrain/cave-fill.surface")
   )
   (tile
     (id 102)
-    (images "terrain/cliff-fill.png")
+    (images "terrain/cliff-fill.surface")
   )
   (tile
     (id 103)
-    (images "terrain/volcano-fill.png")
+    (images "terrain/volcano-fill.surface")
   )
 
   ; Keep SuperTux's generic road sheet and data flags, but remove the ice-world tileset.

@@ -3,10 +3,10 @@
     (name "left")
     (hitbox 14 10 52 28)
     (fps 10)
-    (images "ptero-fly-0.png"
-            "ptero-fly-1.png"
-            "ptero-fly-2.png"
-            "ptero-fly-3.png")
+    (images "ptero-fly-0.surface"
+            "ptero-fly-1.surface"
+            "ptero-fly-2.surface"
+            "ptero-fly-3.surface")
   )
   (action
     (name "right")
@@ -17,7 +17,7 @@
   (action
     (name "squished-left")
     (hitbox 14 20 52 16)
-    (images "ptero-squished.png")
+    (images "ptero-squished.surface")
   )
   (action
     (name "squished-right")
@@ -27,6 +27,6 @@
   (action
     (name "melting")
     (hitbox 14 20 52 16)
-    (images "ptero-squished.png")
+    (images "ptero-squished.surface")
   )
 )
