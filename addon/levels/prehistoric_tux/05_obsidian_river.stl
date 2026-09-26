@@ -1,0 +1,178 @@
+(supertux-level
+  (version 3)
+  (name (_ "Obsidian River"))
+  (author "Tarnóczi Levente & Hanna")
+  (license "CC-BY-SA 4.0 International")
+  (target-time 190)
+  (allow-item-pocket "inherit")
+  (icon "")
+  (icon-locked "")
+  (statistics
+    (enable-coins #t)
+    (enable-secrets #t)
+  )
+  (tileset "/images/prehistoric/tiles.strf")
+  (sector
+    (name "main")
+    (ambient-light (color 0.62 0.45 0.36))
+    (gradient
+      (top_color 0.20 0.08 0.06)
+      (bottom_color 0.88 0.34 0.09)
+    )
+    (camera (name "Camera") (mode "normal"))
+    (spawnpoint (name "main") (x 96) (y 800))
+
+    (decal
+      (z-pos -120)
+      (sprite "/images/prehistoric/scenery/volcano-distant.png")
+      (x 9472)
+      (y 384)
+    )
+    (decal
+      (z-pos -40)
+      (sprite "/images/prehistoric/scenery/cliff-spire.png")
+      (x 6400)
+      (y 480)
+    )
+
+    (firefly
+      (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite")
+      (z-pos 0)
+      (x 4256)
+      (y 736)
+    )
+    (firefly
+      (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite")
+      (z-pos 0)
+      (x 8512)
+      (y 672)
+    )
+
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Obsidian River
+#The mountain has split open.
+#The egg trail continues across the black stone above the lava."))
+      (fadetransition #t)
+      (x 640)
+      (y 736)
+    )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Fresh Tracks
+#The Palaszarusz crossed here recently.
+#The stone is still breaking under its weight."))
+      (fadetransition #t)
+      (x 8064)
+      (y 608)
+    )
+
+    ; Volcanic falling-rock hazards.
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 2208) (y 160))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 3840) (y 128))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 5952) (y 128))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 7744) (y 96))
+    (stalactite (type "rock") (sprite "/images/prehistoric/objects/stalactite/cave-stalactite.sprite") (glinting #f) (z-pos -1) (x 10144) (y 96))
+
+    ; Moving obsidian slabs over the widest lava gaps.
+    (path
+      (name "obsidian-path-1")
+      (path
+        (adapt_speed #f)
+        (node (x 1760) (y 672) (time 2.7) (easing "EaseQuadInOut"))
+        (node (x 2144) (y 640) (time 2.7) (easing "EaseQuadInOut"))
+      )
+    )
+    (platform
+      (z-pos 45)
+      (handle (scale_x 0) (scale_y 0) (offset_x 0) (offset_y 0))
+      (path-ref "obsidian-path-1")
+      (sprite "/images/prehistoric/objects/platforms/obsidian-platform.sprite")
+    )
+
+    (path
+      (name "obsidian-path-2")
+      (path
+        (adapt_speed #f)
+        (node (x 5792) (y 608) (time 3.1) (easing "EaseQuadInOut"))
+        (node (x 6304) (y 544) (time 3.1) (easing "EaseQuadInOut"))
+      )
+    )
+    (platform
+      (z-pos 45)
+      (handle (scale_x 0) (scale_y 0) (offset_x 0) (offset_y 0))
+      (path-ref "obsidian-path-2")
+      (sprite "/images/prehistoric/objects/platforms/obsidian-platform.sprite")
+    )
+
+    (path
+      (name "obsidian-path-3")
+      (path
+        (adapt_speed #f)
+        (node (x 9984) (y 480) (time 3.3) (easing "EaseQuadInOut"))
+        (node (x 10496) (y 416) (time 3.3) (easing "EaseQuadInOut"))
+      )
+    )
+    (platform
+      (z-pos 45)
+      (handle (scale_x 0) (scale_y 0) (offset_x 0) (offset_y 0))
+      (path-ref "obsidian-path-3")
+      (sprite "/images/prehistoric/objects/platforms/obsidian-platform.sprite")
+    )
+
+    ; Creature encounters stay sparse around lava so platforming remains readable.
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 1248) (y 768) (glinting #f))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 3040) (y 736) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 4832) (y 704) (glinting #f))
+    (flyingsnowball (sprite "/images/prehistoric/creatures/ptero/ptero.sprite") (z-pos 50) (x 6880) (y 352) (glinting #f))
+    (snowball (sprite "/images/prehistoric/creatures/raptor/raptor.sprite") (z-pos 50) (direction "left") (x 8896) (y 640) (glinting #t))
+    (smartball (sprite "/images/prehistoric/creatures/snake/snake.sprite") (z-pos 50) (direction "left") (x 11008) (y 576) (glinting #t))
+
+    ; Collectibles trace safer jumps over lava.
+    (coin (z-pos 49) (x 1600) (y 608))
+    (coin (z-pos 49) (x 1664) (y 576))
+    (coin (z-pos 49) (x 1728) (y 544))
+    (coin (z-pos 49) (x 1792) (y 576))
+    (coin (z-pos 49) (x 1856) (y 608))
+    (coin (z-pos 49) (x 5664) (y 544))
+    (coin (z-pos 49) (x 5728) (y 512))
+    (coin (z-pos 49) (x 5792) (y 480))
+    (coin (z-pos 49) (x 5856) (y 512))
+    (coin (z-pos 49) (x 5920) (y 544))
+    (coin (z-pos 49) (x 9856) (y 416))
+    (coin (z-pos 49) (x 9920) (y 384))
+    (coin (z-pos 49) (x 9984) (y 352))
+
+    (secretarea
+      (message (_ "Obsidian fossil shelf discovered!"))
+      (width 320)
+      (height 160)
+      (x 4704)
+      (y 544)
+    )
+    (secretarea
+      (message (_ "Lava-side nesting hollow discovered!"))
+      (width 288)
+      (height 160)
+      (x 10848)
+      (y 448)
+    )
+
+    (sequencetrigger
+      (sequence "endsequence")
+      (width 32)
+      (height 576)
+      (x 12064)
+      (y 320)
+    )
+
+    (tilemap
+      (solid #t)
+      (z-pos 0)
+      (name "Obsidian River Terrain")
+      (width 380)
+      (height 32)
+      (tiles -6047 0 -14 6 -680 0 -14 6 -232 0 -14 6 -301 0 -13 6 -499 0 -13 6 -179 0 -14 6 -294 0 -46 8 -334 0 -46 7 -266 0 -46 8 -22 0 -46 7 -132 0 -47 8 -87 0 -46 7 -22 0 -46 7 -70 0 -43 8 -19 0 -47 7 -19 0 -47 8 -21 0 -46 7 -22 0 -46 7 -53 8 -17 0 -43 7 -19 0 -47 7 -19 0 -47 7 -21 0 -46 7 -22 0 -99 7 -17 0 -43 7 -19 0 -47 7 -19 0 -47 7 -21 0 -46 7 -22 0 -99 7 -17 0 -43 7 -19 0 -47 7 -19 0 -47 7 -21 0 -46 7 -22 0 -99 7 -17 9 -43 7 -19 9 -47 7 -19 9 -47 7 -21 9 -46 7 -22 9 -99 7 -17 9 -43 7 -19 9 -47 7 -19 9 -47 7 -21 9 -46 7 -22 9 -99 7 -17 9 -43 7 -19 9 -47 7 -19 9 -47 7 -21 9 -46 7 -22 9 -46 7)
+    )
+  )
+)
