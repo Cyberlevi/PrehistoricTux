@@ -63,3 +63,18 @@ Generate + QA + activate the P1 runtime bindings:
     python scripts/generate-level01-p1-candidate.py --promote
 
 The generator authors the raptor and jungle artwork directly at the 4× runtime-source sizes. It is not a mechanical enlargement of the old prototype PNGs. The generated set still remains a replaceable production candidate: any later artist/image-generation export can go through the same P1 QA and promotion pipeline.
+
+
+## P1 one-command visual gate
+
+After the patched UHD engine and Pillow are installed:
+
+    bash scripts/test-level01-p1.sh
+
+This command generates the seven Priority-1 assets, runs QA, promotes them into the local runtime bindings, renders an actual-asset contact sheet at `art/incoming/level01/P1_PREVIEW.png`, revalidates the content, and launches Level 01 through the patched UHD engine.
+
+To revert only the local P1 runtime promotion while preserving incoming source exports:
+
+    bash scripts/reset-level01-p1-runtime.sh
+
+Important: promoted 4× sources must be tested with `scripts/play-uhd-level.sh`, not the stock SuperTux binary, because stock 0.7.0 ignores the logical `.surface` scale field.
