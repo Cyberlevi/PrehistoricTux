@@ -6,6 +6,11 @@ ENGINE_ROOT="$ROOT/.engine"
 SRC="$ENGINE_ROOT/supertux-0.7.0-uhd"
 BUILD="$ENGINE_ROOT/build-0.7.0-uhd"
 PATCH="$ROOT/engine-patches/0001-uhd-logical-surface-scale.patch"
+LOGDIR="$ROOT/diagnostics"
+LOG="$LOGDIR/uhd-engine-build.log"
+
+mkdir -p "$LOGDIR"
+exec > >(tee "$LOG") 2>&1
 
 for tool in git cmake; do
   if ! command -v "$tool" >/dev/null 2>&1; then
@@ -41,13 +46,16 @@ fi
 cmake -S "$SRC" -B "$BUILD" \
   "${GENERATOR[@]}" \
   -DCMAKE_BUILD_TYPE=Release \
-  -DENABLE_OPENGL=ON
+  -DENABLE_OPENGL=ON \
+  -DENABLE_DISCORD=OFF \
+  -DBUILD_DOCUMENTATION=OFF
 
 cmake --build "$BUILD" --parallel "$(nproc)"
 
 echo
 echo "Patched UHD SuperTux build complete."
 echo "Binary: $BUILD/supertux2"
+echo "Build log: $LOG"
 echo
 echo "Run PrehistoricTux with:"
 echo "  SUPERTUX_BIN=$BUILD/supertux2 bash scripts/run-garuda.sh"
