@@ -145,6 +145,143 @@ def validate_custom_references(path: pathlib.Path, text: str) -> list[str]:
     return errors
 
 
+
+def custom_tileset_ids(path: pathlib.Path) -> set[int]:
+    text = path.read_text(encoding="utf-8")
+    ids = {int(value) for value in re.findall(r'\(id\s+(\d+)\)', text)}
+    for ids_expr in expressions(text, "ids"):
+        ids.update(int(value) for value in re.findall(r"\b\d+\b", ids_expr) if int(value) > 0)
+    return ids
+
+
+def imported_scripts(text: str) -> list[pathlib.Path]:
+    result: list[pathlib.Path] = []
+    for ref in re.findall(r'import\(\"([^"]+)\"\)', text):
+        if ref.startswith("levels/prehistoric_tux/"):
+            result.append(ADDON / ref)
+    return result
+
+
+def validate_level_cross_references(path: pathlib.Path, text: str) -> list[str]:
+    errors: list[str] = []
+
+    # Worldmap stage references must resolve next to the worldmap.
+    if path.suffix == ".stwm":
+        for ref in re.findall(r'\(level\s+"([^"]+\.stl)"\)', text):
+            target = path.parent / ref
+            if not target.is_file():
+                errors.append(f"worldmap references missing level: {ref}")
+
+    # Moving platforms must point to a named path in the same level.
+    path_names = {
+        name
+        for expr in expressions(text, "path")
+        for name in re.findall(r'\(name\s+"([^"]+)"\)', expr)
+    }
+    for ref in re.findall(r'\(path-ref\s+"([^"]+)"\)', text):
+        if ref not in path_names:
+            errors.append(f"path-ref has no matching named path: {ref}")
+
+    # Every non-zero tile used by a custom prehistoric tileset must exist in it.
+    tileset_match = re.search(r'\(tileset\s+"([^"]+)"\)', text)
+    if tileset_match and tileset_match.group(1).startswith("/images/prehistoric/"):
+        tileset_path = addon_path_from_absolute(tileset_match.group(1))
+        if tileset_path.is_file():
+            valid_ids = custom_tileset_ids(tileset_path)
+            used_ids: set[int] = set()
+            for tm in expressions(text, "tilemap"):
+                used_ids.update(tile_id for tile_id in expand_tiles(tm) if tile_id != 0)
+            unknown = sorted(used_ids - valid_ids)
+            if unknown:
+                errors.append(
+                    "tilemap uses ids missing from custom tileset: "
+                    + ", ".join(str(tile_id) for tile_id in unknown)
+                )
+
+    # Imported Squirrel scripts may refer to named level objects. Catch typos
+    # before runtime. Engine globals are mixed-case and therefore excluded.
+    level_names = set(re.findall(r'\(name\s+"([^"]+)"\)', text))
+    script_functions: set[str] = set()
+    for script_path in imported_scripts(text):
+        if not script_path.is_file():
+            continue
+        script_text = script_path.read_text(encoding="utf-8")
+        script_functions.update(re.findall(r'\bfunction\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(', script_text))
+        object_refs = set(re.findall(r'\b([A-Z][A-Z0-9_]{2,})\s*\.', script_text))
+        for ref in sorted(object_refs - level_names):
+            errors.append(f"script {script_path.name} references missing named object: {ref}")
+
+    # Simple one-line trigger calls should resolve to a function in the imported script.
+    if script_functions:
+        for script_body in re.findall(r'\(script\s+"([^"]*)"\)', text):
+            call = re.fullmatch(r'\s*([a-z_][A-Za-z0-9_]*)\s*\(\s*\)\s*;?\s*', script_body)
+            if call and call.group(1) not in script_functions:
+                errors.append(f"trigger calls undefined imported function: {call.group(1)}")
+
+    return errors
+
+
+def strip_nut_strings_and_comments(text: str) -> str:
+    out: list[str] = []
+    i = 0
+    in_string = False
+    escaped = False
+    while i < len(text):
+        ch = text[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+            out.append(" ")
+            i += 1
+            continue
+        if ch == '"':
+            in_string = True
+            out.append(" ")
+            i += 1
+            continue
+        if text.startswith("//", i):
+            while i < len(text) and text[i] != "\n":
+                out.append(" ")
+                i += 1
+            continue
+        if text.startswith("/*", i):
+            end = text.find("*/", i + 2)
+            if end < 0:
+                out.extend(" " * (len(text) - i))
+                break
+            out.extend(" " * (end + 2 - i))
+            i = end + 2
+            continue
+        out.append(ch)
+        i += 1
+    return "".join(out)
+
+
+def validate_nut(path: pathlib.Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    clean = strip_nut_strings_and_comments(text)
+    errors: list[str] = []
+
+    for opener, closer, label in (("(", ")", "parentheses"), ("{", "}", "braces"), ("[", "]", "brackets")):
+        if clean.count(opener) != clean.count(closer):
+            errors.append(f"unbalanced Squirrel {label}")
+
+    # Imported level scripts should not touch named sector objects at top level:
+    # those objects may not be exposed yet while the sector init-script runs.
+    depth = 0
+    for lineno, line in enumerate(clean.splitlines(), start=1):
+        stripped = line.strip()
+        if depth == 0 and re.match(r'[A-Z][A-Z0-9_]{2,}\s*\.', stripped):
+            errors.append(f"top-level named-object access at line {lineno}")
+        depth += line.count("{") - line.count("}")
+
+    return errors
+
+
 WORLD_PATH_DATA = {
     10: 6, 11: 10, 12: 23, 13: 30,
     14: 5, 15: 9, 16: 29, 17: 27,
@@ -239,6 +376,7 @@ def validate_level(path: pathlib.Path) -> list[str]:
             errors.append(f"tilemap {index}: {exc}")
 
     errors.extend(validate_custom_references(path, text))
+    errors.extend(validate_level_cross_references(path, text))
     return errors
 
 
@@ -388,6 +526,7 @@ def main() -> int:
     sprites = sorted((ADDON / "images" / "prehistoric").rglob("*.sprite"))
     surfaces = sorted((ADDON / "images" / "prehistoric").rglob("*.surface"))
     tilesets = sorted((ADDON / "images" / "prehistoric").rglob("*.strf"))
+    scripts = sorted((ADDON / "levels" / "prehistoric_tux").rglob("*.nut"))
 
     if not level_files:
         print("ERROR: no .stl levels found", file=sys.stderr)
@@ -414,6 +553,8 @@ def main() -> int:
         ok = report(path, validate_surface(path)) and ok
     for path in tilesets:
         ok = report(path, validate_tileset(path)) and ok
+    for path in scripts:
+        ok = report(path, validate_nut(path)) and ok
 
     metadata_errors = validate_addon_metadata()
     metadata_path = next(iter(sorted(ADDON.glob("*.nfo"))), ADDON / "<missing>.nfo")
