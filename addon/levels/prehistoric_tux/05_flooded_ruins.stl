@@ -204,6 +204,13 @@
       (x 5248)
       (y 1920)
     )
+    (infoblock
+      (z-pos 50)
+      (message (_ "-Trail Note\n#Broken shells are caught in the flooded ruins. The nesting grounds must be close."))
+      (fadetransition #t)
+      (x 5320)
+      (y 1824)
+    )
     (fish-chasing
       (type "forest")
       (z-pos 50)
