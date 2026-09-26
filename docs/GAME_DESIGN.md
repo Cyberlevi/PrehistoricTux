@@ -28,3 +28,9 @@ No cheap blind deaths. Hard sections telegraph danger. Checkpoints sit before ma
 
 ## UHD direction
 Gameplay remains resolution-independent. New source artwork should be authored oversized or vector-first where practical, then exported into engine-compatible assets without making collision dependent on render resolution.
+
+## Implementation status
+
+- Level 01 — The Valley of the Lost Egg: playable vertical-slice structure, custom prehistoric terrain/art, scripted ambushes and Palaszarusz reveal.
+- Level 02 — Fernwood Canopy: full-length geometry scaffold connected to the worldmap, with canopy routes, two checkpoints, two secrets and mixed ground/air pressure.
+- Levels 03–08: campaign design defined; implementation follows after local engine smoke testing.
