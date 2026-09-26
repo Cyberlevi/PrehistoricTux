@@ -328,14 +328,18 @@ secret_trap.start_moving();")
       (y 1312)
       (glinting #f)
     )
-    (haywire
+    (smartball
+      (sprite "/images/dino/trike/trike.sprite")
       (z-pos 50)
+      (direction "left")
       (x 12768)
       (y 1472)
       (glinting #f)
     )
-    (jumpy
+    (smartball
+      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
+      (direction "left")
       (x 3744)
       (y 1344)
       (glinting #f)
@@ -346,8 +350,10 @@ secret_trap.start_moving();")
       (y 320)
       (glinting #t)
     )
-    (jumpy
+    (smartball
+      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
+      (direction "left")
       (x 13024)
       (y 1376)
       (glinting #t)
