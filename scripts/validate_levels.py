@@ -7,6 +7,7 @@ import sys
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+ADDON = ROOT / "addon"
 
 
 def strip_strings_and_comments(text: str) -> str:
@@ -45,7 +46,8 @@ def matching_paren(text: str, start: int) -> int:
     depth = 0
     in_string = False
     escaped = False
-    for i in range(start, len(text)):
+    i = start
+    while i < len(text):
         ch = text[i]
         if in_string:
             if escaped:
@@ -54,6 +56,7 @@ def matching_paren(text: str, start: int) -> int:
                 escaped = True
             elif ch == '"':
                 in_string = False
+            i += 1
             continue
         if ch == '"':
             in_string = True
@@ -61,12 +64,14 @@ def matching_paren(text: str, start: int) -> int:
             nl = text.find("\n", i)
             if nl < 0:
                 return len(text) - 1
+            i = nl
         elif ch == "(":
             depth += 1
         elif ch == ")":
             depth -= 1
             if depth == 0:
                 return i
+        i += 1
     raise ValueError(f"unclosed expression starting at byte {start}")
 
 
@@ -111,9 +116,31 @@ def tiles_count(tilemap: str) -> int:
     return expanded
 
 
+def addon_path_from_absolute(ref: str) -> pathlib.Path:
+    return ADDON / ref.lstrip("/")
+
+
+def validate_custom_references(path: pathlib.Path, text: str) -> list[str]:
+    errors: list[str] = []
+
+    for ref in re.findall(r'\(sprite\s+"([^"]+)"\)', text):
+        if ref.startswith("/images/prehistoric/"):
+            target = addon_path_from_absolute(ref)
+            if not target.is_file():
+                errors.append(f"missing custom sprite: {ref}")
+
+    for ref in re.findall(r'import\(\"([^"]+)\"\)', text):
+        if ref.startswith("levels/prehistoric_tux/"):
+            target = ADDON / ref
+            if not target.is_file():
+                errors.append(f"missing imported script: {ref}")
+
+    return errors
+
+
 def validate_level(path: pathlib.Path) -> list[str]:
     text = path.read_text(encoding="utf-8")
-    errors = []
+    errors: list[str] = []
     clean = strip_strings_and_comments(text)
 
     if clean.count("(") != clean.count(")"):
@@ -122,9 +149,17 @@ def validate_level(path: pathlib.Path) -> list[str]:
         errors.append("missing supertux-level root")
     if "(version 3)" not in clean:
         errors.append("expected level format version 3")
-    for required in ("(camera", "(spawnpoint", "(sequencetrigger"):
-        if required not in clean:
-            errors.append(f"missing required object {required[1:]}")
+
+    if path.suffix == ".stwm":
+        for required in ("(worldmap-spawnpoint", "(level", "(tilemap"):
+            if required not in clean:
+                errors.append(f"missing worldmap object {required[1:]}")
+    else:
+        for required in ("(camera", "(spawnpoint", "(tilemap"):
+            if required not in clean:
+                errors.append(f"missing required object {required[1:]}")
+        if "(sequencetrigger" not in clean and "(scripttrigger" not in clean:
+            errors.append("level has no completion/story trigger")
 
     for index, tm in enumerate(expressions(text, "tilemap"), start=1):
         try:
@@ -140,28 +175,99 @@ def validate_level(path: pathlib.Path) -> list[str]:
         except ValueError as exc:
             errors.append(f"tilemap {index}: {exc}")
 
+    errors.extend(validate_custom_references(path, text))
     return errors
 
 
+def validate_sprite(path: pathlib.Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    errors: list[str] = []
+    clean = strip_strings_and_comments(text)
+
+    if clean.count("(") != clean.count(")"):
+        errors.append("unbalanced parentheses")
+    if "(supertux-sprite" not in clean:
+        errors.append("missing supertux-sprite root")
+
+    action_names = re.findall(r'\(name\s+"([^"]+)"\)', text)
+    if not action_names:
+        errors.append("sprite defines no actions")
+
+    for images_expr in expressions(text, "images"):
+        refs = re.findall(r'"([^"]+)"', images_expr)
+        for ref in refs:
+            if ref.startswith("/"):
+                if ref.startswith("/images/prehistoric/"):
+                    target = addon_path_from_absolute(ref)
+                else:
+                    continue
+            else:
+                target = path.parent / ref
+            if not target.is_file():
+                errors.append(f"missing image frame: {ref}")
+
+    return errors
+
+
+def validate_addon_metadata() -> list[str]:
+    errors: list[str] = []
+    nfos = sorted(ADDON.glob("*.nfo"))
+    if len(nfos) != 1:
+        return [f"expected exactly one top-level .nfo file, found {len(nfos)}"]
+
+    path = nfos[0]
+    text = path.read_text(encoding="utf-8")
+    m = re.search(r'\(id\s+"([^"]+)"\)', text)
+    if not m:
+        errors.append("add-on metadata has no id")
+        return errors
+
+    addon_id = m.group(1)
+    if path.stem != addon_id:
+        errors.append(f".nfo filename {path.stem!r} does not match id {addon_id!r}")
+    if not re.fullmatch(r"[a-z0-9-]+", addon_id):
+        errors.append(f"invalid add-on id: {addon_id!r}")
+
+    return errors
+
+
+def report(path: pathlib.Path, errors: list[str]) -> bool:
+    rel = path.relative_to(ROOT)
+    if errors:
+        print(f"FAIL {rel}")
+        for error in errors:
+            print(f"  - {error}")
+        return False
+    print(f"OK   {rel}")
+    return True
+
+
 def main() -> int:
-    levels = sorted((ROOT / "addon").rglob("*.stl"))
-    if not levels:
+    level_files = sorted((ADDON / "levels").rglob("*.stl"))
+    worldmaps = sorted((ADDON / "levels").rglob("*.stwm"))
+    sprites = sorted((ADDON / "images" / "prehistoric").rglob("*.sprite"))
+
+    if not level_files:
         print("ERROR: no .stl levels found", file=sys.stderr)
         return 1
+    if not worldmaps:
+        print("ERROR: no .stwm worldmaps found", file=sys.stderr)
+        return 1
+    if not sprites:
+        print("ERROR: no custom prehistoric .sprite files found", file=sys.stderr)
+        return 1
 
-    failed = False
-    for level in levels:
-        errors = validate_level(level)
-        rel = level.relative_to(ROOT)
-        if errors:
-            failed = True
-            print(f"FAIL {rel}")
-            for error in errors:
-                print(f"  - {error}")
-        else:
-            print(f"OK   {rel}")
+    ok = True
+    for path in level_files + worldmaps:
+        ok = report(path, validate_level(path)) and ok
+    for path in sprites:
+        ok = report(path, validate_sprite(path)) and ok
 
-    return 1 if failed else 0
+    metadata_errors = validate_addon_metadata()
+    metadata_path = next(iter(sorted(ADDON.glob("*.nfo"))), ADDON / "<missing>.nfo")
+    ok = report(metadata_path, metadata_errors) and ok
+
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
