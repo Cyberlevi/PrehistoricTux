@@ -58,6 +58,23 @@ for m in re.finditer(r'\(tilemap[\s\S]*?\(width\s+(\d+)\)[\s\S]*?\(height\s+(\d+
 for ref in re.findall(r'\(level "([^"]+\.stl)"\)', wm):
     if not (LEVELS/ref).is_file():
         errors.append(f"worldmap missing level: {ref}")
+
+required_roster={
+    "01_lost_egg_valley.stl": ["raptor/raptor.sprite"],
+    "02_dinosaur_trail.stl": ["raptor/raptor.sprite", "alpha_raptor/alpha_raptor.sprite"],
+    "03_ancient_caves.stl": ["trike/trike.sprite", "ankylo/ankylo.sprite"],
+    "04_pterosaur_cliffs.stl": ["ptero/ptero.sprite", "hunter_ptero/hunter_ptero.sprite"],
+    "05_flooded_ruins.stl": ["plesio/plesio.sprite", "ptero/ptero.sprite"],
+    "06_bonefield.stl": ["trike/trike.sprite", "ankylo/ankylo.sprite"],
+    "07_nesting_grounds.stl": ["nestling/nestling.sprite", "raptor/raptor.sprite", "trike/trike.sprite"],
+    "08_palaszarusz_crater.stl": ["palaszarusz/palaszarusz.sprite", "alpha_raptor/alpha_raptor.sprite", "ptero/ptero.sprite"],
+}
+for level_name, refs in required_roster.items():
+    lt=(LEVELS/level_name).read_text(encoding="utf-8")
+    for ref in refs:
+        if f'/images/dino/{ref}' not in lt:
+            errors.append(f"{level_name}: missing required biome dinosaur {ref}")
+
 for p in playable:
     t=p.read_text(encoding="utf-8")
     for ref in re.findall(r'"/images/dino/([^"]+\.sprite)"', t):
