@@ -1,5 +1,7 @@
 // PrehistoricTux — Level 01 scripted beats.
-// Keep gameplay-critical logic in the level file; this script is presentation only.
+// Gameplay-critical logic stays in the level file; this script handles presentation.
+
+PALASZARUSZ.set_visible(false);
 
 function palaszarusz_reveal()
 {
@@ -9,12 +11,14 @@ function palaszarusz_reveal()
 
   Camera.set_mode("manual");
   Effect.sixteen_to_nine(1);
-  Camera.scroll_to(12840, 480, 4);
+  Camera.scroll_to(12840, 480, 3.2);
 
-  wait(1.6);
+  wait(0.9);
+  PALASZARUSZ.set_visible(true);
+  PALASZARUSZ.set_action("roar");
+  play_sound("sounds/roar.wav");
 
-  // The final bespoke boss sprite will be revealed here. During the
-  // bootstrap phase the camera reveal + story block establishes timing.
+  wait(2.2);
   Effect.fade_out(1.2);
   wait(1.2);
   Level.finish(true);
