@@ -65,7 +65,8 @@ def main() -> int:
             for p in glob.glob(str(ROOT / group["surface_glob"]))
         )
         target_w, target_h = group["minimum_master_size"]
-        logical_w, logical_h = group["logical_size"]
+        logical_size = group.get("logical_size")
+        logical_w, logical_h = logical_size if logical_size else (None, None)
 
         if not surfaces:
             print(f"MISSING  {group['name']}: {group['surface_glob']}")
@@ -88,10 +89,12 @@ def main() -> int:
             effective_w = width * sx
             effective_h = height * sy
             size_ok = width >= target_w and height >= target_h
-            logical_ok = (
-                close_enough(effective_w, logical_w)
-                and close_enough(effective_h, logical_h)
-            )
+            logical_ok = True
+            if logical_size:
+                logical_ok = (
+                    close_enough(effective_w, logical_w)
+                    and close_enough(effective_h, logical_h)
+                )
             ok = size_ok and logical_ok
 
             if ok:
@@ -107,7 +110,7 @@ def main() -> int:
                 f"       source={source.relative_to(ROOT)} {width}x{height} "
                 f"scale={sx:g}x{sy:g} logical≈{effective_w:g}x{effective_h:g} "
                 f"target-source>={target_w}x{target_h} "
-                f"target-logical={logical_w}x{logical_h}"
+                + (f"target-logical={logical_w}x{logical_h}" if logical_size else "target-logical=fullscreen-fit")
             )
 
         print(f"       {group['name']}: {group_ready}/{len(surfaces)} UHD-ready")

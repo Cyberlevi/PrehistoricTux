@@ -7,7 +7,7 @@
   (allow-item-pocket "on")
   (icon "/images/prehistoric/story/stolen-egg.surface")
   (icon-locked "/images/prehistoric/story/stolen-egg.png")
-  (bkg "/images/prehistoric/scenery/dusk-sun.surface")
+  (bkg "/images/prehistoric/worldmap/background.surface")
   (sector
     (name "main")
     (ambient-light (color 0.82 0.92 0.72))

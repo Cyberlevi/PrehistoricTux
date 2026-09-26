@@ -10,68 +10,251 @@
     {
       "name": "raptor",
       "surface_glob": "addon/images/prehistoric/creatures/raptor/*.surface",
-      "logical_size": [64, 48],
-      "minimum_master_size": [256, 192]
+      "logical_size": [
+        64,
+        48
+      ],
+      "minimum_master_size": [
+        256,
+        192
+      ]
     },
     {
       "name": "snake",
       "surface_glob": "addon/images/prehistoric/creatures/snake/*.surface",
-      "logical_size": [64, 32],
-      "minimum_master_size": [256, 128]
+      "logical_size": [
+        64,
+        32
+      ],
+      "minimum_master_size": [
+        256,
+        128
+      ]
     },
     {
       "name": "pterosaur",
       "surface_glob": "addon/images/prehistoric/creatures/ptero/*.surface",
-      "logical_size": [80, 48],
-      "minimum_master_size": [320, 192]
+      "logical_size": [
+        80,
+        48
+      ],
+      "minimum_master_size": [
+        320,
+        192
+      ]
     },
     {
       "name": "spinosaurus",
       "surface_glob": "addon/images/prehistoric/creatures/spinosaurus/*.surface",
-      "logical_size": [96, 64],
-      "minimum_master_size": [384, 256]
+      "logical_size": [
+        96,
+        64
+      ],
+      "minimum_master_size": [
+        384,
+        256
+      ]
     },
     {
       "name": "caveman",
       "surface_glob": "addon/images/prehistoric/characters/caveman/*.surface",
-      "logical_size": [48, 64],
-      "minimum_master_size": [192, 256]
+      "logical_size": [
+        48,
+        64
+      ],
+      "minimum_master_size": [
+        192,
+        256
+      ]
     },
     {
       "name": "checkpoint",
       "surface_glob": "addon/images/prehistoric/objects/checkpoint/*.surface",
-      "logical_size": [48, 72],
-      "minimum_master_size": [192, 288]
+      "logical_size": [
+        48,
+        72
+      ],
+      "minimum_master_size": [
+        192,
+        288
+      ]
     },
     {
       "name": "palaszarusz",
       "surface_glob": "addon/images/prehistoric/boss/palaszarusz/*.surface",
-      "logical_size": [192, 112],
-      "minimum_master_size": [768, 448]
+      "logical_size": [
+        192,
+        112
+      ],
+      "minimum_master_size": [
+        768,
+        448
+      ]
     },
     {
       "name": "terrain",
       "surface_glob": "addon/images/prehistoric/terrain/*.surface",
-      "logical_size": [32, 32],
-      "minimum_master_size": [128, 128]
+      "logical_size": [
+        32,
+        32
+      ],
+      "minimum_master_size": [
+        128,
+        128
+      ]
     },
     {
       "name": "platforms",
       "surface_glob": "addon/images/prehistoric/objects/platforms/*.surface",
-      "logical_size": [96, 32],
-      "minimum_master_size": [384, 128]
+      "logical_size": [
+        96,
+        32
+      ],
+      "minimum_master_size": [
+        384,
+        128
+      ]
     },
     {
       "name": "stalactite",
       "surface_glob": "addon/images/prehistoric/objects/stalactite/*.surface",
-      "logical_size": [40, 64],
-      "minimum_master_size": [160, 256]
+      "logical_size": [
+        40,
+        64
+      ],
+      "minimum_master_size": [
+        160,
+        256
+      ]
     },
     {
       "name": "stolen-egg",
       "surface_glob": "addon/images/prehistoric/story/stolen-egg.surface",
-      "logical_size": [48, 64],
-      "minimum_master_size": [192, 256]
+      "logical_size": [
+        48,
+        64
+      ],
+      "minimum_master_size": [
+        192,
+        256
+      ]
+    },
+    {
+      "name": "sauropod-distant",
+      "surface_glob": "addon/images/prehistoric/scenery/sauropod-distant.surface",
+      "logical_size": [
+        180,
+        96
+      ],
+      "minimum_master_size": [
+        720,
+        384
+      ]
+    },
+    {
+      "name": "broken-nest",
+      "surface_glob": "addon/images/prehistoric/scenery/broken-nest.surface",
+      "logical_size": [
+        96,
+        64
+      ],
+      "minimum_master_size": [
+        384,
+        256
+      ]
+    },
+    {
+      "name": "volcano-distant",
+      "surface_glob": "addon/images/prehistoric/scenery/volcano-distant.surface",
+      "logical_size": [
+        220,
+        128
+      ],
+      "minimum_master_size": [
+        880,
+        512
+      ]
+    },
+    {
+      "name": "pterosaur-nest",
+      "surface_glob": "addon/images/prehistoric/scenery/pterosaur-nest.surface",
+      "logical_size": [
+        96,
+        48
+      ],
+      "minimum_master_size": [
+        384,
+        192
+      ]
+    },
+    {
+      "name": "cliff-spire",
+      "surface_glob": "addon/images/prehistoric/scenery/cliff-spire.surface",
+      "logical_size": [
+        80,
+        160
+      ],
+      "minimum_master_size": [
+        320,
+        640
+      ]
+    },
+    {
+      "name": "giant-ribs",
+      "surface_glob": "addon/images/prehistoric/scenery/giant-ribs.surface",
+      "logical_size": [
+        160,
+        96
+      ],
+      "minimum_master_size": [
+        640,
+        384
+      ]
+    },
+    {
+      "name": "fossil-skull",
+      "surface_glob": "addon/images/prehistoric/scenery/fossil-skull.surface",
+      "logical_size": [
+        96,
+        64
+      ],
+      "minimum_master_size": [
+        384,
+        256
+      ]
+    },
+    {
+      "name": "bone-arch",
+      "surface_glob": "addon/images/prehistoric/scenery/bone-arch.surface",
+      "logical_size": [
+        128,
+        96
+      ],
+      "minimum_master_size": [
+        512,
+        384
+      ]
+    },
+    {
+      "name": "dusk-sun",
+      "surface_glob": "addon/images/prehistoric/scenery/dusk-sun.surface",
+      "logical_size": [
+        128,
+        128
+      ],
+      "minimum_master_size": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "worldmap-background",
+      "surface_glob": "addon/images/prehistoric/worldmap/background.surface",
+      "logical_size": null,
+      "minimum_master_size": [
+        3840,
+        2160
+      ]
     }
   ]
 }
