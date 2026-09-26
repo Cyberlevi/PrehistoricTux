@@ -3,6 +3,7 @@
   (version 1)
   (type "worldmap")
   (title "PrehistoricTux")
+  (description "A difficult eight-level prehistoric adventure through jungles, caves, cliffs and a volcanic Palaszarusz finale.")
   (author "Tarnóczi Levente & Hanna")
   (license "GPL-3.0-or-later / CC-BY-SA-4.0")
 )
