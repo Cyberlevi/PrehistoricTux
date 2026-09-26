@@ -213,7 +213,6 @@
       (z-pos -290)
     )
     (haywire
-      (sprite "/images/dino/trike/trike.sprite")
       (z-pos 50)
       (direction "left")
       (x 4096)
@@ -360,8 +359,7 @@
       (z-pos 50)
       (message (_ "-Trail Note\n#Ancient bones mark the edge of the nesting grounds. The creatures here defend every ledge."))
       (fadetransition #t)
-      (x 192)
-      (y 1984)
+      (x 192) (y 1984)
     )
     (spawnpoint
       (name "main")
