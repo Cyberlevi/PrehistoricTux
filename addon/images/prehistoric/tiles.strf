@@ -1,0 +1,50 @@
+(supertux-tiles
+  (tilegroup
+    (name (_ "Prehistoric Terrain"))
+    (tiles
+      2 4 6 8
+      1 3 5 7
+    )
+  )
+
+  (tile
+    (id 1)
+    (solid #t)
+    (images "terrain/jungle-fill.png")
+  )
+  (tile
+    (id 2)
+    (solid #t)
+    (images "terrain/jungle-top.png")
+  )
+  (tile
+    (id 3)
+    (solid #t)
+    (images "terrain/cave-fill.png")
+  )
+  (tile
+    (id 4)
+    (solid #t)
+    (images "terrain/cave-top.png")
+  )
+  (tile
+    (id 5)
+    (solid #t)
+    (images "terrain/cliff-fill.png")
+  )
+  (tile
+    (id 6)
+    (solid #t)
+    (images "terrain/cliff-top.png")
+  )
+  (tile
+    (id 7)
+    (solid #t)
+    (images "terrain/volcano-fill.png")
+  )
+  (tile
+    (id 8)
+    (solid #t)
+    (images "terrain/volcano-top.png")
+  )
+)
