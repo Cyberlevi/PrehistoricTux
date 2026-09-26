@@ -17,14 +17,14 @@ Updated: 2026-09-26
 ## UHD art
 
 - Runtime art is routed through `.surface` bindings.
-- Current production audit: **0/52 active bindings are genuinely UHD-ready**.
+- Current production audit on the Garuda target machine: **7/52 active bindings are UHD-ready**.
 - Existing PNGs remain gameplay prototypes.
 - Target master scale: **4×** for gameplay art.
 - Full-screen background target: **3840×2160 minimum**.
 
 ## Current milestone
 
-A concrete **24-asset Level 01 production queue** is now tracked in `art/level01-production.json`.
+A concrete **24-asset Level 01 production queue** is tracked in `art/level01-production.json`. The first P1 batch has now passed target-machine QA and promotion: **7/24 ready (29.2%)**.
 
 Priority 1:
 - 5 raptor runtime frames
@@ -78,3 +78,21 @@ To revert only the local P1 runtime promotion while preserving incoming source e
     bash scripts/reset-level01-p1-runtime.sh
 
 Important: promoted 4× sources must be tested with `scripts/play-uhd-level.sh`, not the stock SuperTux binary, because stock 0.7.0 ignores the logical `.surface` scale field.
+
+
+## Target-machine P1 verification
+
+The first Level 01 production batch has now been exercised on the Garuda workstation:
+
+- Pillow/tooling setup succeeded
+- all 7 Priority-1 assets were generated
+- P1 art QA passed
+- raptor floor-line drift measured **0.0%**
+- dry-run promotion accepted **7/7**
+- runtime promotion completed **7/7**
+- Level 01 status reached **7/24 (29.2%)**
+- global UHD audit reached **7/52**
+- structural validation passed after promotion
+- Level 01 launched through the patched UHD engine without an immediate runtime/parser failure
+
+Remaining manual gate: visual approval of the actual in-game raptor/jungle appearance. The generated P1 set is still a replaceable production candidate, not locked final art.
