@@ -1,0 +1,11 @@
+(supertux-sprite
+  (action (name "right") (hitbox 18 26 154 88) (fps 4)
+    (images "pal-walk-0.png" "pal-walk-1.png" "pal-walk-2.png" "pal-walk-3.png"))
+  (action (name "left") (hitbox 18 26 154 88) (fps 4) (mirror-action "right"))
+  (action (name "idle-right") (fps 3) (images "pal-roar-0.png" "pal-roar-1.png" "pal-roar-2.png"))
+  (action (name "idle-left") (mirror-action "idle-right"))
+  (action (name "squished-right") (images "pal-hurt-0.png" "pal-hurt-1.png"))
+  (action (name "squished-left") (mirror-action "squished-right"))
+  (action (name "melting") (images "pal-hurt-0.png"))
+  (action (name "ground-melting") (images "pal-hurt-0.png"))
+)
