@@ -13,6 +13,7 @@
   )
   (sector
     (name "main")
+    (init-script "import(\"levels/prehistoric_tux/01_lost_egg_valley.nut\");")
     (ambient-light (color 0.72 0.86 0.68))
     (gradient
       (top_color 0.19 0.43 0.35)
@@ -129,10 +130,18 @@
       (fadetransition #t)
       (x 12864) (y 576)
     )
+    (scripttrigger
+      (oneshot #t)
+      (script "palaszarusz_reveal();")
+      (button #f)
+      (width 48) (height 384)
+      (x 13152) (y 384)
+    )
+    ; Safety fallback: still completes if the scripted reveal is skipped.
     (sequencetrigger
       (sequence "endsequence")
       (width 32) (height 384)
-      (x 13216) (y 384)
+      (x 13312) (y 384)
     )
 
     (tilemap
