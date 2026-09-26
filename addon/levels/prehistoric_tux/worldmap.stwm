@@ -5,9 +5,9 @@
   (author "Tarnóczi Levente & Hanna")
   (license "CC-BY-SA 4.0 International")
   (allow-item-pocket "on")
-  (icon "/images/worlds/icon/icyisland.png")
-  (icon-locked "/images/worlds/locked/icyisland.png")
-  (bkg "/images/worlds/background/icyisland.png")
+  (icon "/images/prehistoric/story/stolen-egg.png")
+  (icon-locked "/images/prehistoric/story/stolen-egg.png")
+  (bkg "/images/prehistoric/scenery/dusk-sun.png")
   (sector
     (name "main")
     (ambient-light (color 0.82 0.92 0.72))
@@ -66,6 +66,15 @@
       (y 9)
     )
     (tilemap
+      (solid #f)
+      (z-pos -100)
+      (name "biomes")
+      (width 24)
+      (height 18)
+      (tiles -10 100 -7 101 -7 102 -10 100 -7 101 -7 102 -10 100 -7 101 -7 102 -10 100 -7 101 -7 102 -10 100 -7 101 -7 102 -10 100 -7 101 -7 102 -10 100 -7 101 -7 102 -17 100 -7 102 -17 100 -7 102 -17 100 -7 102 -17 100 -7 102 -15 100 -9 103 -15 100 -9 103 -15 100 -9 103 -15 100 -9 103 -15 100 -9 103 -15 100 -9 103 -15 100 -9 103)
+    )
+
+    (tilemap
       (solid #t)
       (z-pos 0)
       (name "pathing")
@@ -74,5 +83,5 @@
       (tiles -158 0 10 -3 20 11 -19 0 21 -3 0 21 -19 0 21 -3 0 21 -8 0 18 -10 20 15 -3 0 21 -23 0 14 20 11 -23 0 21 -23 0 21 -19 0 10 -3 20 15 -19 0 21 -23 0 21 -23 0 22 -31 0)
     )
   )
-  (tileset "/images/ice_world.strf")
+  (tileset "/images/prehistoric/worldmap.strf")
 )
