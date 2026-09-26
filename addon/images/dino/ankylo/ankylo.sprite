@@ -1,7 +1,7 @@
 (supertux-sprite
-  (action (name "right") (hitbox 22 32 164 50) (fps 5)
+  (action (name "right") (hitbox 18 20 132 58) (fps 5)
     (images "ankylo-walk-0.png" "ankylo-walk-1.png" "ankylo-walk-2.png" "ankylo-walk-3.png"))
-  (action (name "left") (hitbox 22 32 164 50) (fps 5) (mirror-action "right"))
+  (action (name "left") (hitbox 18 20 132 58) (fps 5) (mirror-action "right"))
   (action (name "squished-right") (images "ankylo-walk-0.png"))
   (action (name "squished-left") (mirror-action "squished-right"))
   (action (name "melting") (images "ankylo-walk-0.png"))
