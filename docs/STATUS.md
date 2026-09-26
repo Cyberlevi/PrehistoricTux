@@ -24,8 +24,23 @@ Updated: 2026-09-26
 
 ## Current milestone
 
-1. Confirm the visual scale test: the right raptor must render at exactly half the logical size of the left raptor.
-2. Begin the Level 01 production art pass.
-3. Promote genuine 4× assets through `scripts/promote-uhd-source.py`.
-4. Re-run `python scripts/uhd-audit.py` after every promoted asset.
-5. Keep PR #1 draft until visual/runtime playtesting is complete.
+A concrete **24-asset Level 01 production queue** is now tracked in `art/level01-production.json`.
+
+Priority 1:
+- 5 raptor runtime frames
+- jungle fill/top terrain
+
+Priority 2:
+- snake
+- pterosaur
+- caveman
+
+Priority 3:
+- checkpoint
+- broken nest
+- distant sauropod
+- distant volcano
+
+Promotion is batchable through `scripts/promote-level01-art.py`, while `scripts/level01-art-status.py` reports vertical-slice completion independently of the global 52-binding audit.
+
+Remaining engine gate: visually confirm the dedicated scale test. The right raptor must render at exactly half the logical size of the left raptor.
