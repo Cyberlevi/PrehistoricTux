@@ -184,7 +184,6 @@
       (y 0)
     )
     (smartball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 2720)
@@ -192,7 +191,6 @@
       (glinting #f)
     )
     (smartball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 5632)
@@ -200,7 +198,6 @@
       (glinting #f)
     )
     (smartball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 6080)
@@ -208,7 +205,6 @@
       (glinting #f)
     )
     (smartball
-      (sprite "/images/dino/alpha_raptor/alpha_raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 10496)
@@ -216,7 +212,6 @@
       (glinting #f)
     )
     (smartball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 9792)
@@ -231,7 +226,6 @@
       (glinting #f)
     )
     (snowball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 1184)
@@ -239,7 +233,6 @@
       (glinting #f)
     )
     (snowball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 8064)
@@ -247,7 +240,6 @@
       (glinting #f)
     )
     (snowball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 8352)
@@ -255,7 +247,6 @@
       (glinting #t)
     )
     (snowball
-      (sprite "/images/dino/alpha_raptor/alpha_raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 8448)
@@ -263,7 +254,6 @@
       (glinting #f)
     )
     (snowball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 2528)
@@ -271,7 +261,6 @@
       (glinting #f)
     )
     (snowball
-      (sprite "/images/dino/raptor/raptor.sprite")
       (z-pos 50)
       (direction "left")
       (x 2624)
