@@ -1,0 +1,71 @@
+(supertux-level
+  (version 3)
+  (name (_ "UHD Surface Scale Test"))
+  (author "PrehistoricTux development")
+  (license "CC-BY-SA 4.0 International")
+  (statistics
+    (enable-coins #f)
+    (enable-secrets #f)
+  )
+  (tileset "/images/prehistoric/tiles.strf")
+  (sector
+    (name "main")
+    (ambient-light (color 0.85 0.85 0.85))
+    (gradient
+      (top_color 0.11 0.19 0.24)
+      (bottom_color 0.37 0.47 0.33)
+    )
+    (camera (name "Camera") (mode "normal"))
+    (spawnpoint (name "main") (x 96) (y 416))
+
+    (infoblock
+      (z-pos 50)
+      (message (_ "-UHD engine test
+#The left raptor uses a normal 1.0 surface.
+#The right raptor uses the SAME source image at logical scale 0.5.
+#Patched engine: right raptor must be exactly half-size.
+#Stock SuperTux 0.7.0: both appear the same size."))
+      (fadetransition #t)
+      (x 160)
+      (y 352)
+    )
+
+    (scriptedobject
+      (z-pos 30)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "SCALE_FULL")
+      (sprite "/images/prehistoric/dev/scale-full.sprite")
+      (x 640)
+      (y 400)
+    )
+    (scriptedobject
+      (z-pos 30)
+      (physic-enabled #f)
+      (solid #f)
+      (visible #t)
+      (name "SCALE_HALF")
+      (sprite "/images/prehistoric/dev/scale-half.sprite")
+      (x 896)
+      (y 424)
+    )
+
+    (sequencetrigger
+      (sequence "endsequence")
+      (width 32)
+      (height 320)
+      (x 1408)
+      (y 256)
+    )
+
+    (tilemap
+      (solid #t)
+      (z-pos 0)
+      (name "Scale Test Terrain")
+      (width 48)
+      (height 18)
+      (tiles -672 0 -48 2 -144 1)
+    )
+  )
+)

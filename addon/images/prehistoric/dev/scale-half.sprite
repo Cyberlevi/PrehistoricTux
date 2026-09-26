@@ -1,0 +1,7 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 5 7 22 15)
+    (images "scale-half.surface")
+  )
+)
