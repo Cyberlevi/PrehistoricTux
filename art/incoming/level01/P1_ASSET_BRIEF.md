@@ -14,6 +14,8 @@ Required frames:
 4. `raptor-walk-3@4x.png`
 5. `raptor-squished@4x.png`
 
+**Canonical facing direction: RIGHT.** The sprite definition uses these source frames for rightward movement and mirrors them for leftward movement.
+
 The production raptor is a lean feathered prehistoric hunter. It should look dangerous and athletic without gore or exaggerated monster anatomy. Keep a stable side-view camera, consistent body volume and a clean transparent background. The walk cycle must keep the feet on a stable floor line so the sprite does not visually bounce.
 
 Do not bake a ground shadow into the PNG. Do not use text, borders, glow outlines or scenery inside the sprite frame.
