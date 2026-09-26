@@ -35,3 +35,11 @@ If the locally built binary is not named supertux2:
 - Palaszarusz becomes visible during the final camera pan
 - 3840×2160 framing does not expose empty geometry or badly placed objects
 - no collision box feels much larger or smaller than its creature silhouette
+
+## Direct level testing
+
+To bypass the worldmap and test a specific stage directly:
+
+    bash scripts/play-level.sh 1
+
+Use any number from 1 to 8. Each run writes a dedicated log under `diagnostics/level-N.log`. This is the fastest way to isolate runtime issues to a specific level.
