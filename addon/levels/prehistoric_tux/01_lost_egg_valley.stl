@@ -56,6 +56,18 @@
 
     (spawnpoint (name "main") (x 96) (y 704))
 
+    ; Short opening establishing shot. It pauses the target timer and hands
+    ; control back before the first enemy encounter.
+    (scripttrigger
+      (oneshot #t)
+      (script "valley_intro();")
+      (button #f)
+      (width 48)
+      (height 320)
+      (x 192)
+      (y 480)
+    )
+
     ; Real checkpoint objects. In final art these become carved prehistoric totems.
     (firefly (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite") (z-pos 0) (x 4640) (y 672))
     (firefly (sprite "/images/prehistoric/objects/checkpoint/checkpoint-totem.sprite") (z-pos 0) (x 9600) (y 672))
